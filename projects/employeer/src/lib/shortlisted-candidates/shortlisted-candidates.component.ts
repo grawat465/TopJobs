@@ -5,4 +5,6 @@ import { ResumeService } from '../services/resume.service';
 @Component({
   selector: 'emp-shortlisted-candidates',
   templateUrl: './shortlisted-candidates.component.html',
-  styleUrls: ['./shortlisted-candidates.compon
+  styleUrls: ['./shortlisted-candidates.component.css']
+
+})

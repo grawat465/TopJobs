@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   empId:string="";
+  
   seekId:string="";
   fullRoute:string="";
   employer:boolean=false;
@@ -77,6 +78,26 @@ export class HeaderComponent implements OnInit {
   }
   eloginSignup(){
     this.router.navigate(['/elogin/signup']);
+  }
+
+  seekerCreateResume(){
+    this.router.navigate(['/seeker/resume',this.seekId])
+  }
+
+  seekerSearchJobs(){
+    this.router.navigate(['/seeker/jobs',this.seekId])
+  }
+
+  logoutSeeker() {
+    this.router.navigate(['/home',this.seekId])
+  }
+
+  sloginLogin(){
+    this.router.navigate(['/slogin/login']);
+  }
+
+  sloginSignup() {
+    this.router.navigate(['/slogin/signup']);
   }
 
 }
