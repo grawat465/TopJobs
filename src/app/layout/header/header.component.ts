@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
       if(location.path()!= ''){
         this.fullRoute=location.path();
         this.route=this.fullRoute.split('/');
-        console.log(this.route);
+        //console.log(this.route);
         if(this.route.indexOf('employer') != -1){
           //this.empId=this.routing.snapshot.paramMap.get('empId');
           this.empId=this.route[3];

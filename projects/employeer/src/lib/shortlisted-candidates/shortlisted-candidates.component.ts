@@ -5,4 +5,30 @@ import { ResumeService } from '../services/resume.service';
 @Component({
   selector: 'emp-shortlisted-candidates',
   templateUrl: './shortlisted-candidates.component.html',
-  styleUrls: ['./shortlisted-candidates.compon
+  styleUrls: ['./shortlisted-candidates.component.css']
+})
+export class ShortlistedCandidatesComponent implements OnInit {
+  constructor(private resumeService:ResumeService) { }
+
+  displayedColumns: string[] = ['serialno', 'jobId', 'resumeId', 'Action'];
+  columnsToDisplay: string[] = this.displayedColumns.slice();
+  datas: ShortlistApplicants[] ;
+
+
+  removeColumn() {
+    if (this.columnsToDisplay.length) {
+      this.columnsToDisplay.pop();
+    }
+  }
+
+  ngOnInit() {
+    console.log("nGODSDf");
+    this.getAllApplicants();
+  }
+  getAllApplicants(){
+    this.resumeService.getAllShortlsitedApplicants().subscribe(data=>{
+      this.datas=data;
+      console.log(data);
+    });
+  }
+}
