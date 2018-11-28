@@ -5,8 +5,9 @@ import { Router } from '@angular/router';
 
 
 
-import { SloginService } from '../../public_api';
+//import { SloginService } from '../../public_api';
 import { Seeker } from '../models/seeker';
+import { SloginService } from '../slogin.service';
 
 @Component({
   selector: 'skl-login',

@@ -11,7 +11,7 @@ import { ShortlistedCandidatesComponent } from './shortlisted-candidates/shortli
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { EmployerRoutingModule } from './employeer-routing.module';
-import { CandidateListComponent } from './candidate-list/candidate-list.component';
+import { CandidateListComponent, ResumeContentDialog } from './candidate-list/candidate-list.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [EmployeerComponent, HeaderComponent,
     FooterComponent, ContentComponent, NewJobComponent, PostedJobsComponent,
     ShortlistedCandidatesComponent,
-    CandidateListComponent],
+    CandidateListComponent,ResumeContentDialog],
   imports: [
     CommonModule,
     BrowserModule,
@@ -47,7 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MatDialogModule  
   ],
-  exports: [EmployeerComponent]
+  exports: [EmployeerComponent],
+  entryComponents:[ResumeContentDialog]
   
 })
 export class EmployeerModule { }

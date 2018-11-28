@@ -22,4 +22,5 @@ export class ResumeService {
     getAllShortlsitedApplicants(){
       return this.http.get<ShortlistApplicants[]>(this.userUrl+"/employer/getShortlistApplicants");
     }
+
 }
