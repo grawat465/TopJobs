@@ -15,7 +15,7 @@ import { CandidateListComponent, ResumeContentDialog } from './candidate-list/ca
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatAutocompleteModule, MatTableModule, MatCheckboxModule, MatDialogModule } from '@angular/material';
+import { MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatAutocompleteModule, MatTableModule, MatCheckboxModule, MatDialogModule, MatGridListModule, MatGridTile, MatGridTileText } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -45,7 +45,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatCheckboxModule,
     HttpClientModule,
-    MatDialogModule  
+    MatDialogModule,
+    MatGridListModule,
+    
   ],
   exports: [EmployeerComponent],
   entryComponents:[ResumeContentDialog]

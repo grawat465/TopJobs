@@ -10,7 +10,7 @@ import { ResumeService } from '../services/resume.service';
 export class ShortlistedCandidatesComponent implements OnInit {
   constructor(private resumeService:ResumeService) { }
 
-  displayedColumns: string[] = ['serialno', 'jobId', 'resumeId', 'Action'];
+  displayedColumns: string[] = ['serialno', 'jobId', 'resumeId','action'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   datas: ShortlistApplicants[] ;
 
@@ -28,6 +28,12 @@ export class ShortlistedCandidatesComponent implements OnInit {
   getAllApplicants(){
     this.resumeService.getAllShortlsitedApplicants().subscribe(data=>{
       this.datas=data;
+      console.log(data);
+    });
+  }
+  deleteShortlist(resumeId:string){
+    console.log(resumeId);
+    this.resumeService.deleteShortlistedApplicants(resumeId).subscribe(data=>{
       console.log(data);
     });
   }

@@ -1,8 +1,12 @@
 table {
-    width: 90%;
+    width: 95%;
     margin: 5em auto;
+
+    text-align: center;
   }
-  
+  th.mat-header-cell{
+    text-align: center;
+  }
   tr.example-detail-row {
     height: 0;
   }
@@ -47,4 +51,13 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
-  
+
+  h1{
+    margin:5% auto;
+    text-align: center;
+
+  }
+
+  mat-icon{
+    color: black;
+  }
