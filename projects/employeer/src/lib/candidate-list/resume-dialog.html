@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>Resume</h2>
+<mat-dialog-content class="mat-typography">
+
+  <mat-card>
+    <form [formGroup]="resumeDisplay">
+      <h3>Personal Information</h3>
+      <mat-form-field class="half-width">
+        <label for="name">Name</label>
+        <input matInput  formControlName="name"/>
+      </mat-form-field>       
+      <mat-form-field class="half-width">
+        <label for="mobileno">Mobile Number</label>
+        <input matInput  formControlname="mobileno" />
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <label for="dob">Date of Birth</label>
+        <input matInput  formControlName="dob" />
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <label for="resumeId">Resume ID</label>
+        <input matInput  formControlName="resumeId" />
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <label for="email">Email ID</label>
+        <input matInput  formControlName="email" />
+      </mat-form-field>
+    </form>
+  </mat-card>
+  <mat-card>
+    <div *ngFor="let exp of expDetails">
+      <form [formGroup]="exp">
+        <h3>Experience Details</h3>
+        <mat-form-field class="half-width">
+          <label for="companyName">Organization</label>
+          <input matInput formControlName="companyName" value />
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <label for="noOfYears">Work Duration</label>
+          <input matInput formControlName="noOfYears" />
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <label for="position">Role</label>
+          <input matInput formControlName="position" />
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <label for="description">Description of role and work.</label>
+          <input matInput formControlName="description" />
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-card>
+  <mat-card>
+    <div *ngFor="let edu of eduDetails">
+      <form [formGroup]="edu">
+        <h3>Education Details</h3>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="eduId" placeholder="Education ID">
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+          <input matInput formControlName="degree" placeholder="Degree" />
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="score" placeholder="Score" />
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="institution" placeholder="Institution" />
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="startdate" placeholder="StartDate" />
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="enddate" placeholder="EndDate" />
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="board" placeholder="Board" />
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-card>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Reject</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Shortlist</button>
+</mat-dialog-actions>

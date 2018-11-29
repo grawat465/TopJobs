@@ -1,0 +1,42 @@
+.container{
+    margin: 5em auto;
+
+    display: flex;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    margin: 0 0 0.75rem 0;
+    color: aliceblue;
+  }
+  
+  
+  
+  .left-half {
+    background: url('../../assets/leftpic.jpg') no-repeat;
+    flex: 1;
+    height: 30em;
+    padding: 1rem;
+  }
+  
+  .right-half {
+    background: url('../../assets/rightpic.jpg')  no-repeat;
+    flex: 1;
+    height:30em;
+    padding: 1rem;
+  }
+
+
+
+a{
+    margin: 10em auto;
+}
+

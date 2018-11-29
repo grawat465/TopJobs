@@ -1,0 +1,158 @@
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/logo.png" width="150" height="30" alt="TopJobs" [routerLink]="home">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+              <a class="nav-link"
+                routerLink="/home"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                Home
+              </a>
+            </li>
+<!--        
+        <li class="nav-item">
+            <a class="nav-link"
+              routerLink="/home"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">
+              Home
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a class="nav-link"
+              routerLink="/blog"
+              routerLinkActive="active">
+              <i class="ion-compose"></i>&nbsp;Testimonials
+            </a>
+          </li>
+    
+          <li class="nav-item">
+              <a class="nav-link"
+                routerLink="/about"
+                routerLinkActive="active">
+                <i class="ion-"></i>&nbsp;About us
+              </a>
+            </li>
+    
+            <li class="nav-item">
+                <a class="nav-link"
+                  routerLink="/contact"
+                  routerLinkActive="active">
+                  <i class="fa fa"></i>&nbsp;Contact us
+                </a>
+              </li>
+    
+    
+    
+    
+    
+          <li class="nav-item">
+            <a class="nav-link"
+              routerLink="/pricing"
+              routerLinkActive="active">
+              <i class="ion-gear-a"></i>&nbsp;pricing
+            </a>
+          </li>
+--> 
+<li class="nav-item" *ngIf="employer">
+    <a class="nav-link"
+      (click)="navigateNewForm()">
+      <i class="ion-compose"></i>&nbsp;New Job
+    </a>
+  </li>
+
+  <li class="nav-item" *ngIf="employer">
+      <a class="nav-link"
+      (click)="navigateJobs()">
+        <i class="ion-"></i>&nbsp;View Jobs
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="employer">
+        <a class="nav-link"
+        (click)="navigateShortlist()">
+          <i class="fa fa"></i>&nbsp;ShortList
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="employer">
+          <a class="nav-link"
+          (click)="employerLogout()">
+            <i class="fa fa"></i>&nbsp;Logout
+          </a>
+        </li>
+
+
+  <li class="nav-item" *ngIf="employer">
+    <a class="nav-link"
+      [routerLink]=""
+      routerLinkActive="active">
+     
+    </a>
+  </li>
+
+  
+  <li class="nav-item" *ngIf="seeker">
+      <a class="nav-link" (click)="seekerCreateResume()">
+        <i class="ion-compose"></i>&nbsp;Create Resume
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="seeker">
+        <a class="nav-link" (click)="seekerSearchJobs()" >
+          <i class="ion-"></i>&nbsp;Search Jobs
+        </a>
+      </li>
+
+  <li class="nav-item" *ngIf="seeker">
+      <a class="nav-link"
+      (click)="logoutSeeker()">
+        <i class="ion-gear-a"></i>&nbsp;Logout
+      </a>
+    </li>
+         
+
+    <li class="nav-item" *ngIf="slogin">
+        <a class="nav-link" (click)="sloginLogin()">
+          <i class="ion-gear-a"></i>&nbsp;Login
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="slogin">
+          <a class="nav-link"
+          (click)="sloginSignup()">
+            <i class="ion-gear-a"></i>&nbsp;Register
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="elogin">
+            <a class="nav-link" (click)="eloginLogin()">
+              <i class="ion-gear-a"></i>&nbsp;Login
+            </a>
+          </li>
+    
+          <li class="nav-item" *ngIf="elogin">
+              <a class="nav-link"
+              (click)="eloginSignup()">
+                <i class="ion-gear-a"></i>&nbsp;Register
+              </a>
+            </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
