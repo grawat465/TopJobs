@@ -78,7 +78,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   
   deleteUserForDialog(user: Experience) {
       this.serv.deleteUser(user.id).subscribe(data => {
-          this.statusMessage = 'Details ' + user.id + ' is deleted',
+          this.statusMessage = 'Details ' + user.id + ' deleted',
               this.openSnackBar(this.statusMessage, "Success");
           this.loadUsers();
       })
@@ -86,7 +86,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   
   editUser(user: Experience) {
       this.serv.updateUser( user).subscribe(data => {
-          this.statusMessage = 'Detail' + user.id + ' is updated',
+          this.statusMessage = 'Detail' + user.id + ' updated',
           this.openSnackBar(this.statusMessage, "Success");
           this.loadUsers();
       },

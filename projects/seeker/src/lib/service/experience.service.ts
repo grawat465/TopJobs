@@ -12,7 +12,7 @@ export class ExperienceService {
       
     getUsers() {
 
-        return this.http.get(this.API_URL + 'exp/RID123');
+        return this.http.get(this.API_URL + 'exp');
     }
 
     createUser(experience: Experience) {
