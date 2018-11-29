@@ -19,7 +19,7 @@ h1{
   
   .mat-form-field {
     font-size: 14px;
-    width: 100%;
+    width: 80%;
   }
 
   /* .mat-column-Change {
@@ -29,6 +29,10 @@ h1{
     max-width: 50px;
   } */
 
+  .mat-toolbar{
+    margin: 2em auto;
+    background: black;
+  }
 
   .mat-cell:nth-child(1),
 .mat-header-cell:nth-child(1){
@@ -49,3 +53,4 @@ h1{
 .mat-header-cell:nth-child(7){
   flex: 0 0 7%;
 }
+

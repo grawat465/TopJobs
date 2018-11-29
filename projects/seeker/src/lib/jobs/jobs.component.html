@@ -1,3 +1,15 @@
+
+<mat-card class="container">
+
+  <mat-card-header>
+    <div class="search">
+        <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput #filter placeholder="Filter jobs">
+          </mat-form-field>
+    </div>
+  </mat-card-header>
+
+
 <mat-grid-list cols="1" rowHeight="200px" gutterSize="10px">
   <mat-grid-tile class="card-deck-container" *ngFor="let x of jobs">
 
@@ -32,3 +44,5 @@
 
   </mat-grid-tile>
 </mat-grid-list>
+
+</mat-card>

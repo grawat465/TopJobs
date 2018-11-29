@@ -24,9 +24,9 @@ export class BasicinfoComponent implements OnInit {
      
     });
     
-   this.userDetailsForm.disable();
-    this.service.getResumeData()
-    .subscribe(data => {
+   this.userDetailsForm.disable(); // disable form onload
+
+    this.service.getResumeData().subscribe(data => {
        this.details = data;
        this.userDetailsForm.patchValue({firstname : this.details.name,
                                         phone : this.details.contact,

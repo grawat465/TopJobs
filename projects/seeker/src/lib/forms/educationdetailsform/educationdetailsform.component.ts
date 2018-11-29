@@ -46,6 +46,7 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
 
 @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
 @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  thirdFormGroup: FormGroup;
 
 
 
@@ -59,8 +60,10 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
     }
 
   ngOnInit() {
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+
+    this.loadData();
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
     });
   }
 
@@ -143,8 +146,7 @@ public loadData() {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
-
-}
+  }
 
 //////chip control /////////////////
 
@@ -155,7 +157,7 @@ add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add our skill
     if ((value || '').trim()) {
       this.skills.push(value.trim());
     }

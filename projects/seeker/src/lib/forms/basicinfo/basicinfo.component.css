@@ -27,3 +27,8 @@
       margin: auto 5px;
      
   }
+
+  .mat-toolbar{
+      margin : 2em auto;
+      width : 80%;
+  }

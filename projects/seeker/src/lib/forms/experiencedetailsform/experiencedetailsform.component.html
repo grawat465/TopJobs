@@ -5,12 +5,14 @@
     <div *ngIf="isLoaded">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         <!-- <mat-progress-bar mode="buffer"></mat-progress-bar> -->
-      </div>
+    </div>
     
-      <mat-card>Users from database</mat-card><br>
+    <mat-toolbar color="primary">
+        <span>Education Details</span>
+        </mat-toolbar>
     
       <button mat-raised-button (click)="show()">
-        <mat-icon color="accent">add</mat-icon> Add User
+        <mat-icon color="accent">add</mat-icon> Add Detail
       </button>
       <br>
     
@@ -91,11 +93,12 @@
         </table>
       </div>
       <br>
-    
+   
+      <!--
       <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
-    
+    -->
     
       <!-- ----------------------------Users table----------------------------------->
       <div class="mat-elevation-z8">
