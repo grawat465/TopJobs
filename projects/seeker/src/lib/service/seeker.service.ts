@@ -8,6 +8,9 @@ import { HttpErrorResponse , HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class SeekerService {
+  getResumeData(): any {
+    throw new Error("Method not implemented.");
+  }
   constructor(private httpClient: HttpClient) { }
 
   
