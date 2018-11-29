@@ -6,3 +6,12 @@ table {
   button {
     margin: em auto;
   }
+  h1{
+    text-align: center;
+    margin:5% auto;
+    text-align: center;
+
+  }
+  mat-icon{
+    color: black;
+  }

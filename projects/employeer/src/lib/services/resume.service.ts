@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Resume } from '../models/resume';
-import { JobApplication } from '../models/job-application';
 import { ShortlistApplicants } from '../models/ShortlistApplicants';
+import { MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ export class ResumeService {
 
   private userUrl = 'http://localhost:8765/job-application';
 
-  constructor(private http:HttpClient) { }
+  constructor(private snackBar:MatSnackBar,private http:HttpClient) { }
 
     getResumeListForJob(empId:string,jobId:string){
       return this.http.get<Resume[]>(this.userUrl+"/employer/seejobs/getresume/"+jobId);
@@ -22,5 +25,10 @@ export class ResumeService {
     getAllShortlsitedApplicants(){
       return this.http.get<ShortlistApplicants[]>(this.userUrl+"/employer/getShortlistApplicants");
     }
-
+    deleteShortlistedApplicants(resumeId:string){
+      return this.http.delete<boolean>(this.userUrl+"/employer/deleteShortlistApplicants/"+resumeId)
+    }
+    deleteResumeFromJobApplication(jobId:string,resumeId:string){
+      return this.http.delete<boolean>(this.userUrl+"employer/deleteResumeFromJobApplication/"+jobId+"/"+resumeId)
+    }
 }
