@@ -47,6 +47,8 @@ export class ExperiencedetailsformComponent implements OnInit {
     });
   }
 
+
+
   applyFilter(filterValue: string) {
       this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
 
@@ -86,7 +88,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   
   editUser(user: Experience) {
       this.serv.updateUser( user).subscribe(data => {
-          this.statusMessage = 'Detail' + user.id + ' updated',
+          this.statusMessage = 'Details' + user.id + ' updated',
           this.openSnackBar(this.statusMessage, "Success");
           this.loadUsers();
       },

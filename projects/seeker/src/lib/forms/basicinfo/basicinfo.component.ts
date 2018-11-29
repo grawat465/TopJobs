@@ -24,7 +24,7 @@ export class BasicinfoComponent implements OnInit {
      
     });
     
-   
+   this.userDetailsForm.disable();
     this.service.getResumeData()
     .subscribe(data => {
        this.details = data;
