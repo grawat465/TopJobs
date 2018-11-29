@@ -1,14 +1,13 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Input, Inject, Output } from '@angular/core';
+import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef, MatSnackBar } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Resume } from '../models/Resume';
 import { ResumeService } from '../services/resume.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormArray, AbstractControl } from '@angular/forms';
 import { EducationDetails } from '../models/EducationDetails';
 import { ExperienceDetails } from '../models/ExperienceDetails';
 import { Skills } from '../models/Skills';
-import { SeekerService } from 'projects/seeker/src/public_api';
 import { SeekerServiceService } from '../services/seeker-service.service';
 
 
@@ -20,54 +19,58 @@ import { SeekerServiceService } from '../services/seeker-service.service';
 export class CandidateListComponent implements OnInit {
 
   @Input('init')
-  jobId:string;
+  jobId: string;
   displayedColumns: string[] = ['resumeId', 'name', 'email', 'contact', 'dob', 'details'];
-  ELEMENT_DATA:Resume[];
-  //dataSource = new MatTableDataSource<Resume>(this.ELEMENT_DATA);
-  dataSource:Resume[];
+  ELEMENT_DATA: Resume[];
+  dataSource;// = new MatTableDataSource<Resume>(this.ELEMENT_DATA);
+  //dataSource: Resume[];
   selection = new SelectionModel<Resume>(true, []);
-  empId:string;
-  resumeDisplay:FormGroup;
+  empId: string;
+  resumeDisplay: FormGroup;
 
-  constructor(private FB:FormBuilder, private resumeService:ResumeService,private route:ActivatedRoute,private dialog:MatDialog){
+  constructor(private snackBar:MatSnackBar,private FB: FormBuilder, private resumeService: ResumeService, private route: ActivatedRoute, private dialog: MatDialog) {
 
   }
-  ngOnInit(){
-    this.empId=this.route.snapshot.paramMap.get("empId");
+  ngOnInit() {
+    this.empId = this.route.snapshot.paramMap.get("empId");
     console.log(this.jobId);
     this.getResumeListForJob(this.jobId);
   }
-  getResumeListForJob(jobId:string){
+  getResumeListForJob(jobId: string) {
 
-    this.resumeService.getResumeListForJob(this.empId,jobId).subscribe(data=>{
-      console.log(data);
-      this.ELEMENT_DATA=data;
-      this.dataSource=data;
-    });
-  }
-
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.length;
-    return numSelected === numRows;
+    // this.ELEMENT_DATA=this.resumeService.getResumeListForJob(this.empId,jobId);
+    try{
+      this.resumeService.getResumeListForJob(this.empId, jobId).subscribe(data => {
+        console.log(data);
+        this.ELEMENT_DATA = data;
+        this.dataSource = new MatTableDataSource<Resume>(this.ELEMENT_DATA);;
+      });
+  
+    }catch(err){
+      this.snackBar.open("Error "+err,"RETRY",{duration:3000});
+    }
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.forEach(row => this.selection.select(row));
-  }
-  openDialog(resume:string) {
-    const dialog:DialogConfig={
-      resumeId:resume
+
+  openDialog(resume: string) {
+    const dialog: DialogConfig = {
+      resumeId: resume
     };
-    const dialogRef = this.dialog.open(ResumeContentDialog,{data:dialog});
-   
+    const dialogRef = this.dialog.open(ResumeContentDialog, { data: dialog });
+
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      //return result;
+      if(result){
+        this.deleteResume(resume);
+      }
+    });
+  }
+
+  deleteResume(resumeId:string){
+    this.resumeService.deleteResumeFromJobApplication(this.jobId,resumeId).subscribe(data=>{
+      this.snackBar.open("Delete SUCCESS"+data,"",{duration:3000});
     });
   }
 
@@ -86,17 +89,21 @@ export interface DialogConfig {
 })
 export class ResumeContentDialog {
   @Input('resumeId')
-  resumeId:string;
-  resumeDisplay:FormGroup;
-  expDisplay:Array<FormGroup>;
-  eduDisplay:FormGroup[];
-  resume:Resume;
-  eduDetails:EducationDetails[];
-  expDetails:ExperienceDetails[];
-  skill:Skills;
-  newFormGroup:FormGroup;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogConfig,public dialogRef: MatDialogRef<ResumeContentDialog>, private seekerService:SeekerServiceService  ) {
-    this.resumeId=data.resumeId;
+  resumeId: string;
+  resumeDisplay: FormGroup;
+  expDisplay:FormArray;
+  eduDisplay:FormArray;
+  @Output('shortlist')
+  shortlist:boolean=false;
+  //expDisplay: Array<FormGroup>;
+  //eduDisplay: FormGroup[];
+  resume: Resume;
+  eduDetails: EducationDetails[];
+  expDetails: ExperienceDetails[];
+  skill: Skills;
+  newFormGroup: FormGroup;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogConfig, public dialogRef: MatDialogRef<ResumeContentDialog>, private seekerService: SeekerServiceService,private formBuilder:FormBuilder) {
+    this.resumeId = data.resumeId;
     console.log(this.resumeId);
     //this.getResumeData();
     //this.getExp();
@@ -104,18 +111,12 @@ export class ResumeContentDialog {
 
   }
 
-  get dialog():DialogConfig{
+  get dialog(): DialogConfig {
     return this.data;
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getResumeData();
-    // this.resumeDisplay=new FormGroup({
-    //   name:new FormControl(),
-    //   mobileno:new FormControl(),
-    //   dob:new FormControl(),
-    //   resumeId:new FormControl(),
-    //   email:new FormControl()
-    // });
+
 
     this.getExp();
     // for(let exp of this.expDetails){
@@ -126,7 +127,7 @@ export class ResumeContentDialog {
     //     description:new FormControl()
     //   }));
     // }
-
+    //this.expDisplay=this.formBuilder.array([ this.returnEduDetails() ]);
     this.getEdu();
     // for(let edu of this.eduDetails){
     //   this.expDisplay.push(new FormGroup({
@@ -140,51 +141,107 @@ export class ResumeContentDialog {
     // }
 
   }
-  getResumeData(){
-  this.seekerService.getResumeDetails(this.resumeId).subscribe(data=>{
-    this.resume=data;
-    console.log(this.resume);
-    this.resumeDisplay.setValue({
-      name:data.name,
-      mobileno:data.contact,
-      dob:data.dob,
-      resumeId:data.resumeId,
-      email:data.email
+
+  returnEduDetails(){
+    return this.formBuilder.group({
+      degree:'',
+      score:'',
+      institution:'',
+      startdate:'',
+      enddate:'',
+      board:''
     });
-    this.resumeDisplay.disable();
+  }
+
+  addEduDetials(){
+    this.eduDisplay.push(this.returnEduDetails());
+  }
+
+  getResumeData() {
+        this.resumeDisplay=new FormGroup({
+      name:new FormControl(),
+      mobileno:new FormControl(),
+      dob:new FormControl(),
+      resumeId:new FormControl(),
+      email:new FormControl()
+    });
+    this.seekerService.getResumeDetails(this.resumeId).subscribe(data => {
+      this.resume = data;
+      this.resumeDisplay.setValue({
+        name: data.name,
+        mobileno: data.contact,
+        dob: data.dob,
+        resumeId: data.resumeId,
+        email: data.email
+      });
+      //this.resumeDisplay.disable();
 
     });
   }
-  getExp(){
-    this.seekerService.getExpDetails(this.resumeId).subscribe(data=>{
+  getExp() {
+    this.seekerService.getExpDetails(this.resumeId).subscribe(data => {
       //this.expDetails=data;
 
-      this.newFormGroup = new FormGroup({
-        companyName:new FormControl(),
-        noOfYears:new FormControl(),
-        position:new FormControl(),
-        description:new FormControl()
-      });
+      // this.newFormGroup = new FormGroup({
+      //   companyName: new FormControl(),
+      //   noOfYears: new FormControl(),
+      //   position: new FormControl(),
+      //   description: new FormControl()
+      // });
 
-
+      this.expDetails = data;
       console.log(data);
-      let i=0;
-      for(let i=0;i<data.length;i++){
-        this.expDisplay[i].setValue({
-          companyName:data[i].companyName,
-          noOfYears:data[i].noOfYears,
-          position:data[i].position,
-          description:data[i].description
-        });
+      console.log(this.expDetails);
+      // this.expDisplay.push(this.newFormGroup);
+      // for (FormGroup f : this.expDisplay) {
+      //   this.newFormGroup.setValue({
+      //     companyName: this.expDetails[i].companyName,
+      //     noOfYears: this.expDetails[i].noOfYears,
+      //     position: this.expDetails[i].position,
+      //     description: this.expDetails[i].description
+      //   });
+      //   console.log("FORM GROUP",this.newFormGroup);
+      //   this.expDisplay.push(this.newFormGroup);
         
-        i=i+1;
-      }
+      // }
+      console.log("expDisplay",this.expDisplay);
     });
   }
-  getEdu(){
-    this.seekerService.getEduDetails(this.resumeId).subscribe(data=>{
-      this.eduDetails=data;
+  getEdu() {
+    // this.newFormGroup = new FormGroup({
+    //   degree: new FormControl(),
+    //   score: new FormControl(),
+    //   institution: new FormControl(),
+    //   startdate: new FormControl(),
+    //   enddate:new FormControl(),
+    //   board:new FormControl()
+    // });
+    // this.eduDisplay=new FormArray([this.newFormGroup]);
+    this.seekerService.getEduDetails(this.resumeId).subscribe(data => {
+      this.eduDetails = data;
+      // for(let i=0;i<this.eduDetails.length;i++){
+
+      //   this.newFormGroup.setValue({
+      //     degree: this.eduDetails[i].degree,
+      //     score: this.eduDetails[i].score,
+      //     institution: this.eduDetails[i].institution,
+      //     startdate: this.eduDetails[i].startdate,
+      //     enddate: this.eduDetails[i].enddate,
+      //     board: this.eduDetails[i].board
+      //   });
+      //   console.log(this.newFormGroup);
+      //   this.eduDisplay.push(this.newFormGroup);
+      //   i=i+1;
+      // }
+      // console.log("tester");
+      // console.log(this.eduDetails);
+
+      // console.log(this.eduDisplay);
     });
+  }
+
+  shortlistFcn(){
+    this.shortlist=true;
   }
 
 }

@@ -3,7 +3,7 @@
 
   <mat-card>
     <form [formGroup]="resumeDisplay">
-      <h3>Personal Information</h3>
+      <mat-card-title>Personal Information</mat-card-title>
       <mat-form-field class="half-width">
         <label for="name">Name</label>
         <input matInput  formControlName="name"/>
@@ -26,65 +26,108 @@
       </mat-form-field>
     </form>
   </mat-card>
-  <mat-card>
-    <div *ngFor="let exp of expDetails">
-      <form [formGroup]="exp">
-        <h3>Experience Details</h3>
+<!--
+<div>
+  <mat-card >
+    <form formArrayName="eduDisplay" *ngFor="let edu of eduDisplay.controls;let i = index;">
+      
+      <div [formGroupName]="i">
         <mat-form-field class="half-width">
-          <label for="companyName">Organization</label>
-          <input matInput formControlName="companyName" value />
+          <label for="degree">Degree</label>
+          <input matInput  formControlName="degree"  />
         </mat-form-field>
+      </div>
 
-        <mat-form-field class="half-width">
-          <label for="noOfYears">Work Duration</label>
-          <input matInput formControlName="noOfYears" />
-        </mat-form-field>
 
-        <mat-form-field class="half-width">
-          <label for="position">Role</label>
-          <input matInput formControlName="position" />
-        </mat-form-field>
-
-        <mat-form-field class="half-width">
-          <label for="description">Description of role and work.</label>
-          <input matInput formControlName="description" />
-        </mat-form-field>
-      </form>
-    </div>
+    </form>
   </mat-card>
-  <mat-card>
-    <div *ngFor="let edu of eduDetails">
-      <form [formGroup]="edu">
-        <h3>Education Details</h3>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="eduId" placeholder="Education ID">
-        </mat-form-field>
+</div>
+-->
 
-        <mat-form-field class="half-width">
-          <input matInput formControlName="degree" placeholder="Degree" />
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="score" placeholder="Score" />
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="institution" placeholder="Institution" />
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="startdate" placeholder="StartDate" />
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="enddate" placeholder="EndDate" />
-        </mat-form-field>
-        <mat-form-field class="half-width">
-          <input matInput formControlName="board" placeholder="Board" />
-        </mat-form-field>
-      </form>
-    </div>
-  </mat-card>
+  <mat-grid-list cols="1" rowHeight="200px" gutterSize="10px">
+    
+      <mat-card *ngFor="let edu of eduDetails;let i=index">
+        <mat-card-title>Educational Qualifications</mat-card-title>
+        <mat-card-content>
+            <mat-form-field>
+                <label for="serial">Serial no</label>
+                <input matInput >{{i}}
+              </mat-form-field>
+          <mat-form-field>
+            <label for="degree">Degree</label>
+            <input matInput >{{edu.degree}}
+          </mat-form-field>
+       
+        <mat-form-field>
+            <label for="institution">Institution</label>
+            <input matInput >{{edu.institution}}
+          </mat-form-field>
+     
+        <mat-form-field>
+            <label for="board">Board</label>
+            <input matInput >{{edu.board}}
+          </mat-form-field>
+      
+        <mat-form-field>
+            <label for="score">Score</label>
+            <input matInput >{{edu.score}}
+          </mat-form-field>
+          <mat-form-field>
+              <label for="startdate">Start Date</label>
+              <input matInput >{{edu.startdate}}
+            </mat-form-field>
+     
+          <mat-form-field>
+              <label for="enddate">End Date</label>
+              <input matInput >{{edu.enddate}}
+            </mat-form-field>
+       
+        </mat-card-content>
+      </mat-card>
+  
+
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" rowHeight="200px" gutterSize="10px">
+    
+      <mat-card *ngFor="let exp of expDetails;let i=index">
+        <mat-card-title>Experience of Work</mat-card-title>
+        <mat-card-content>
+            <mat-form-field>
+                <label for="serial">Serial no</label>
+                <input matInput >{{i}}
+              </mat-form-field>
+          <mat-form-field>
+            <label for="companyName">Company</label>
+            <input matInput >{{exp.companyName}}
+          </mat-form-field>
+       
+        <mat-form-field>
+            <label for="noOfYears">No of Years</label>
+            <input matInput >{{exp.noOfYears}}
+          </mat-form-field>
+     
+        <mat-form-field>
+            <label for="position">Role</label>
+            <input matInput >{{exp.position}}
+          </mat-form-field>
+      
+        <mat-form-field>
+            <label for="description">Description</label>
+            <input matInput >{{exp.description}}
+          </mat-form-field>
+ 
+       
+        </mat-card-content>
+      </mat-card>
+  
+
+  </mat-grid-list>
+
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Reject</button>
+  <button mat-button [mat-dialog-close]="false">Reject</button>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Shortlist</button>
+  <button mat-button [mat-dialog-close]="true"  cdkFocusInitial>Shortlist</button>
 </mat-dialog-actions>
