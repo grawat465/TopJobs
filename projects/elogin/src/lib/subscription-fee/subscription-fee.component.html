@@ -1,0 +1,75 @@
+
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <h3>Subscription Fee</h3>
+              <form [formGroup]="subscriptionFeeForm" (ngSubmit)="onSubmit(subscriptionFeeForm.value)">
+                
+                   <div class="form-group">
+                      <label>Bank Name</label>
+                      <input type="text" formControlName="bankName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bankName.errors }" />
+                      <div *ngIf="submitted && f.bankName.errors" class="invalid-feedback">
+                          <div *ngIf="f.bankName.errors.required">Bank Name is required</div>
+                          <div *ngIf="f.bankName.hasError('pattern')"><strong>First letter must be capital and rest must be small case, No space in between</strong></div>
+                      </div>
+                  </div>
+                 
+                <div class="form-group">
+                      <label>Card Name</label>
+                      <input type="text" formControlName="cardName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardName.errors }" />
+                      <div *ngIf="submitted && f.cardName.errors" class="invalid-feedback">
+                          <div *ngIf="f.cardName.errors.required">Card Name is required</div>
+                          <div *ngIf="f.cardName.hasError('pattern')"><strong>First letter must be capital and rest must be small case, No space in between</strong></div>
+                      </div>
+                  </div>
+                 
+                  <div class="form-group">
+                        <label>Please select subscription type</label>
+                        <br>
+                        <label class="md-check" style="margin-right:5%">
+                                <input type="radio" value="1" name="fee" formControlName="fee"  checked>     
+                                Click this for One month subscription for just 300$
+                              </label>
+                          <label class="md-check" >
+                        <input type="radio" value="2" name="fee" formControlName="fee" >
+                             Click this for Two month subscription for just 600$
+                          </label>
+                         <label class="md-check" >
+                          <input type="radio" value="3" name="fee" formControlName="fee" >
+                               Click this for Three month subscription for just 900$
+                            </label>   
+                  </div>
+                      
+                            <div class="form-group">
+                                <label>Card No</label>
+                                <input type="text" formControlName="cardNo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardNo.errors }" />
+                                <div *ngIf="submitted && f.cardNo.errors" class="invalid-feedback">
+                                    <div *ngIf="f.cardNo.errors.required">Card No is required </div>
+                                    <div *ngIf="f.cardNo.hasError('pattern')"><strong>Card No must be exact 8 digit long</strong></div>
+                                </div>
+                            </div>
+
+
+                  <div class="form-group">
+                      <div style="margin-right:90%;width:25px;height: 25px;">
+                    <input type="checkbox" formControlName="terms" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.terms.errors }" />
+                      </div>
+                <span>I accept the terms and condition</span>
+                    <div *ngIf="submitted && f.terms.errors" class="invalid-feedback">
+                        <div *ngIf="f.terms.errors.required">please tick</div>
+                    </div>
+                </div>
+                
+
+                  <div class="form-group">
+                      <button class="btn btn-primary">Pay</button>
+                    &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  
+                      
+                    
+                </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

@@ -4,10 +4,7 @@ import { JobApplication } from '../models/job-application';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JobApplicationService } from '../services/job-application.service';
-<<<<<<< HEAD
-=======
 import { MatSnackBar, getMatIconFailedToSanitizeLiteralError } from '@angular/material';
->>>>>>> b494475c51f8752974e329ddde2d601bfaed6bdf
 
 @Component({
   selector: 'emp-posted-jobs',
@@ -23,31 +20,6 @@ import { MatSnackBar, getMatIconFailedToSanitizeLiteralError } from '@angular/ma
 })
 export class PostedJobsComponent implements OnInit {
 
-<<<<<<< HEAD
-  empId:String;
-  jobApplications: JobApplication[];
-  dataSource:JobApplication[]; 
-  columnsToDisplay=['jobId','noOfOpenings','jobProfile','location','companyName','noOfApplicants'];
-  columnNames=['Job ID', 'No Of Openings','Job Profile','Location','Campany Name','No of Applicants','']
-  expandedElement:JobApplication;
-  constructor(private FB: FormBuilder, private router: Router, private service: JobApplicationService, private route: ActivatedRoute) { }
-
- 
-  ngOnInit() {
-    this.empId=this.route.snapshot.paramMap.get("empId");
-    console.log(this.empId);
-    this.service.getJobApplication(this.empId).subscribe(data => {
-
-    this.jobApplications = data;
-      this.dataSource = data;
-      console.log(this.dataSource);
-    });
-
-  }
-  job: JobApplication = new JobApplication();
-
-  id: String;
-=======
   empId: string;
   jobApplications: JobApplication[];
   dataSource: JobApplication[];
@@ -86,7 +58,6 @@ export class PostedJobsComponent implements OnInit {
     });
     this.getJobApplications();
   }
->>>>>>> b494475c51f8752974e329ddde2d601bfaed6bdf
 }
 
 

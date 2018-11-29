@@ -13,10 +13,12 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { EloginModule } from 'projects/elogin/src/public_api';
+import { EloginModule, EloginComponent } from 'projects/elogin/src/public_api';
 import { SloginModule } from 'projects/slogin/src/public_api';
 import { SeekerModule } from 'projects/seeker/src/public_api';
 import { EmployeerModule } from 'projects/employeer/src/public_api';
+import { SubscriptionFeeComponent } from 'projects/elogin/src/lib/subscription-fee/subscription-fee.component';
+import { LoginComponent } from 'projects/elogin/src/lib/login/login.component';
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import { EmployeerModule } from 'projects/employeer/src/public_api';
     HomeComponent,
     BlogsComponent,
     AboutusComponent,
-    ContactusComponent,
+    ContactusComponent
     ],
   imports: [
     BrowserModule,

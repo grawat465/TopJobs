@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   countries = [{'id':1, 'name':'India'}, {'id':2, 'name': 'USA'}, {'id':3, 'name': 'UK'}];
   logSign : LoginSignup = new LoginSignup();
-  logSignNew : LoginSignup = new LoginSignup();  
+  logSignNew : LoginSignup[];// = new LoginSignup();  
   constructor(private snackBar: MatSnackBar,private formBuilder: FormBuilder,private router: Router, private service : LoginSignupService) { }
 
   ngOnInit() {

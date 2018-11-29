@@ -12,17 +12,22 @@ import {HttpModule} from '@angular/http';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { MatTabsModule } from '@angular/material';
-
-
+import { SubscriptionFeeComponent } from './subscription-fee/subscription-fee.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SubscriptionFeeDetails } from './services/subscription-fee-details';
+import { LoginSignupService } from './services/login-signup.service';
+import { HomeComponent } from 'src/app/home/home.component';
 @NgModule({
-  declarations: [EloginComponent, SignupComponent, LoginComponent],
+  declarations: [EloginComponent, SignupComponent, LoginComponent, SubscriptionFeeComponent,    HomeComponent  ],
   imports: [
     EloginRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientTestingModule
   ],
+  providers:[SubscriptionFeeDetails,LoginSignupService,LoginComponent,SignupComponent,SubscriptionFeeComponent],
   exports: [EloginComponent]
 })
 export class EloginModule { }

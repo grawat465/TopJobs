@@ -20,18 +20,18 @@ import { SubscriptionFeeDetails } from './subscription-fee-details';
 export class LoginSignupService {
 
   constructor(private http : HttpClient) { } 
-  private userUrl = 'http://localhost:8765/employee-registration';
+   userUrl = 'http://localhost:8765/employee-registration';
 
   public requestLogin(email,password) {
-    return this.http.get<LoginSignup>(this.userUrl+"/employer/login/"+email+"/"+password);
+    return this.http.get<LoginSignup[]>(this.userUrl+"/employer/login/"+email+"/"+password);
   }
 
   public addUser(loginsignup) {
-    return this.http.post<LoginSignup>(this.userUrl+"/employer/signup",loginsignup);
+    return this.http.post<LoginSignup[]>(this.userUrl+"/employer/signup",loginsignup);
   }
   
   public addFeeDetails(feeDetails) {
-    return this.http.post<SubscriptionFeeDetails>(this.userUrl+"/employer/payfee",feeDetails);
+    return this.http.post<SubscriptionFeeDetails[]>(this.userUrl+"/employer/payfee",feeDetails);
   }
   
 }

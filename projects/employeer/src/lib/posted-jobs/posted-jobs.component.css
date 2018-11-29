@@ -1,10 +1,4 @@
 table {
-<<<<<<< HEAD
-    width: 90%;
-    margin: 5em auto;
-  }
-  
-=======
     width: 95%;
     margin: 5em auto;
 
@@ -13,7 +7,6 @@ table {
   th.mat-header-cell{
     text-align: center;
   }
->>>>>>> b494475c51f8752974e329ddde2d601bfaed6bdf
   tr.example-detail-row {
     height: 0;
   }
@@ -58,9 +51,6 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
-<<<<<<< HEAD
-  
-=======
 
   h1{
     margin:5% auto;
@@ -71,4 +61,3 @@ table {
   mat-icon{
     color: black;
   }
->>>>>>> b494475c51f8752974e329ddde2d601bfaed6bdf

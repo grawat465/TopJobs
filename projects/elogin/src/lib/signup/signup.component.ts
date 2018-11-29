@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   logSign : LoginSignup = new LoginSignup();
-  logSignNew : LoginSignup = new LoginSignup();
+  logSignNew : LoginSignup[];// = new LoginSignup();
   constructor(private snackBar: MatSnackBar,private formBuilder: FormBuilder,private router: Router, private service : LoginSignupService,private route:ActivatedRoute) { }
 
   ngOnInit() {
