@@ -62,7 +62,7 @@ export class CandidateListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       //return result;
-      if(result){
+      if(!result){
         this.deleteResume(resume);
       }
     });

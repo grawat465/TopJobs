@@ -20,35 +20,44 @@ import { MatSnackBar, getMatIconFailedToSanitizeLiteralError } from '@angular/ma
 })
 export class PostedJobsComponent implements OnInit {
 
-  empId:String;
+  empId: string;
   jobApplications: JobApplication[];
-  dataSource:JobApplication[]; 
-  showCandidates:boolean=true;
-  columnsToDisplay=['jobId','noOfOpenings','jobProfile','location','companyName','noOfApplicants'];
-  columnNames=['Job ID', 'No Of Openings','Job Profile','Location','Campany Name','No of Applicants','']
-  expandedElement:JobApplication;
-  constructor(private snackBar:MatSnackBar,private FB: FormBuilder, private router: Router, private service: JobApplicationService, private route: ActivatedRoute) { }
-
- 
-  ngOnInit() {
-    this.empId=this.route.snapshot.paramMap.get("empId");
-    console.log(this.empId);
-try{
-  this.service.getJobApplication(this.empId).subscribe(data => {
-
-    this.jobApplications = data;
-      this.dataSource = data;
-      console.log(this.dataSource);
-    });
-  
-}catch(err){
-  this.snackBar.open("Error - "+err,"",{duration:30000});
-}
-
-  }
+  dataSource: JobApplication[];
+  showCandidates: boolean = true;
+  columnsToDisplay = ['jobId', 'noOfOpenings', 'jobProfile', 'location', 'companyName', 'noOfApplicants', 'action'];
+  columnNames = ['Job ID', 'No Of Openings', 'Job Profile', 'Location', 'Campany Name', 'No of Applicants']
+  expandedElement: JobApplication;
   job: JobApplication = new JobApplication();
-
   id: String;
+  constructor(private snackBar: MatSnackBar, private FB: FormBuilder, private router: Router, private service: JobApplicationService, private route: ActivatedRoute) { }
+
+
+  ngOnInit() {
+    this.empId = this.route.snapshot.paramMap.get("empId");
+    console.log(this.empId);
+
+    this.getJobApplications();
+  }
+
+  getJobApplications(){
+    try {
+      this.service.getJobApplication(this.empId).subscribe(data => {
+
+        this.jobApplications = data;
+        this.dataSource = data;
+        console.log(this.dataSource);
+      });
+
+    } catch (err) {
+      this.snackBar.open("Error - " + err, "", { duration: 30000 });
+    }
+  }
+  deleteJobApplication(jobId:string){
+    this.service.deleteJobApplication(jobId).subscribe(data=>{
+      this.snackBar.open("Job application "+jobId+"deleted" + data,""+data,{duration:3000} );
+    });
+    this.getJobApplications();
+  }
 }
 
 

@@ -16,6 +16,12 @@
     </tr>
   </table>
 -->
+<!-- Applying the mat-tyography class adds styles for native elements. -->
+
+    <h1>Shortlisted Candidates</h1>
+
+
+
 <table mat-table [dataSource]="datas" class="mat-elevation-z8">
 
   <!-- Position Column -->
@@ -42,7 +48,7 @@
 
     <mat-cell *matCellDef="let row; let i=index;">
       <button mat-icon-button color="accent">
-        <mat-icon aria-label="Delete" (click)="deleteShortlist(datas[i].resumeId)">delete</mat-icon>
+        <mat-icon  (click)="deleteShortlist(datas[i].resumeId)">delete</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
