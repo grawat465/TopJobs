@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { SeekerService } from '../../seeker.service';
+import { SeekerService } from '../../service/seeker.service';
+import { EducationService } from '../../service/education.service';
 @Component({
   selector: 'sek-delete',
   templateUrl: './delete.component.html',
@@ -8,7 +9,7 @@ import { SeekerService } from '../../seeker.service';
 })
 export class DeleteComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: SeekerService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: EducationService) { }
 
   ngOnInit() {
   }
@@ -18,7 +19,7 @@ export class DeleteComponent implements OnInit {
   }
 
   confirmDelete(): void {
-    this.dataService.deleteIssue(this.data.id);
+    this.dataService.deleteData(this.data.id);
   }
 
 

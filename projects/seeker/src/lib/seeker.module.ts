@@ -23,16 +23,21 @@ import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule,
   MatSnackBarModule,
   MatRadioModule,
   MatTabsModule,
+  MatProgressBarModule,
   } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployerRoutingModule } from 'projects/employeer/src/lib/employeer-routing.module';
+import { EducationdetailsformComponent } from './forms/educationdetailsform/educationdetailsform.component';
+import { ExperiencedetailsformComponent } from './forms/experiencedetailsform/experiencedetailsform.component';
+import { BasicinfoComponent } from './forms/basicinfo/basicinfo.component';
+import { ConfirmdialogComponent } from './dialog/confirmdialog/confirmdialog.component';
 
 @NgModule({
   declarations: [SeekerComponent, ResumeComponent,
     JobsComponent, AddComponent, EditComponent,
-    DeleteComponent, HeaderComponent, FooterComponent, ContentComponent],
+    DeleteComponent, HeaderComponent, FooterComponent, ContentComponent, EducationdetailsformComponent, ExperiencedetailsformComponent, BasicinfoComponent, ConfirmdialogComponent],
   imports: [
     CommonModule,
     SeekerRoutingModule,
@@ -73,6 +78,7 @@ import { EmployerRoutingModule } from 'projects/employeer/src/lib/employeer-rout
     MatExpansionModule,
     MatListModule,
     MatTableModule,
+    MatProgressBarModule
 
   ],
   entryComponents: [

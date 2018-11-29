@@ -1,10 +1,34 @@
-<mat-list dense>
-  <mat-list-item *ngFor="let job of jobs">
-    <h4 matLine> {{job.id}} </h4>
-    <p matLine> {{job.Company}} </p>
-    <p matLine class="position"> {{job.position}} </p>
-    <p matLine >{{job.vaccany}}</p>
-    <p matLine href="#">More Details</p>
-    <button matLine mat-stroked-button color="accent">Apply</button>
-  </mat-list-item>
-</mat-list>
+<mat-grid-list cols="1" rowHeight="200px" gutterSize="10px">
+  <mat-grid-tile class="card-deck-container" *ngFor="let x of jobs">
+
+
+    <mat-card>
+      <mat-card-title>Company : {{x.jobtitle}}</mat-card-title>
+      <mat-card-content> <i>Role: {{x.Perks}}</i>
+        
+
+        <p>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+
+              </mat-panel-title>
+              <mat-panel-description>
+                Role Description
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Company and description should come here
+              
+            </p>
+          </mat-expansion-panel>
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="warn">Apply</button>
+
+      </mat-card-actions>
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>

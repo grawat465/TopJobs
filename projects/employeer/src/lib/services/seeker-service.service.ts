@@ -8,7 +8,12 @@ import { ExperienceDetails } from '../models/ExperienceDetails';
   providedIn: 'root'
 })
 export class SeekerServiceService {
+  getAlldata(): any {
+    throw new Error("Method not implemented.");
+  }
   private url:string="http://localhost:8765/seeker-service";
+  dataChange: any;
+  data: any;
   constructor(private http:HttpClient) { }
   getResumeDetails(resumeId:string){
     return this.http.get<Resume>(this.url+"/resume/"+resumeId);

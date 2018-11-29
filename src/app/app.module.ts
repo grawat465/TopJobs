@@ -19,6 +19,7 @@ import { SeekerModule } from 'projects/seeker/src/public_api';
 import { EmployeerModule } from 'projects/employeer/src/public_api';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { EmployeerModule } from 'projects/employeer/src/public_api';
     BlogsComponent,
     AboutusComponent,
     ContactusComponent,
+    
     ],
   imports: [
     BrowserModule,

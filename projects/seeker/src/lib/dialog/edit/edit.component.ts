@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { SeekerService } from '../../seeker.service';
+import { SeekerService } from '../../service/seeker.service';
+import { SeekerServiceService } from 'projects/employeer/src/lib/services/seeker-service.service';
+import { FormControl, Validators } from '@angular/forms';
+import { EducationService } from '../../service/education.service';
 
 @Component({
   selector: 'sek-edit',
@@ -8,13 +11,25 @@ import { SeekerService } from '../../seeker.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<EditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: SeekerService) { }
+  minDate = new Date(2000, 0, 1);
+  maxDate = Date.now();
 
-  ngOnInit() {
-  }
+  Classes = ['Xth', 'XIIth', 'UG', 'PG', 'Diploma'];
+
+  constructor(public dialogRef: MatDialogRef<EditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: EducationService) { }
+
+  formControl = new FormControl('', [
+    Validators.required
+    // Validators.email,
+  ]);
+
+  ngOnInit() { }
 
   getErrorMessage() {
+    return this.formControl.hasError('required') ? 'Required field' :
+      this.formControl.hasError('email') ? 'Not a valid email' :
+        '';
   }
 
   submit() {
@@ -26,8 +41,6 @@ export class EditComponent implements OnInit {
   }
 
   stopEdit(): void {
-    this.dataService.updateIssue(this.data);
+    this.dataService.updateData(this.data);
   }
-
-
 }

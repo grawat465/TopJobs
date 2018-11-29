@@ -7,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobsComponent implements OnInit {
 
-  jobs;
+  j
   constructor() { }
 
   ngOnInit() {
   }
-
+  panelOpenState = false;
+  companyName:String;
+  position:String;
+  jobs=[
+    {"jobtitle":'Lead ',"Salary":'$12345',"Perks":'no perks', "desc":'wowowow'},
+    {"jobtitle":'Lead ',"Salary":'$12345',"Perks":'no perks', "desc":'wowowow'},
+    {"jobtitle":'Lead ',"Salary":'$12345',"Perks":'no perks', "desc":'wowowow'},
+    {"jobtitle":'Lead ',"Salary":'$12345',"Perks":'no perks', "desc":'wowowow'},
+  ];
 }

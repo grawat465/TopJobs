@@ -2,8 +2,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
-import { SeekerService } from '../../seeker.service';
-import { Issue } from '../../models/Issue';
+import { SeekerService } from '../../service/seeker.service';
+import { Education } from '../../models/education';
+import { EducationService } from '../../service/education.service';
+
 
 @Component({
   selector: 'sek-add',
@@ -15,7 +17,7 @@ export class AddComponent implements OnInit {
 
 
   constructor(public dialogRef: MatDialogRef<AddComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Issue, public dataService: SeekerService) { }
+    @Inject(MAT_DIALOG_DATA) public data: Education, public dataService:EducationService) { }
 
 
 
@@ -29,7 +31,8 @@ export class AddComponent implements OnInit {
     ]
   };
 
-
+  minDate = new Date(2000, 0, 1);
+  maxDate = Date.now();
 
 
 
@@ -38,13 +41,11 @@ export class AddComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
+    
   }
 
   submit() {
-  // emppty stuff
+    // empty stuff
   }
 
   onNoClick(): void {
@@ -52,7 +53,10 @@ export class AddComponent implements OnInit {
   }
 
   public confirmAdd(): void {
-    this.dataService.addIssue(this.data);
+    console.log(this.data.id+ " INS"+this.data.instituteName+"board "+ this.data.level+" start date"+this.data.started_at+"  end:"+this.data.ended_at);
+    alert( this.data.id+ " INS"+this.data.instituteName+"board "+ this.data.level+" start date"+this.data.started_at+"  end:"+this.data.ended_at);
+    this.dataService.addData(this.data);
   }
+
 
 }
