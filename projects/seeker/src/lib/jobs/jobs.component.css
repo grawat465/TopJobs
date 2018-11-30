@@ -30,7 +30,7 @@
 
   mat-expansion-panel
 {
-
-  width: 50%;
+   margin: auto 2em;
+   width: 90%;
    height: 10%;
 }

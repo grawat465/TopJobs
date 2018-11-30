@@ -5,7 +5,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.eduID" name="id" required >
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -13,7 +13,7 @@
     <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <mat-select [(ngModel)]="data.level" placeholder="Degree" name="level">
+        <mat-select [(ngModel)]="data.degree" placeholder="Degree" name="level">
           <mat-option *ngFor="let degree of Classes" [value]="degree">
             {{ degree }}
           </mat-option>
@@ -32,13 +32,13 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Institute Name" [(ngModel)]="data.instituteName" name="institute name">
+        <input matInput placeholder="Institute Name" [(ngModel)]="data.institution" name="institute name">
       </mat-form-field>
     </div>
 
     <div class="form">
         <mat-form-field color="accent">
-      <input matInput placeholder="Score" type="number" [(ngModel)]="data.marks" name="marks">
+      <input matInput placeholder="Score" type="number" [(ngModel)]="data.score" name="marks">
       <mat-hint align="start">% or cgpa </mat-hint>
       
       </mat-form-field>
@@ -46,8 +46,24 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Started_at" [(ngModel)]="data.started_at" name="start" required>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Startdate" [(ngModel)]="data.startdate" name="start" required>
         <mat-datepicker-toggle matSuffix [for]="picker"> <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
+
+    <div class="form">
+        <mat-form-field color="accent">
+          <input matInput   #input [min]="minDate" [max]="maxDate" [matDatepicker]="end" placeholder="Ended_at" [(ngModel)]="data.enddate" name="end" required>
+          <mat-datepicker-toggle matSuffix [for]="end"> <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon></mat-datepicker-toggle>
+          <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions>
+          <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+          <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        </div>
+       
+      </div>
+      </form>
