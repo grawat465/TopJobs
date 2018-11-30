@@ -1,5 +1,8 @@
 
-<mat-card class="container">
+<h1>Jobs Available</h1>
+
+
+<!-- <mat-card class="container"> -->
 
   <mat-card-header>
     <div class="search">
@@ -15,8 +18,8 @@
 
 
     <mat-card>
-      <mat-card-title>Company : {{x.jobtitle}}</mat-card-title>
-      <mat-card-content> <i>Role: {{x.Perks}}</i>
+      <mat-card-title>Company : {{x.jobProfile}}</mat-card-title>
+      <mat-card-content> <i>Role: {{x.companyName}}</i>
         
 
         <p>
@@ -26,7 +29,7 @@
 
               </mat-panel-title>
               <mat-panel-description>
-                Role Description
+                Role Description -> {{x.jobDescription}}
               </mat-panel-description>
             </mat-expansion-panel-header>
             <p>Company and description should come here
@@ -37,7 +40,7 @@
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-raised-button color="warn">Apply</button>
+        <button mat-raised-button color="warn" (click)="applyForJob(x.jobId)">Apply</button>
 
       </mat-card-actions>
     </mat-card>
@@ -45,4 +48,4 @@
   </mat-grid-tile>
 </mat-grid-list>
 
-</mat-card>
+<!-- </mat-card> -->

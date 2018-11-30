@@ -54,8 +54,8 @@ const routes: Routes = [
   },
   {
     path:'seeker',component:SeekerComponent,children:[
-      {path:'resume/:seekId',component:ResumeComponent},
-      {path:'jobs/:seekId',component:JobsComponent},
+      {path:'resume/:seekid',component:ResumeComponent},
+      {path:'jobs/:seekid',component:JobsComponent},
       {path:'**',component:JobsComponent}
     ]
   },

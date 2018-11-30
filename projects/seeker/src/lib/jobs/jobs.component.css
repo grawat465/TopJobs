@@ -31,6 +31,12 @@
   mat-expansion-panel
 {
 
-  width: 50%;
-   height: 10%;
+  width: 80%;
+   height: 15%;
+}
+
+h1{
+  margin:5% auto;
+  text-align: center;
+
 }

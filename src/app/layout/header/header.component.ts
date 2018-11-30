@@ -54,6 +54,12 @@ export class HeaderComponent implements OnInit {
           this.slogin=true;
           this.elogin=false;
         }
+        else if(this.route.indexOf('home')!= -1){
+          this.employer=false;
+          this.seeker=false;
+          this.slogin=false;
+          this.elogin=false;
+        }
       }
       //console.log(this.fullRoute);
     });

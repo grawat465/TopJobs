@@ -13,10 +13,10 @@ const routes: Routes = [
  {
     path: 'seeker', component : SeekerComponent, children: [
       {
-    path : 'resume', component : ResumeComponent
+    path : 'resume/:seekid', component : ResumeComponent
       },
       {
-    path : 'jobs', component: JobsComponent
+    path : 'jobs/:seekid', component: JobsComponent
       },
       {path:'**',component:JobsComponent}
 
