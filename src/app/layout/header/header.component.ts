@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
           this.elogin=false;
         }
         else if(this.route.indexOf('seeker') != -1){
-          
+          this.seekId=this.route[3];
           this.employer=false;
           this.seeker=true;
           this.slogin=false;
@@ -54,6 +54,12 @@ export class HeaderComponent implements OnInit {
           this.slogin=true;
           this.elogin=false;
         }
+        else if(this.route.indexOf('home')!= -1){
+          this.employer=false;
+          this.seeker=false;
+          this.slogin=false;
+          this.elogin=false;
+        }
       }
       //console.log(this.fullRoute);
     });
@@ -65,7 +71,7 @@ export class HeaderComponent implements OnInit {
     //this.empId=this.routing.snapshot.paramMap.get("empId");
     //this.empId=this.location[2];
     console.log(this.empId);
-    this.router.navigate(['/employer/newjob',this.empId]);
+    this.router.navigate(['/employer/newJob',this.empId]);
   }
   navigateJobs(){
     this.router.navigate(['/employer/jobs',this.empId]);
@@ -89,7 +95,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logoutSeeker() {
-    this.router.navigate(['/home',this.seekId])
+    this.router.navigate(['/home'])
   }
 
   sloginLogin(){

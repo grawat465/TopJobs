@@ -2,7 +2,7 @@
 <mat-card>
   <mat-card-title>
 
-    
+<!--     
     <mat-card-header align="end">
 
         <div class="row">
@@ -15,7 +15,7 @@
         </div>
      </div>
     
-    </mat-card-header>
+    </mat-card-header> -->
     
   </mat-card-title>
 
@@ -27,7 +27,7 @@
  <mat-card-content>
     
       <h2 class="section-title">User details</h2>
-      <form [formGroup]="userDetailsForm" >
+      <form [formGroup]="userDetailsForm" (keydown)="keyDownFunction($event)">
         <mat-form-field class="full-width">
           <input matInput placeholder="First Name" formControlName="firstname" required>
           <mat-error *ngFor="let validation of validation_messages.firstname">

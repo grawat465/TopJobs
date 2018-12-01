@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 //import { SloginService } from '../../public_api';
 import { Seeker } from '../models/seeker';
 import { SloginService } from '../slogin.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'skl-login',
@@ -18,7 +19,7 @@ export class LoginComponentSeeker implements OnInit {
 
   seek: Seeker = new Seeker();
   res: boolean;
-  constructor(private FB: FormBuilder, private router: Router, private service: SloginService) { }
+  constructor(private snackBar:MatSnackBar,private FB: FormBuilder, private router: Router, private service: SloginService) { }
   loginForm: FormGroup;
 
 
@@ -29,14 +30,13 @@ export class LoginComponentSeeker implements OnInit {
 
   createform() {
     this.loginForm = this.FB.group({
-  email: ['', [Validators.required,
-  Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
-  password : ['', Validators.required]
+      email: ['', [Validators.required]],
+      password: ['', Validators.required]
     });
-
+    //Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')
   }
 
-  login () {
+  login() {
     console.log(this.loginForm.value);
   }
 
@@ -46,18 +46,30 @@ export class LoginComponentSeeker implements OnInit {
     this.seek.password = obj.password;
 
 
-   // if (this.loginForm.invalid) {
-     // return;
-  // }
-    this.service.requestLogin(this.seek.username, this.seek.password).subscribe( data => {
+    // if (this.loginForm.invalid) {
+    // return;
+    // }
+    this.service.requestLogin(this.seek.username, this.seek.password).subscribe(data => {
       this.res = data;
+      console.log(data);
       if (this.res === true) {
-        alert('User login SuccessFully.');
-      } else { alert('login failed'); }
+        //alert('User login SuccessFully.');
+        this.snackBar.open("User Logged in Successfully","LOGIN",{duration:3000,verticalPosition:"top"});
+        this.router.navigate(['/seeker/jobs',this.seek.username]);
+      } else { 
+        //alert('login failed'); 
+        this.snackBar.open("Login Attempt failed","Retry",{duration:3000,verticalPosition:"top"});
 
-      this.router.navigate(['/seeker']);
+      }
 
     });
-}
+  }
+
+  keyDownFunction(event){
+    if(event.keyCode==13){
+      console.log("Enter");
+      this.onSubmit(this.loginForm.value);
+    }
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 
@@ -13,61 +13,72 @@ import { map, startWith } from 'rxjs/operators';
 import { EducationService } from '../../service/education.service';
 import { HttpClient } from '@angular/common/http';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { SeekerService } from '../../service/seeker.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'sek-educationdetailsform',
   templateUrl: './educationdetailsform.component.html',
   styleUrls: ['./educationdetailsform.component.css']
 })
 export class EducationdetailsformComponent implements OnInit {
+
+  resumeid: string;
+  seekid: string;
   secondFormGroup: FormGroup;
 
   displayedColumns = ['id', 'level', 'board', 'instituteName', 'marks', 'started_at', 'ended_at', 'actions'];
-  exampleDatabase: EducationService| null;
+  exampleDatabase: EducationService | null;
   dataSource: ExampleDataSource | null;
   index: number;
   id: number;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
- 
-  
 
-// Chip control
 
-visible = true;
-selectable = true;
-removable = true;
-addOnBlur = true;
-separatorKeysCodes: number[] = [ENTER, COMMA];
-skillCtrl = new FormControl();
-filteredSkills: Observable<string[]>;
-skills: string[] = ['Lemon'];
-allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
 
-@ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-@ViewChild('auto') matAutocomplete: MatAutocomplete;
+  // Chip control
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  skillCtrl = new FormControl();
+  filteredSkills: Observable<string[]>;
+  skills: string[] = ['Lemon'];
+  allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
+
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
   thirdFormGroup: FormGroup;
 
 
 
-  constructor(private _formBuilder: FormBuilder,public dialog: MatDialog,
-    public dataService: EducationService, private httpClient : HttpClient) { 
+  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog,
+    public dataService: EducationService, private httpClient: HttpClient,
+    private seekerService: SeekerService, private route: ActivatedRoute) {
 
 
-      this.filteredSkills = this.skillCtrl.valueChanges.pipe(
-        startWith(null),
-        map((skill: string | null) => skill ? this._filter(skill) : this.allSkills.slice()));
-    }
-
-  ngOnInit() {
-
-    this.loadData();
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    // this.filteredSkills = this.skillCtrl.valueChanges.pipe(
+    //   startWith(null),
+    //   map((skill: string | null) => skill ? this._filter(skill) : this.allSkills.slice()));
   }
 
+  ngOnInit() {
+    this.seekid = this.route.snapshot.paramMap.get("seekid");
+    //this.resumeid=
+    this.getResumeID();
+    this.loadData();
+    
+  }
 
+  getResumeID() {
+    this.seekerService.getResumeData(this.seekid).subscribe(data => {
+      console.log(data);
+      this.resumeid = data.resumeId;
+    });
+  }
 
   ////education crud table///////
   refresh() {
@@ -77,7 +88,7 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
 
   addNew(issue: Education) {
     const dialogRef = this.dialog.open(AddComponent, {
-      data: {issue: issue }
+      data: { issue: issue }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -95,7 +106,7 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditComponent, {
-      data: {id: id, level: level, board: board, instituteName: instituteName, marks: marks, started_at: started_at, ended_at: ended_at}
+      data: { eduID: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -115,7 +126,7 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: {id: id, level: level, board: board, instituteName: instituteName, marks: marks, started_at: started_at, ended_at: ended_at}
+      data: { eduID: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -131,75 +142,68 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
 
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
-}
+  }
 
 
-public loadData() {
-  this.exampleDatabase = new EducationService(this.httpClient);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    fromEvent(this.filter.nativeElement, 'keyup')
+  public loadData() {
+    this.exampleDatabase = new EducationService(this.httpClient);
+    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort,this.seekerService,this.route);
+    //fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
-      .subscribe(() => {
-        if (!this.dataSource) {
-          return;
-        }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      });
+    //  .subscribe(() => {
+     //   if (!this.dataSource) {
+      //    return;
+      //  }
+      //  this.dataSource.filter = this.filter.nativeElement.value;
+      //});
   }
 
-//////chip control /////////////////
+  // //////chip control /////////////////
 
-add(event: MatChipInputEvent): void {
-  // Add fruit only when MatAutocomplete is not open
-  // To make sure this does not conflict with OptionSelected Event
-  if (!this.matAutocomplete.isOpen) {
-    const input = event.input;
-    const value = event.value;
+  // add(event: MatChipInputEvent): void {
+  //   // Add fruit only when MatAutocomplete is not open
+  //   // To make sure this does not conflict with OptionSelected Event
+  //   if (!this.matAutocomplete.isOpen) {
+  //     const input = event.input;
+  //     const value = event.value;
 
-    // Add our skill
-    if ((value || '').trim()) {
-      this.skills.push(value.trim());
-    }
+  //     // Add our skill
+  //     if ((value || '').trim()) {
+  //       this.skills.push(value.trim());
+  //     }
 
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
+  //     // Reset the input value
+  //     if (input) {
+  //       input.value = '';
+  //     }
 
-    this.skillCtrl.setValue(null);
-  }
+  //     this.skillCtrl.setValue(null);
+  //   }
+  // }
+
+  // remove(skill: string): void {
+  //   const index = this.skills.indexOf(skill);
+
+  //   if (index >= 0) {
+  //     this.skills.splice(index, 1);
+  //   }
+  // }
+
+  // selected(event: MatAutocompleteSelectedEvent): void {
+  //   this.skills.push(event.option.viewValue);
+  //   this.fruitInput.nativeElement.value = '';
+  //   this.skillCtrl.setValue(null);
+  // }
+
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+
+  //   return this.allSkills.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  // }
+
+  //////////////////////////////////////////////////////////
 }
-
-remove(skill: string): void {
-  const index = this.skills.indexOf(skill);
-
-  if (index >= 0) {
-    this.skills.splice(index, 1);
-  }
-}
-
-selected(event: MatAutocompleteSelectedEvent): void {
-  this.skills.push(event.option.viewValue);
-  this.fruitInput.nativeElement.value = '';
-  this.skillCtrl.setValue(null);
-}
-
-private _filter(value: string): string[] {
-  const filterValue = value.toLowerCase();
-
-  return this.allSkills.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-}
-
-//////////////////////////////////////////////////////////
-}
-
-
-
-
-
-
-
 
 
 
@@ -218,8 +222,10 @@ export class ExampleDataSource extends DataSource<Education> {
   renderedData: Education[] = [];
 
   constructor(public _exampleDatabase: EducationService, public _paginator: MatPaginator,
-    public _sort: MatSort) {
+    public _sort: MatSort, private seekerService: SeekerService, private route: ActivatedRoute) {
     super();
+    this.seekid = this.route.snapshot.paramMap.get('seekid');
+    this.getResumeID();
   }
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
@@ -232,28 +238,37 @@ export class ExampleDataSource extends DataSource<Education> {
       this._paginator.page
     ];
 
-    this._exampleDatabase.getAllData();
+    this._exampleDatabase.getAllData("8565");
 
 
-    return merge(...displayDataChanges).pipe(map( () => {
-        // Filter data
-        this.filteredData = this._exampleDatabase.data.slice().filter((education: Education) => {
-          const searchStr = (education.eduID + education.degree + education.score ).toLowerCase();
-          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-        });
+    return merge(...displayDataChanges).pipe(map(() => {
+      // Filter data
+      this.filteredData = this._exampleDatabase.data.slice().filter((education: Education) => {
+        const searchStr = (education.eduID + education.degree + education.score).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+      });
 
-        // Sort filtered data
-        const sortedData = this.sortData(this.filteredData.slice());
+      // Sort filtered data
+      const sortedData = this.sortData(this.filteredData.slice());
 
-        // Grab the page's slice of the filtered sorted data.
-        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-        this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
-        return this.renderedData;
-      }
+      // Grab the page's slice of the filtered sorted data.
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+      this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+      return this.renderedData;
+    }
     ));
   }
 
-  disconnect() {}
+  disconnect() { }
+
+
+  seekid: string;
+  resumeid: string;
+  getResumeID() {
+    this.seekerService.getResumeData(this.seekid).subscribe(data => {
+      this.resumeid = data.resumeId;
+    });
+  }
 
 
   /** Returns a sorted copy of the database data. */
@@ -268,7 +283,7 @@ export class ExampleDataSource extends DataSource<Education> {
 
       switch (this._sort.active) {
         case 'id': [propertyA, propertyB] = [a.eduID, b.eduID]; break;
-       }
+      }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       const valueB = isNaN(+propertyB) ? propertyB : +propertyB;

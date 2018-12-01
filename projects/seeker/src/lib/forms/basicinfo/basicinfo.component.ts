@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SeekerService } from '../../service/seeker.service';
 import { Resume } from '../../models/resume';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'sek-basicinfo',
@@ -13,9 +14,10 @@ export class BasicinfoComponent implements OnInit {
   isDisabled = true;
   genders =['Male','Female','Other'];
   details:Resume;
-  
+  seekerid:string;
+  resumeid:string;
 
-  constructor(private _formBuilder: FormBuilder, private service: SeekerService) { }
+  constructor(private route:ActivatedRoute, private _formBuilder: FormBuilder, private service: SeekerService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -23,16 +25,17 @@ export class BasicinfoComponent implements OnInit {
 
      
     });
+    this.seekerid=this.route.snapshot.paramMap.get('seekid');
     
    this.userDetailsForm.disable(); // disable form onload
 
-    this.service.getResumeData().subscribe(data => {
-       this.details = data;
-       this.userDetailsForm.patchValue({firstname : this.details.name,
-                                        phone : this.details.contact,
-                                        birthday : this.details.dob,
-                                        gender : this.details.gender,
-                                        gmail : this.details.email,})
+    this.service.getResumeData(this.seekerid).subscribe(data => {
+       //this.details = data;
+       this.userDetailsForm.patchValue({firstname : data.name,
+                                        phone : data.contact,
+                                        birthday : data.dob,
+                                        gender : data.gender,
+                                        gmail : data.email,})
     });
   
 
