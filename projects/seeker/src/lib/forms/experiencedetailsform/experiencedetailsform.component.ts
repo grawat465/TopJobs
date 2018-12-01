@@ -4,6 +4,8 @@ import { MatPaginator, MatSort, MatDialog, MatSnackBar, MatTableDataSource } fro
 import { Experience } from '../../models/experience';
 import { ConfirmdialogComponent } from '../../dialog/confirmdialog/confirmdialog.component';
 import { ExperienceService } from '../../service/experience.service';
+import { ActivatedRoute } from '@angular/router';
+import { SeekerService } from '../../service/seeker.service';
 
 
 @Component({
@@ -31,8 +33,9 @@ export class ExperiencedetailsformComponent implements OnInit {
   dataSourceAddUser: any;
   newUser : Experience;
   isLoaded: boolean;
-
-  constructor(private _formBuilder:FormBuilder, private serv:ExperienceService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+  seekid:string;
+  constructor(private route:ActivatedRoute,private _formBuilder:FormBuilder, private serv:ExperienceService,
+     public dialog: MatDialog, public snackBar: MatSnackBar,private seekerService:SeekerService) {
       this.users = new Array<Experience>();
   }
 
@@ -41,13 +44,17 @@ export class ExperiencedetailsformComponent implements OnInit {
   ngOnInit() {
       this.loadUsers();
       this.dataSourceAddUser = new MatTableDataSource();
-      
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
-    });
+      this.seekid=this.route.snapshot.paramMap.get('seekid');
+    
   }
 
 
+  resumeid: string;
+  getResumeID() {
+    this.seekerService.getResumeData(this.seekid).subscribe(data => {
+      this.resumeid = data.resumeId;
+    });
+  }
 
   applyFilter(filterValue: string) {
       this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
@@ -59,7 +66,8 @@ export class ExperiencedetailsformComponent implements OnInit {
 
   private loadUsers() {
       this.isLoaded = true;
-      this.serv.getUsers().subscribe((data: Experience[]) => {
+      this.serv.getUsers("8565").subscribe((data: Experience[]) => {
+        console.log(data);
           this.users = data;
           this.users.sort(function (obj1, obj2) {
               // Descending: first id less than the previous

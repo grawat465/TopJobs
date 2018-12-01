@@ -7,17 +7,17 @@ import { Experience } from '../models/experience';
 })
 export class ExperienceService {
 
-   private API_URL = 'http://localhost:9990/';
+   private API_URL = 'http://localhost:8765/seeker-service/';
     constructor(private http: HttpClient){ }
       
-    getUsers() {
+    getUsers(resumeid:string) {
 
-        return this.http.get(this.API_URL + 'exp');
+        return this.http.get(this.API_URL + 'exp'+'/'+resumeid);
     }
 
     createUser(experience: Experience) {
 
-        return this.http.post(this.API_URL + 'exp', experience);
+        return this.http.post(this.API_URL + '', experience);
     }
     updateUser(experience: Experience) {
 

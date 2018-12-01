@@ -84,7 +84,8 @@ import { ConfirmdialogComponent } from './dialog/confirmdialog/confirmdialog.com
   entryComponents: [
     AddComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
+    ConfirmdialogComponent
   ],
   exports: [SeekerComponent]
 })

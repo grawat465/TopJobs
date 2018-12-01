@@ -4,15 +4,15 @@ import { BehaviorSubject } from 'rxjs';
 import { Education } from '../models/education';
 import { HttpClient } from '@angular/common/http';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': 'http://localhost:4201', // -->Add this line
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
-    'Access-Control-Allow-Headers': '*',
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Access-Control-Allow-Origin': 'http://localhost:4201', // -->Add this line
+//     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+//     'Access-Control-Allow-Headers': '*',
+//     'Content-Type': 'application/json',
+//     'Accept': 'application/json'
+//   })
+// };
 
 
 @Injectable({
@@ -21,7 +21,7 @@ const httpOptions = {
 export class EducationService {
   //private  API_URL = 'http://192.168.252.33:8765/seeker-service/';
 
-  private API_URL = 'http://localhost:9990/';
+  private API_URL = 'http://localhost:8765/seeker-service/';
 
   dataChange: BehaviorSubject<Education[]> = new BehaviorSubject<Education[]>([]);
   // Temporarily stores data from dialogs
@@ -39,8 +39,8 @@ export class EducationService {
 
 
 
-  getAllData(): void {
-    this.httpClient.get<Education[]>(this.API_URL + 'education/RID123').subscribe(data => {
+  getAllData(resumeid:string) {
+    return this.httpClient.get<Education[]>(this.API_URL + 'education/'+resumeid).subscribe(data => {
       this.dataChange.next(data);
     },
       (error: HttpErrorResponse) => {
@@ -74,7 +74,7 @@ export class EducationService {
 
   // UPDATE, PUT METHOD
   updateData(data: Education): void {
-    this.httpClient.put(this.API_URL + data.id, data).subscribe(shizzz => {
+    this.httpClient.put(this.API_URL + data.eduID, data).subscribe(shizzz => {
       this.dialogData = shizzz;
     });
   }

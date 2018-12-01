@@ -1,12 +1,11 @@
 export class Education {
   
-    id: number;
-    level: string;
+    eduID: number;
+    degree: string;
     board: string;
-    instituteName: string;
-    marks: string;
-    started_at: Date;
-    ended_at: Date;
-  dataChange: any;
-  data: any;
+    institution: string;
+    score: string;
+    startdate: Date;
+    enddate: Date;
+ 
 }
