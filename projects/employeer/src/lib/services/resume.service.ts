@@ -12,8 +12,8 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class ResumeService {
 
-  private userUrl = 'http://localhost:8765/job-application';
-
+  //private userUrl = 'http://localhost:8765/job-application';
+  private userUrl:string="http://192.168.252.33:8765/seeker-service";
   constructor(private snackBar:MatSnackBar,private http:HttpClient) { }
 
     getResumeListForJob(empId:string,jobId:string){

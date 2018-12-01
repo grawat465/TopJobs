@@ -11,7 +11,8 @@ export class SeekerServiceService {
   getAlldata(): any {
     throw new Error("Method not implemented.");
   }
-  private url:string="http://localhost:8765/seeker-service";
+  //private url:string="http://localhost:8765/seeker-service";
+  private url:string="http://192.168.252.33:8765/seeker-service";
   dataChange: any;
   data: any;
   constructor(private http:HttpClient) { }

@@ -1,13 +1,10 @@
-
-<mat-card class="container">
-
-  <mat-card-header>
-    <div class="search">
-        <mat-form-field floatPlaceholder="never" color="accent">
-            <input matInput #filter placeholder="Filter jobs">
-          </mat-form-field>
-    </div>
-  </mat-card-header>
+<mat-card-header>
+  <div class="search">
+    <mat-form-field floatPlaceholder="never" color="accent">
+      <input matInput #filter placeholder="Filter jobs">
+    </mat-form-field>
+  </div>
+</mat-card-header>
 
 
 <mat-grid-list cols="1" rowHeight="200px" gutterSize="10px">
@@ -16,8 +13,9 @@
 
     <mat-card>
       <mat-card-title>Company : {{x.jobtitle}}</mat-card-title>
-      <mat-card-content> <p>Role: {{x.Perks}}</p>
-        
+      <mat-card-content>
+        <p>Role: {{x.Perks}}</p>
+
 
         <p>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -30,7 +28,7 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <p>Company and description should come here
-              
+
             </p>
           </mat-expansion-panel>
         </p>
@@ -44,5 +42,3 @@
 
   </mat-grid-tile>
 </mat-grid-list>
-
-</mat-card>

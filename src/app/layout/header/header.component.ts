@@ -99,5 +99,8 @@ export class HeaderComponent implements OnInit {
   sloginSignup() {
     this.router.navigate(['/slogin/signup']);
   }
+  employerLogout(){
+    this.router.navigate(['']);
+  }
 
 }

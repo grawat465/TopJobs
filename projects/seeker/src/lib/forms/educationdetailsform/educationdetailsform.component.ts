@@ -62,8 +62,8 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
   ngOnInit() {
 
     this.loadData();
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
     });
   }
 
@@ -101,7 +101,7 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduID === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
@@ -120,7 +120,7 @@ allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduID === this.id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
@@ -238,7 +238,7 @@ export class ExampleDataSource extends DataSource<Education> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((education: Education) => {
-          const searchStr = (education.id + education.level + education.marks ).toLowerCase();
+          const searchStr = (education.eduID + education.degree + education.score ).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -267,7 +267,7 @@ export class ExampleDataSource extends DataSource<Education> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+        case 'id': [propertyA, propertyB] = [a.eduID, b.eduID]; break;
        }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

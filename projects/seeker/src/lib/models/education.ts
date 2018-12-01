@@ -7,6 +7,6 @@ export class Education {
     score: string;
     startdate: Date;
     enddate: Date;
-  dataChange: any;
-  data: any;
+   dataChange: any;
+     data: any;
 }
