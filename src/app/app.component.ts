@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, } from '@angular/router';
 import { Location } from '@angular/common';
-import { networkInterfaces } from 'os';
+
 
 @Component({
   selector: 'app-root',

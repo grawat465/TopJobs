@@ -51,7 +51,7 @@ import { HeaderComponent } from './layout/header/header.component';
     MatListModule,
     MatProgressBarModule,
     LoadingBarRouterModule,
-    LoadingBarModule.forRoot()
+    LoadingBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
