@@ -48,7 +48,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput  #input [min]="minDate" [max]="maxDate" [matDatepicker]="start" placeholder="Started_at" [(ngModel)]="data.started_at" name="start" required>
+        <input matInput  #input [min]="minDate" [max]="maxDate" [matDatepicker]="start" placeholder="Started_at" [(ngModel)]="data.startdate" name="start" required>
         <mat-datepicker-toggle matSuffix [for]="start"> <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon></mat-datepicker-toggle>
         <mat-datepicker #start></mat-datepicker>
       </mat-form-field>
@@ -56,7 +56,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput   #input [min]="minDate" [max]="maxDate" [matDatepicker]="end" placeholder="Ended_at" [(ngModel)]="data.ended_at" name="end" required>
+        <input matInput   #input [min]="minDate" [max]="maxDate" [matDatepicker]="end" placeholder="Ended_at" [(ngModel)]="data.enddate" name="end" required>
         <mat-datepicker-toggle matSuffix [for]="end"> <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon></mat-datepicker-toggle>
         <mat-datepicker #end></mat-datepicker>
       </mat-form-field>
