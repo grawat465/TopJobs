@@ -10,7 +10,7 @@ export class JobApplicationService {
   constructor(private http : HttpClient) { }
 
   //private userUrl = 'http://localhost:8765/job-application';
-  private userUrl:string="http://192.168.252.33:8765/seeker-service";
+  private userUrl:string="http://192.168.252.38:8765/seeker-service";
 
   public postJobApplication(JobApplication){
     console.log("POSTING JOB");

@@ -11,7 +11,7 @@ import { Resume } from 'projects/employeer/src/lib/models/resume';
 })
 export class SeekerService {
 
-  url:string="http://localhost:8765/seeker-service/"
+  url:string="http://192.168.252.38:8765/seeker-service/"
 
   constructor(private http: HttpClient) { }
 

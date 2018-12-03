@@ -1,0 +1,10 @@
+{
+    "/*": {
+      "target": "http://192.168.252.38:8765/",
+      "secure": false,
+      "pathRewrite": {
+        "^/*": ""
+      },
+      "logLevel": "debug"
+    }
+  }

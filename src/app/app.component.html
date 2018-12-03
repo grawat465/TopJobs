@@ -1,18 +1,21 @@
-
+ <div class="parentelement">
+        <ngx-loading-bar></ngx-loading-bar>
+      </div>
+<app-header></app-header>
 <main class="main__container">
-        <div class="main-container__bg" [ngClass]="{'main-container__bg-dark': darkModeActive}"></div>
-        <router-outlet></router-outlet>
-      </main>
+  <div class="main-container__bg-dark" ></div>
+  <router-outlet></router-outlet>
+</main>
 
 
-      <footer>
-  
-            <nav class="navbar navbar-dark bg-dark  fixed-bottom">
-          <a class="logo-font" routerLink="/">TopJobs</a>
-          <div class="navbar-expand m-auto navbar-text">
-            &copy; {{ today | date: 'yyyy' }}.
-            Made with <i class="fa fa-heart"></i> by<a href="">Team #1</a>.
-            
-          </div>
-          </nav>
-          </footer>
+<footer>
+
+  <nav class="navbar navbar-dark bg-dark  fixed-bottom">
+    
+    <div class="navbar-expand m-auto navbar-text">
+      &copy; {{ today | date: 'yyyy' }}.
+      Made with <i class="fa fa-heart"></i> by<a>Team #1</a>.
+
+    </div>
+  </nav>
+</footer>
