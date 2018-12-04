@@ -101,4 +101,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/slogin/signup']);
   }
 
+  employerLogout(){
+    this.router.navigate(['/home']);
+  }
+
 }

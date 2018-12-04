@@ -14,8 +14,8 @@ import { MatSnackBar } from '@angular/material';
 export class EmployeerService {
 
   
-  //private userUrl = 'http://localhost:8765/job-application';
-  private userUrl:string="/seeker-service";
+  private userUrl = 'http://localhost:8765/job-application';
+  //private userUrl:string="/seeker-service";
   constructor(private snackBar: MatSnackBar,private http:HttpClient) { }
 
     getResumeListForJob(empId:String,jobId:String){
