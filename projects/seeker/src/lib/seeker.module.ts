@@ -57,7 +57,7 @@ import { ConfirmdialogComponent } from './dialog/confirmdialog/confirmdialog.com
     MatRadioModule,
     MatTabsModule,
     MatMenuModule,
-    MatIconModule,
+    
     MatButtonModule,
     LayoutModule,
     MatStepperModule,

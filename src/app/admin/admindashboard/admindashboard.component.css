@@ -1,0 +1,10 @@
+.toolbar-filler {
+    flex: 1 1 auto
+}
+
+#appToolbar{
+    background: rgb(24, 23, 23);
+}
+.app-sidenav{
+    background:rgb(22, 22, 22);
+}

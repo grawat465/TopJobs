@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpHeaders,HttpClient} from '@angular/common/http';
 import { Admin } from '../admin';
+import { JobApplication } from 'projects/employeer/src/lib/models/job-application';
 
 
 const httpOptions={
@@ -17,6 +18,7 @@ const httpOptions={
     providedIn: 'root'
   })
   export class AdminService {
+   
   
     constructor(private http : HttpClient) { }
   
@@ -32,6 +34,12 @@ public requestLogin(email,password) {
 
     return this.http.get<boolean>(this.userUrl+"/admin/login/"+email+"/"+password);
   }
+
+  getAllJobs(){
+    
+  }
+
+  deleteJob(id:string){}
 }
  
   
