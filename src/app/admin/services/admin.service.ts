@@ -40,6 +40,8 @@ public requestLogin(email,password) {
   }
 
   deleteJob(id:string){}
+
+  getAllEmployersDetails(){}
 }
  
   
