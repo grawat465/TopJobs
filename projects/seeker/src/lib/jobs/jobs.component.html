@@ -1,0 +1,51 @@
+
+<h1>Jobs Available</h1>
+
+
+<!-- <mat-card class="container"> -->
+
+  <mat-card-header>
+    <div class="search">
+        <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput #filter placeholder="Filter jobs">
+          </mat-form-field>
+    </div>
+  </mat-card-header>
+
+
+<mat-grid-list cols="1" rowHeight="200px" gutterSize="10px">
+  <mat-grid-tile class="card-deck-container" *ngFor="let x of jobs">
+
+
+    <mat-card>
+      <mat-card-title>Company : {{x.jobProfile}}</mat-card-title>
+      <mat-card-content> <i>Role: {{x.companyName}}</i>
+        
+
+        <p>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+
+              </mat-panel-title>
+              <mat-panel-description>
+                Role Description -> {{x.jobDescription}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Company and description should come here
+
+            </p>
+          </mat-expansion-panel>
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="warn" (click)="applyForJob(x.jobId)">Apply</button>
+
+      </mat-card-actions>
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!-- </mat-card> -->

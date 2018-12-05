@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+
+.parentelement { position: relative; }
+ .parentelement ngx-loading-bar { display: block; } 
+ .parentelement ngx-loading-bar #loading-bar-spinner { position: absolute; top: 30em; left: 30%; }
+  .parentelement ngx-loading-bar #loading-bar .bar { position: absolute; } 
+  .parentelement ngx-loading-bar #loading-bar .bar .peg { display: none; }

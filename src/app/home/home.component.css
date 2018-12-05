@@ -1,0 +1,163 @@
+/* .container{
+  margin: 5em auto;
+
+  display: flex;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.75rem 0;
+  color: aliceblue;
+}
+
+
+
+.left-half {
+  background: url('../../assets/leftpic.jpg') no-repeat;
+  flex: 1;
+  height: 30em;
+  padding: 1rem;
+}
+
+.right-half {
+  background: url('../../assets/rightpic.jpg')  no-repeat;
+  flex: 1;
+  height:30em;
+  padding: 1rem;
+}
+ 
+
+
+
+a{
+  margin: 10em auto;
+} */
+
+ :root {
+  --container-bg-color: #333;
+  --left-bg-color: rgba(223, 39, 39, 0.7);
+  --left-button-hover-color: rgba(161, 11, 11, 0.3);
+  --right-bg-color: rgba(43, 43, 43, 0.8);
+  --right-button-hover-color: rgba(92, 92, 92, 0.3);
+  --hover-width: 75%;
+  --other-width: 25%;
+  --speed: 1000ms;
+}
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--container-bg-color);
+}
+
+h1 {
+  font-size: 2rem;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+ .button {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  height: 3rem;
+  padding-top:0.7em;
+  width: 10rem;
+  text-align: center;
+  color: rgb(26, 9, 9);
+  border: #fff solid 0.1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateX(-50%);
+}  
+
+.button:hover{
+
+  background: white;
+  cursor:pointer;
+
+} 
+
+
+.split {
+  position:fixed;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.split.left {
+  left:0;
+   background: url('../../assets/finder.jpg') rgba(235, 19, 48, 0.911) center center no-repeat; 
+  background-size: cover;
+}
+
+.split.left:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: var(--left-bg-color);
+}
+
+.split.right {
+  right:0;
+   background: url('../../assets/programmer.png') rgb(36, 32, 32) center center no-repeat; 
+  background-size: cover;
+}
+
+.split.right:before {
+  position:absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: var(--right-bg-color);
+}
+
+
+
+@media(max-width: 800px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .button {
+    width: 10rem;
+  }
+}
+
+@media(max-height: 700px) {
+  .button {
+    top: 60%;
+  }
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

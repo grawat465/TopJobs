@@ -1,0 +1,23 @@
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel>Basic Info</ng-template>
+
+    <sek-basicinfo></sek-basicinfo>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+    <ng-template matStepLabel>Education Details</ng-template>
+    <sek-educationdetailsform></sek-educationdetailsform>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" [optional]="isOptional">
+    <ng-template matStepLabel>Experience Details</ng-template>
+    <sek-experiencedetailsform></sek-experiencedetailsform>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    Forms Submitted Successfully
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
