@@ -19,7 +19,7 @@ export class DeleteComponent implements OnInit {
   }
 
   confirmDelete(): void {
-    this.dataService.deleteData(this.data.id);
+    this.dataService.deleteData(this.data.eduId);
   }
 
 

@@ -1,14 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule, MatGridListModule } from '@angular/material';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { AdminComponent } from './admin.component';
+import { ViewAllJobsComponent } from './view-all-jobs/view-all-jobs.component';
+import { ViewAllEmployersComponent } from './view-all-employers/view-all-employers.component';
 
 @NgModule({
-  declarations: [AdminloginComponent],
+  declarations: [AdminloginComponent, AdmindashboardComponent, AdminComponent, ViewAllJobsComponent, ViewAllEmployersComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatExpansionModule,
+    MatGridListModule,
+    
+    BrowserAnimationsModule
+    ,MatInputModule
   ]
 })
 export class AdminModule { }

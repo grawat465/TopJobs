@@ -44,9 +44,13 @@ export class ExperiencedetailsformComponent implements OnInit {
       this.loadUsers();
       this.dataSourceAddUser = new MatTableDataSource();
       this.seekid=this.route.snapshot.paramMap.get('seekid');
-      alert(this.seekid);
+    //   alert(this.seekid);
       this.resumeid=this.getResumeID();
-       alert(this.resumeid);
+      this.serv.getUsers(this.resumeid).subscribe((data: Experience[]) => {
+        alert(data);
+          this.dataSourceUsers = data;});
+    //    
+    
   }
 
  
@@ -85,7 +89,7 @@ export class ExperiencedetailsformComponent implements OnInit {
               // Descending: first id less than the previous
               return obj1.expId-obj2.expId;
           });
-          this.isLoaded = false;
+          this.isLoaded = true;
           this.dataSourceUsers = new MatTableDataSource(this.users);
           this.dataSourceAddUser = new MatTableDataSource(this.addNewUser);
           this.dataSourceUsers.sort = this.sort;

@@ -69,6 +69,7 @@ export class EducationdetailsformComponent implements OnInit {
     this.seekid = this.route.snapshot.paramMap.get("seekid");
     //this.resumeid=
     this.getResumeID();
+    this.dataService.getAllData(this.resumeid);
     this.loadData();
     
   }
@@ -105,7 +106,6 @@ export class EducationdetailsformComponent implements OnInit {
     instituteName: string, marks: string, started_at: string, ended_at: string) {
     this.id = id;
     
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditComponent, {
       data: { eduID: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
@@ -113,7 +113,7 @@ export class EducationdetailsformComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduID === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduId === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
         // And lastly refresh table
@@ -132,7 +132,7 @@ export class EducationdetailsformComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduID === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduId === this.id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
@@ -147,8 +147,11 @@ export class EducationdetailsformComponent implements OnInit {
 
 
   public loadData() {
+    
     this.exampleDatabase = new EducationService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort,this.seekerService,this.route);
+   
+   
     //fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
@@ -201,7 +204,7 @@ export class EducationdetailsformComponent implements OnInit {
   //   const filterValue = value.toLowerCase();
 
   //   return this.allSkills.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-  // }
+  // }s
 
   //////////////////////////////////////////////////////////
 }
@@ -210,6 +213,9 @@ export class EducationdetailsformComponent implements OnInit {
 
 export class ExampleDataSource extends DataSource<Education> {
   _filterChange = new BehaviorSubject('');
+
+  seekid: string;
+  resumeid: string;
 
   get filter(): string {
     return this._filterChange.value;
@@ -239,13 +245,13 @@ export class ExampleDataSource extends DataSource<Education> {
       this._paginator.page
     ];
 
-    this._exampleDatabase.getAllData(this.seekid);
+    this._exampleDatabase.getAllData(this.resumeid);
 
 
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((education: Education) => {
-        const searchStr = (education.eduID + education.degree + education.score).toLowerCase();
+        const searchStr = (education.eduId + education.degree + education.score).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -263,8 +269,7 @@ export class ExampleDataSource extends DataSource<Education> {
   disconnect() { }
 
 
-  seekid: string;
-  resumeid: string;
+  
   getResumeID() {
     this.seekerService.getResumeData(this.seekid).subscribe(data => {
       this.resumeid = data.resumeId;
@@ -283,7 +288,7 @@ export class ExampleDataSource extends DataSource<Education> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'id': [propertyA, propertyB] = [a.eduID, b.eduID]; break;
+        case 'id': [propertyA, propertyB] = [a.eduId, b.eduId]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
