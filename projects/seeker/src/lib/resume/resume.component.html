@@ -14,7 +14,7 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    Forms Submitted Successfully
+     <mat-basic-chip>No. of views {{data}}</mat-basic-chip>       
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>

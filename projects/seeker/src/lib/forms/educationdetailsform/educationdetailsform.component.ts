@@ -86,11 +86,12 @@ export class EducationdetailsformComponent implements OnInit {
 
   }
 
-  addNew(issue: Education) {
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: { issue: issue }
+  addNew(data: Education) {
+    
+    let dialogRef = this.dialog.open(AddComponent, {
+       data: { data: data }
     });
-
+    dialogRef.componentInstance.resumeid = this.resumeid;
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
@@ -100,10 +101,10 @@ export class EducationdetailsformComponent implements OnInit {
       }
     });
   }
-  startEdit(i: number, id: number, level: string, board: string,
+  startEdit( id: number, level: string, board: string,
     instituteName: string, marks: string, started_at: string, ended_at: string) {
     this.id = id;
-    this.index = i;
+    
     console.log(this.index);
     const dialogRef = this.dialog.open(EditComponent, {
       data: { eduID: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
@@ -121,12 +122,12 @@ export class EducationdetailsformComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, level: string, board: string,
+  deleteItem(id:number, level: string, board: string,
     instituteName: string, marks: string, started_at: string, ended_at: string) {
-    this.index = i;
-    this.id = id;
+    
+    
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: { eduID: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
+      data: { eduID:id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -238,7 +239,7 @@ export class ExampleDataSource extends DataSource<Education> {
       this._paginator.page
     ];
 
-    this._exampleDatabase.getAllData("8565");
+    this._exampleDatabase.getAllData(this.seekid);
 
 
     return merge(...displayDataChanges).pipe(map(() => {

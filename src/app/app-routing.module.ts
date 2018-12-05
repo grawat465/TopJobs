@@ -17,6 +17,7 @@ import { JobsComponent } from 'projects/seeker/src/lib/jobs/jobs.component';
 import { SloginComponent } from 'projects/slogin/src/public_api';
 import { LoginComponentSeeker } from 'projects/slogin/src/lib/login/login.component';
 import { SignupComponentSeeker } from 'projects/slogin/src/lib/signup/signup.component';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
 
@@ -65,7 +66,8 @@ const routes: Routes = [
       {path:'signup',component:SignupComponentSeeker},
       {path:'**',component:LoginComponentSeeker}
     ]
-  }
+  },
+  
 
 ];
 

@@ -76,11 +76,11 @@
                           </mat-header-cell>
                 
                           <mat-cell *matCellDef="let row; let i=index;">
-                            <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.level, row.board, row.instituteName, row.marks, row.started_at, row.ended_at)">
+                            <button mat-icon-button color="accent" (click)="startEdit( row.degree, row.board, row.institution, row.score, row.startdate, row.enddate)">
                               <mat-icon aria-label="Edit">edit</mat-icon>
                             </button>
                 
-                            <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.level, row.board, row.instituteName, row.marks, row.started_at, row.ended_at)">
+                            <button mat-icon-button color="accent" (click)="deleteItem(id,row.degree, row.board, row.institution, row.score, row.startdate, row.enddate)">
                               <mat-icon aria-label="Delete">delete</mat-icon>
                             </button>
                           </mat-cell>

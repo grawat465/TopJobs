@@ -1,9 +1,10 @@
 export class Resume {
-    id: string;
-    seekerid: string;
+    resumeId: string;
+    seekerId: string;
     name: string;
     contact: string;
     dob: Date;
     email: string;
     gender: string;
+    noOfViews:number;
 }

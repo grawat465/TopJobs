@@ -1,7 +1,8 @@
 export class Experience {
 
     constructor(
-    public  id:number,
+    public expId:number,    
+    public  resumeId:string,
     public  companyName: string,
     public  years: string,
     public  position: string,
