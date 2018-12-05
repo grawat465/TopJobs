@@ -35,11 +35,7 @@ export class BasicinfoComponent implements OnInit {
                                         phone : data.contact,
                                         birthday : data.dob,
                                         gender : data.gender,
-<<<<<<< HEAD
                                         email : data.email,})
-=======
-                                        gmail : data.email,})
->>>>>>> 0ca03663acad74eff545bb3bf282387ddb69cb12
     });
   
 
