@@ -74,7 +74,7 @@ export class EducationService {
 
   // UPDATE, PUT METHOD
   updateData(data: Education): void {
-    this.httpClient.put(this.API_URL + data.eduID, data).subscribe(shizzz => {
+    this.httpClient.put(this.API_URL+'education/' + data.eduID, data).subscribe(shizzz => {
       this.dialogData = shizzz;
     });
   }

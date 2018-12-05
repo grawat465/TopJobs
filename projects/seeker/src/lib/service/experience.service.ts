@@ -17,7 +17,7 @@ export class ExperienceService {
 
     createUser(experience: Experience) {
 
-        return this.http.post(this.API_URL + '', experience);
+        return this.http.post(this.API_URL + 'exp', experience);
     }
     updateUser(experience: Experience) {
 

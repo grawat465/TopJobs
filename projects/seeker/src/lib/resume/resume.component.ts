@@ -5,6 +5,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { EducationdetailsformComponent } from '../forms/educationdetailsform/educationdetailsform.component';
 import { ExperiencedetailsformComponent } from '../forms/experiencedetailsform/experiencedetailsform.component';
 import { BasicinfoComponent } from '../forms/basicinfo/basicinfo.component';
+import { Resume } from 'projects/employeer/src/lib/models/resume';
+import { SeekerService } from '../service/seeker.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'sek-resume',
@@ -16,7 +19,8 @@ export class ResumeComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-
+  data:Resume;
+  seekid:string;
   isOptional: boolean = false;
 
   @ViewChild('BasicInfoComponent') basicInfoComponent: BasicinfoComponent;
@@ -35,7 +39,7 @@ export class ResumeComponent implements OnInit {
     return this.experienceDetailsformComponent ? this.experienceDetailsformComponent.thirdFormGroup : null;
   }
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private service: SeekerService, private route:ActivatedRoute) {
 
 
 
@@ -54,7 +58,8 @@ export class ResumeComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-
+   this.seekid= this.route.snapshot.paramMap.get('seekid');
+    this.service.getResumeData(this.seekid).subscribe(data=>{this.data=data});
   }
 
 

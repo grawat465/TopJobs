@@ -19,9 +19,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   
 
-  addNewUser: Experience[] = [
-      { id: 0, companyName: null, position: null, years: null, description: null }
-  ];
+  
 
   users: Array<Experience>;
   showTable: boolean;
@@ -34,6 +32,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   newUser : Experience;
   isLoaded: boolean;
   seekid:string;
+  resumeid:string;
   constructor(private route:ActivatedRoute,private _formBuilder:FormBuilder, private serv:ExperienceService,
      public dialog: MatDialog, public snackBar: MatSnackBar,private seekerService:SeekerService) {
       this.users = new Array<Experience>();
@@ -45,16 +44,29 @@ export class ExperiencedetailsformComponent implements OnInit {
       this.loadUsers();
       this.dataSourceAddUser = new MatTableDataSource();
       this.seekid=this.route.snapshot.paramMap.get('seekid');
-    
+      alert(this.seekid);
+      this.resumeid=this.getResumeID();
+       alert(this.resumeid);
   }
 
+ 
 
-  resumeid: string;
-  getResumeID() {
+  
+  getResumeID():string {
     this.seekerService.getResumeData(this.seekid).subscribe(data => {
+        console.log(data);
       this.resumeid = data.resumeId;
+      
     });
+    alert(this.resumeid);
+
+    return this.resumeid;
   }
+
+
+  addNewUser: Experience[] = [
+    { expId:0,resumeId:null, companyName: null, position: null, years: null, description: null }
+];
 
   applyFilter(filterValue: string) {
       this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
@@ -66,12 +78,12 @@ export class ExperiencedetailsformComponent implements OnInit {
 
   private loadUsers() {
       this.isLoaded = true;
-      this.serv.getUsers("8565").subscribe((data: Experience[]) => {
+      this.serv.getUsers(this.resumeid).subscribe((data: Experience[]) => {
         console.log(data);
           this.users = data;
           this.users.sort(function (obj1, obj2) {
               // Descending: first id less than the previous
-              return obj2.id - obj1.id;
+              return obj1.expId-obj2.expId;
           });
           this.isLoaded = false;
           this.dataSourceUsers = new MatTableDataSource(this.users);
@@ -87,8 +99,8 @@ export class ExperiencedetailsformComponent implements OnInit {
   }
   
   deleteUserForDialog(user: Experience) {
-      this.serv.deleteUser(user.id).subscribe(data => {
-          this.statusMessage = 'Details ' + user.id + ' deleted',
+      this.serv.deleteUser(user.expId).subscribe(data => {
+          this.statusMessage = 'Details ' + user.resumeId + ' deleted',
               this.openSnackBar(this.statusMessage, "Success");
           this.loadUsers();
       })
@@ -96,7 +108,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   
   editUser(user: Experience) {
       this.serv.updateUser( user).subscribe(data => {
-          this.statusMessage = 'Details' + user.id + ' updated',
+          this.statusMessage = 'Details' + user.resumeId + ' updated',
           this.openSnackBar(this.statusMessage, "Success");
           this.loadUsers();
       },
@@ -107,9 +119,11 @@ export class ExperiencedetailsformComponent implements OnInit {
   }
   
   saveUser(user: Experience) {
+      user.resumeId=this.resumeid;
+      console.log(user);
       if (user.companyName != null && user.position != null && user.companyName != "") {
           this.serv.createUser(user).subscribe(data => {
-              this.statusMessage = 'Detail' + user.id + ' is added',
+              this.statusMessage = 'Detail' + ' is added',
               this.showTable = false;
               this.openSnackBar(this.statusMessage, "Success");
               this.loadUsers();
@@ -127,7 +141,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   
   show() {
       this.showTable = true;
-      this.addNewUser = [{ id: 0, companyName: null, position: null, years:null, description: null }];
+      this.addNewUser = [{expId:0, resumeId:null, companyName: null, position: null, years:null, description: null }];
   
   }
   cancel() {
@@ -137,7 +151,7 @@ export class ExperiencedetailsformComponent implements OnInit {
   //snackBar
   openSnackBar(message: string, action: string) {
       this.snackBar.open(message, action, {
-          duration: 3000,
+          duration: 3000,horizontalPosition:"right",verticalPosition:"top"
       });
   }
   
@@ -173,6 +187,7 @@ export class ExperiencedetailsformComponent implements OnInit {
       }
   
   onSubmit(newUser:Experience){
-      this.newUser = new Experience(0,"","","","",);
+    alert("resumeid"+this.resumeid);
+      this.newUser = new Experience(0,"","","","","",);
   }
 }

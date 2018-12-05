@@ -48,12 +48,12 @@ export class SignupComponent implements OnInit {
       console.log(data);
       if(this.logSignNew){
         //alert("successfully login");
-        this.snackBar.open("successfully login",'Enter',{duration:3000});
+        this.snackBar.open("successfully login",'Enter',{duration:3000,horizontalPosition:"right",verticalPosition:"top"});
         this.router.navigate(['/employer/jobs',this.logSign.empId]);
       }
       else {
         //alert("login failed");
-      this.snackBar.open("login failed",'Exit',{duration:3000});
+      this.snackBar.open("login failed",'Exit',{duration:3000,horizontalPosition:"right",verticalPosition:"top"});
       this.formBuilder=null;
       }
       
