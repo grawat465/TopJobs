@@ -1,7 +1,7 @@
 export class Education {
   
-    eduID: number;
-    resumeID:string;
+    eduId: number;
+    resumeId:string;
     degree: string;
     board: string;
     institution: string;

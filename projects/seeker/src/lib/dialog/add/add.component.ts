@@ -69,9 +69,9 @@ export class AddComponent implements OnInit {
 
   public confirmAdd(): void {
     
-    this.data.resumeID=this.resumeid;
-    console.log(this.data.resumeID+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
-    alert( this.data.resumeID+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
+    this.data.resumeId=this.resumeid;
+    console.log(this.data.resumeId+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
+    alert( this.data.resumeId+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
     
     this.dataService.addData(this.data);
   }

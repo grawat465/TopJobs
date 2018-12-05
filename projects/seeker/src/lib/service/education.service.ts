@@ -68,15 +68,20 @@ export class EducationService {
   // ADD, POST METHOD
   addData(data): void {
     this.httpClient.post(this.API_URL + 'education', data).subscribe(stream => {
-      this.dialogData = stream;
-    });
+      this.dialogData = stream;},
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      });
+    
   }
 
   // UPDATE, PUT METHOD
   updateData(data: Education): void {
-    this.httpClient.put(this.API_URL+'education/' + data.eduID, data).subscribe(shizzz => {
-      this.dialogData = shizzz;
-    });
+    this.httpClient.put(this.API_URL+'education/' + data.eduId, data).subscribe(shizzz => {
+      this.dialogData = shizzz},
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      });;
   }
 
   // DELETE METHOD
