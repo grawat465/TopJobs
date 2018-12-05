@@ -8,18 +8,16 @@
     margin: 5em auto;
    
   }
-  .container{
-    width:90%;
-   
-    background-color: #f5f5f5;
-  }  
+ 
   
 
   mat-card{
     width:80%;
+   
+    margin: 5em auto;
     position: relative;
     align-content: center;
-    max-width: 1100px;
+    background-color: #f5f5f5;
     
 
   }
@@ -27,7 +25,22 @@
 
   mat-expansion-panel
 {
-   margin: auto 2em;
+   margin: 2em 2em;
+ 
    width: 90%;
-   height: 10%;
+   
+}
+
+mat-grid-list{
+ height:30%;
+
+
+  width: 80%;
+   height: 15%;
+}
+
+h1{
+  margin:5% auto;
+  text-align: center;
+
 }

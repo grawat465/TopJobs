@@ -53,8 +53,8 @@ export class AddComponent implements OnInit {
   }
 
   public confirmAdd(): void {
-    console.log(this.data.id+ " INS"+this.data.instituteName+"board "+ this.data.level+" start date"+this.data.started_at+"  end:"+this.data.ended_at);
-    alert( this.data.id+ " INS"+this.data.instituteName+"board "+ this.data.level+" start date"+this.data.started_at+"  end:"+this.data.ended_at);
+    console.log(this.data.eduID+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
+    alert( this.data.eduID+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
     this.dataService.addData(this.data);
   }
 

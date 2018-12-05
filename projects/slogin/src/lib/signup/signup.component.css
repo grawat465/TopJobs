@@ -1,33 +1,29 @@
+   .container{
+   
 
+   }
    
    .mat-card{
+    top:.5em;
+    left :0em;
+    height:67em;
     width: 25em;
-    margin: auto 20em;
+    
     background: whitesmoke;
-   }
-                                      
-    .section-title {
-      margin-bottom: 20px;
-    }
+   }                                
+    
+    
   
-    .user-details-container {
-      padding: 20px;
-      text-align: center;
   
-    }
-     
-    .user-image {
-        width: 10%;
-        border-radius: 50%;
-      }
-  
-  .user-title {
-        font-size: 14px;
-        font-weight: 500;
-        margin-top: 30px;
-        display: block;
-      }
-  
+  .section-title {
+    margin-bottom: 15px;
+  }
+
+  .user-details-container {
+    padding: 20px;
+    text-align: center;
+
+  }
       .user-bio {
         font-size: 12px;
         margin-top: 20px;
@@ -43,8 +39,8 @@
       align-content: center;
       margin: 0 2em;
       display:block;
-      height: 5em;
-      width: 20em;
+      height: 4em;
+      width: 23em;
     
     }
   
@@ -52,9 +48,7 @@
       font-size: 12px;
     }
   
-    .double-line-hint {
-         
-    }
+   
 
    .mat-input-hint-wrapper {
         flex-wrap: wrap;
@@ -67,8 +61,9 @@
 
   
     .submit-btn {
-      margin-top: 20px;
-      margin-left: 40%;
+      margin-top: 15px;
+      margin-left: 50%;
+      width:8em;
     }
 
     
@@ -95,8 +90,5 @@
   }
   
 mat-card{
-  margin:5% auto;
-}
-mat-card-actions{
   margin:5% auto;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  empId:string="";
+   empId:string="";
   
   seekId:string="";
   fullRoute:string="";
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
       if(location.path()!= ''){
         this.fullRoute=location.path();
         this.route=this.fullRoute.split('/');
-        //console.log(this.route);
+        console.log(this.route);
         if(this.route.indexOf('employer') != -1){
           //this.empId=this.routing.snapshot.paramMap.get('empId');
           this.empId=this.route[3];
@@ -42,7 +43,6 @@ export class HeaderComponent implements OnInit {
           this.elogin=false;
         }
         else if(this.route.indexOf('elogin') != -1){
-
           this.employer=false;
           this.seeker=false;
           this.slogin=false;
@@ -52,12 +52,6 @@ export class HeaderComponent implements OnInit {
           this.employer=false;
           this.seeker=false;
           this.slogin=true;
-          this.elogin=false;
-        }
-        else if(this.route.indexOf('home')!= -1){
-          this.employer=false;
-          this.seeker=false;
-          this.slogin=false;
           this.elogin=false;
         }
       }
@@ -71,7 +65,7 @@ export class HeaderComponent implements OnInit {
     //this.empId=this.routing.snapshot.paramMap.get("empId");
     //this.empId=this.location[2];
     console.log(this.empId);
-    this.router.navigate(['/employer/newJob',this.empId]);
+    this.router.navigate(['/employer/newjob',this.empId]);
   }
   navigateJobs(){
     this.router.navigate(['/employer/jobs',this.empId]);
@@ -95,7 +89,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logoutSeeker() {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home',this.seekId])
   }
 
   sloginLogin(){

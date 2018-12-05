@@ -1,10 +1,6 @@
-<html>
+<div class="container">
 
-<body>
 
-  <div class="tabhead">
-
-  </div>
 
 
   <mat-card>
@@ -41,13 +37,10 @@
       </form>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-raised-button class="btn" type="submit" (click)="onSubmit(loginForm.value)">Login</button>
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit(loginForm.value)">Login</button>
     </mat-card-actions>
 
   </mat-card>
+</div>
 
-
-  <router-outlet></router-outlet>
-</body>
-
-</html>
+<router-outlet></router-outlet>

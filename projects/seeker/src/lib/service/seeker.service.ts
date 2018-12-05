@@ -16,7 +16,7 @@ export class SeekerService {
   constructor(private http: HttpClient) { }
 
   getResumeData(seekerid:string){
-    return this.http.get<Resume>(this.url+"/getResumeBySeeker/"+seekerid);
+    return this.http.get<Resume>(this.url+"getResumeBySeeker/"+seekerid);
   }
   getJobsForSeeker(seekid:string){
     return this.http.get<JobApplication[]>(this.url+"getJobs");

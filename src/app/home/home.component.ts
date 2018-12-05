@@ -18,4 +18,6 @@ export class HomeComponent implements OnInit {
   routeSlogin(){
     this.router.navigate(['/slogin']);
   }
+
+  
 }
