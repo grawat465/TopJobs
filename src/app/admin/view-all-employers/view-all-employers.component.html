@@ -1,27 +1,26 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
 
 
-    <!-- Position Column -->
+    
     <ng-container matColumnDef="resumeId">
       <th mat-header-cell *matHeaderCellDef> First Name </th>
       <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
     </ng-container>
   
-    <!-- Name Column -->
+    
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Last Name </th>
       <td mat-cell *matCellDef="let element"> {{element.lasteName}} </td>
     </ng-container>
   
-    <!-- Weight Column -->
+     
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef> Email </th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
   
-  xx -->
-      <ng-container matColumnDef="details">
+        <ng-container matColumnDef="details">
           <th mat-header-cell *matHeaderCellDef> View Details </th>
           <td mat-cell *matCellDef="let element"> <button mat-button (click)="delete()">Delete</button>
           </td>
@@ -30,4 +29,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
         (click)="selection.toggle(row)">
     </tr>
-  </table>
+  </table> -->
