@@ -58,22 +58,14 @@ export class LoginComponent implements OnInit {
            if(this.logSignNew==null)
            {
             //alert("email id already registered! Please registered with another email id");
-<<<<<<< HEAD
-            this.snackBar.open('email id already registered! Please registered with another email id','Reset',{duration:3000,horizontalPosition:"right",verticalPosition:"top"});
-=======
             this.snackBar.open('email id already registered! Please registered with another email id','Reset',{duration:3000});
->>>>>>> 0ca03663acad74eff545bb3bf282387ddb69cb12
  
            }
            else
            {
            
             //alert("User created SuccessFully.");
-<<<<<<< HEAD
-            this.snackBar.open('User created SuccessFully.','Reset',{duration:3000,horizontalPosition:"right",verticalPosition:"top"});
-=======
             this.snackBar.open('User created SuccessFully.','Reset',{duration:3000});
->>>>>>> 0ca03663acad74eff545bb3bf282387ddb69cb12
             this.router.navigate(["/employer/newjob"]);
         }
         });

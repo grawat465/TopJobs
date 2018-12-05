@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule, MatGridListModule } from '@angular/material';
+import { MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule, MatGridListModule, MatTableModule } from '@angular/material';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
@@ -27,7 +27,7 @@ import { ViewAllEmployersComponent } from './view-all-employers/view-all-employe
     MatListModule,
     MatExpansionModule,
     MatGridListModule,
-    
+    MatTableModule,
     BrowserAnimationsModule
     ,MatInputModule
   ]

@@ -12,7 +12,9 @@ export class ViewAllJobsComponent implements OnInit {
   panelOpenState = false;
   companyName:string;
   position:string;
-  jobs:JobApplication[];
+  jobs=[{
+    "jobId":"1223","companyName":"Grawat","location":"India"}
+  ];
 
   seekerService: any;
   constructor(private adminService:AdminService, public snackBar:MatSnackBar) { }

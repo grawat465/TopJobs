@@ -36,12 +36,20 @@ public requestLogin(email,password) {
   }
 
   getAllJobs(){
+
+    return null;
     
   }
 
-  deleteJob(id:string){}
+  deleteJob(id:string){
 
-  getAllEmployersDetails(){}
+    return null;
+  }
+
+  getAllEmployersDetails(){
+
+    return null;
+  }
 }
  
   

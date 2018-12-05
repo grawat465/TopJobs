@@ -17,7 +17,7 @@ import { SloginModule } from 'projects/slogin/src/public_api';
 import { SeekerModule } from 'projects/seeker/src/public_api';
 import { EmployeerModule } from 'projects/employeer/src/public_api';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatProgressBarModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatProgressBarModule, MatTableModule } from '@angular/material';
 import { HeaderComponent } from './layout/header/header.component';
 import { AdminModule } from './admin/admin.module';
 
@@ -53,7 +53,9 @@ import { AdminModule } from './admin/admin.module';
     MatListModule,
     MatProgressBarModule,
     LoadingBarRouterModule,
-    LoadingBarModule
+    LoadingBarModule,
+    MatTableModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
