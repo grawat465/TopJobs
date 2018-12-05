@@ -3,10 +3,7 @@ import { JobApplication } from '../models/job-application';
 import { FormBuilder, Validators } from '@angular/forms';
 import {  ActivatedRoute, Router } from '@angular/router';
 import { JobApplicationService } from '../services/job-application.service';
-<<<<<<< HEAD
 import { MatSnackBar } from '@angular/material';
-=======
->>>>>>> 0ca03663acad74eff545bb3bf282387ddb69cb12
 
 
 @Component({
@@ -19,11 +16,7 @@ export class NewJobComponent implements OnInit {
   empId: String;
 
   job: JobApplication = new JobApplication();
-<<<<<<< HEAD
   constructor(private FB: FormBuilder, private router: Router, private service: JobApplicationService, private route: ActivatedRoute, private snackBar : MatSnackBar) { }
-=======
-  constructor(private FB: FormBuilder, private router: Router, private service: JobApplicationService, private route: ActivatedRoute) { }
->>>>>>> 0ca03663acad74eff545bb3bf282387ddb69cb12
 
 
   submitted = false;
@@ -89,12 +82,8 @@ export class NewJobComponent implements OnInit {
     }
     this.service.postJobApplication(this.job).subscribe(data => {
       console.log(data);
-<<<<<<< HEAD
       //alert("Job posted SuccessFully.");
       this.snackBar.open('Job Posted SuccessFully.','View',{duration:3000,horizontalPosition:"right",verticalPosition:"top"});
-=======
-      alert("Job posted SuccessFully.");
->>>>>>> 0ca03663acad74eff545bb3bf282387ddb69cb12
       this.router.navigate(['/employer/jobs',this.empId]);
     });
   }

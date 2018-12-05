@@ -1,4 +1,6 @@
 .jumbotron{
     align-content: center;
-    margin:10%;
+    margin:auto;
+    margin-top: 5%;
+    width: 50%;
 }

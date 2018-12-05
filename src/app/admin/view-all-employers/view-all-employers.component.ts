@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employer } from 'src/app/models/employer';
 import { FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { AdminService } from '../services/admin.service';
 
 @Component({
@@ -11,9 +11,9 @@ import { AdminService } from '../services/admin.service';
 })
 export class ViewAllEmployersComponent implements OnInit {
 
-  displayedColumns: string[] = ['resumeId', 'name', 'email', 'contact', 'dob', 'details'];
+  displayedColumns: string[] = ['empId', 'firstName', 'email', 'lastName','password'];
   ELEMENT_DATA: Employer[];
-  dataSource;// = new MatTableDataSource<Resume>(this.ELEMENT_DATA);
+  dataSource ;//= new MatTableDataSource<Employer>(this.ELEMENT_DATA);
   //dataSource: Resume[];
  
   empId: string;
@@ -22,6 +22,7 @@ export class ViewAllEmployersComponent implements OnInit {
   constructor(private snackBar:MatSnackBar, private adminService:AdminService) { }
 
   ngOnInit() {
+    this.getAllEmployers();
   }
 
   getAllEmployers() {
@@ -30,8 +31,10 @@ export class ViewAllEmployersComponent implements OnInit {
     try{
       this.adminService.getAllEmployersDetails().subscribe(data => {
         console.log(data);
-        
-        this.dataSource = data;
+        this.ELEMENT_DATA=data;
+        //this.dataSource = data;
+        this.dataSource = new MatTableDataSource<Employer>(this.ELEMENT_DATA);
+
       });
   
     }catch(err){
