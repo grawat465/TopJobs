@@ -14,6 +14,7 @@ export class SeekerService {
   url:string="http://localhost:8765/seeker-service/"
 
   constructor(private http: HttpClient) { }
+<<<<<<< HEAD
   
   
 
@@ -22,6 +23,12 @@ export class SeekerService {
     return this.http.get<Resume>(this.url+"getResumeBySeeker/"+seekerid);
   }
 
+=======
+
+  getResumeData(seekerid:string){
+    return this.http.get<Resume>(this.url+"/getResumeBySeeker/"+seekerid);
+  }
+>>>>>>> 0ca03663acad74eff545bb3bf282387ddb69cb12
   getJobsForSeeker(seekid:string){
     return this.http.get<JobApplication[]>(this.url+"getJobs");
   }

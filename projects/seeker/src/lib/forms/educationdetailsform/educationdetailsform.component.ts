@@ -204,7 +204,7 @@ export class EducationdetailsformComponent implements OnInit {
   //   const filterValue = value.toLowerCase();
 
   //   return this.allSkills.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-  // }
+  // }s
 
   //////////////////////////////////////////////////////////
 }
