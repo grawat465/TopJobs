@@ -10,8 +10,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoadingBarModule } from '@ngx-loading-bar/core';
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+
 import { EloginModule } from 'projects/elogin/src/public_api';
 import { SloginModule } from 'projects/slogin/src/public_api';
 import { SeekerModule } from 'projects/seeker/src/public_api';
@@ -51,9 +50,9 @@ import { AdminModule } from './admin/admin.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatProgressBarModule,
-    LoadingBarRouterModule,
-    LoadingBarModule
+    MatProgressBarModule
+    //LoadingBarRouterModule,
+   // LoadingBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

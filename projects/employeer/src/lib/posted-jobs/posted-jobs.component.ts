@@ -58,6 +58,10 @@ export class PostedJobsComponent implements OnInit {
     });
     this.getJobApplications();
   }
+
+
+
+
 }
 
 
