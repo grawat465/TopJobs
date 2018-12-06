@@ -41,7 +41,7 @@ onSubmit(obj) {
     this.service.addFeeDetails(this.subscriptionFeeDetailObj).subscribe( data =>{
         this.subscriptionFeeDetailObjNew=data;
        if(this.subscriptionFeeDetailObjNew==null)
-       alert("please do agian");
+       alert("please do again");
        else
        {
         alert("Payment done SuccessFully.");

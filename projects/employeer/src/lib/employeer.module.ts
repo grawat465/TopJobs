@@ -49,7 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatGridListModule,
     
   ],
-  exports: [EmployeerComponent],
+  exports: [EmployeerComponent,CandidateListComponent,PostedJobsComponent],
   entryComponents:[ResumeContentDialog]
   
 })

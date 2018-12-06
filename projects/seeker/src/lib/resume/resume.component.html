@@ -1,4 +1,5 @@
 <mat-horizontal-stepper labelPosition="bottom" #stepper>
+  
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Basic Info</ng-template>
@@ -16,21 +17,15 @@
               </div>
             </div>
           </div>
-
         </mat-card-header>
       </mat-card>
-
-
-
-
-
-
 
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
+
   <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Education Details</ng-template>
@@ -46,10 +41,7 @@
         </mat-card-header>
         <mat-card-content>
 
-          
-            
         
-
           <div class="container mat-elevation-z8">
 
             <div class="form">
@@ -127,17 +119,7 @@
             </mat-paginator>
           </div>
 
-
-
-
-
-
-
-
-
 <!--chip auto complete-->
-
-
 
           <mat-card>
             <mat-card-title>SkillSet</mat-card-title>
@@ -171,17 +153,11 @@
       </div>
     </form>
   </mat-step>
+
+
   <mat-step [stepControl]="thirdFormGroup" [optional]="isOptional">
     <form [formGroup]="thirdFormGroup">
       <ng-template matStepLabel>Experience Details</ng-template>
-
-
-         
-
-
-
-
-
 
 
       <div>
@@ -191,9 +167,6 @@
     </form>
   </mat-step>
 
-
-
-
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     Forms Submitted Successfully
@@ -202,4 +175,4 @@
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
-</mat-horizontal-stepper>
+</mat-horizontal-stepper> 

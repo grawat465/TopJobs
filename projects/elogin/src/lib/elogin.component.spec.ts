@@ -20,17 +20,14 @@ describe('EloginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EloginComponent],
+      declarations: [ EloginComponent,SignupComponent,LoginComponent,SubscriptionFeeComponent],
       imports: [
         EloginRoutingModule,
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
         MatTabsModule,
-        HttpClientTestingModule,
-        SignupComponent,
-        LoginComponent,
-        SubscriptionFeeComponent
+        HttpClientTestingModule
       ],
       providers:[LoginComponent,SignupComponent,SubscriptionFeeComponent],
      

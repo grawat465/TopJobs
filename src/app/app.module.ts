@@ -19,6 +19,8 @@ import { SeekerModule } from 'projects/seeker/src/public_api';
 import { EmployeerModule } from 'projects/employeer/src/public_api';
 import { SubscriptionFeeComponent } from 'projects/elogin/src/lib/subscription-fee/subscription-fee.component';
 import { LoginComponent } from 'projects/elogin/src/lib/login/login.component';
+import { FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SignupComponent } from 'projects/elogin/src/lib/signup/signup.component';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { LoginComponent } from 'projects/elogin/src/lib/login/login.component';
     HomeComponent,
     BlogsComponent,
     AboutusComponent,
-    ContactusComponent
+    ContactusComponent,
+    
     ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import { LoginComponent } from 'projects/elogin/src/lib/login/login.component';
     SloginModule,
     SeekerModule,
     EmployeerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

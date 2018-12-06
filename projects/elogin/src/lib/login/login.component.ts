@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import {Router} from '@angular/router';
 import  { LoginSignupService } from '../services/login-signup.service';
 import { LoginSignup } from '../services/login-signup';
-import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({

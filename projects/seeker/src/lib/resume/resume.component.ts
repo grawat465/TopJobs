@@ -15,7 +15,8 @@ import { Issue } from '../models/Issue';
 @Component({
   selector: 'sek-resume',
   templateUrl: './resume.component.html',
-  styleUrls: ['./resume.component.css']
+  styleUrls: ['./resume.component.css'],
+  providers:[SeekerService]
 })
 export class ResumeComponent implements OnInit {
 // Stepper control

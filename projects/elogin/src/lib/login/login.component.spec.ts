@@ -12,10 +12,36 @@ import { SignupComponent } from '../signup/signup.component';
 import { SubscriptionFeeComponent } from '../subscription-fee/subscription-fee.component';
 import { LoginSignupService } from '../services/login-signup.service';
 import { LoginSignup } from '../services/login-signup';
-import { Router } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { EloginComponent } from '../elogin.component';
 import { HomeComponent } from 'src/app/home/home.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { BlogsComponent } from 'src/app/blogs/blogs.component';
+import { AboutusComponent } from 'src/app/aboutus/aboutus.component';
+import { ContactusComponent } from 'src/app/contactus/contactus.component';
+import { EmployeerComponent } from 'projects/employeer/src/public_api';
+import { NewJobComponent } from 'projects/employeer/src/lib/new-job/new-job.component';
+import { PostedJobsComponent } from 'projects/employeer/src/lib/posted-jobs/posted-jobs.component';
+import { ShortlistedCandidatesComponent } from 'projects/employeer/src/lib/shortlisted-candidates/shortlisted-candidates.component';
+import { SeekerComponent } from 'projects/seeker/src/public_api';
+import { ResumeComponent } from 'projects/seeker/src/lib/resume/resume.component';
+import { JobsComponent } from 'projects/seeker/src/lib/jobs/jobs.component';
+import { SloginComponent } from 'projects/slogin/src/public_api';
+import { SignupComponentSeeker } from 'projects/slogin/src/lib/signup/signup.component';
+import { LoginComponentSeeker } from 'projects/slogin/src/lib/login/login.component';
+import { CandidateListComponent } from 'projects/employeer/src/lib/candidate-list/candidate-list.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatIconModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatSnackBarModule, MatRadioModule, MatTabsModule, MatTableModule, MatListModule, MatStepperModule, MatPaginatorModule, MatChipsModule, MatAutocompleteModule } from '@angular/material';
+import { ContentComponent as ContentComponent1 } from 'src/app/layout/content/content.component';
+import { ContentComponent as ContentComponent2} from 'projects/seeker/src/lib/layout/content/content.component';
+import { HeaderComponent } from 'src/app/layout/header/header.component';
+import { FooterComponent } from 'src/app/layout/footer/footer.component';
+import { of } from 'rxjs';
+
+
+ 
+
 //import {Observable,of} from 'rxjs';
 
 const dummyPosts: LoginSignup[]=[{
@@ -23,7 +49,7 @@ const dummyPosts: LoginSignup[]=[{
   lastName:"Khandelwal",
   gender:"male",
   country:"India",
-  emailId:"bhanu@9k@gmail.com",
+  emailId:"bhanu29k@gmail.com",
   password:"Bhanu@123",
   empId:"bhanu29k"
 }]; 
@@ -40,23 +66,85 @@ describe('LoginComponent', () => {
   let service: LoginSignupService;
   let spy:any;
   let httpMock:HttpTestingController;
+  const routes: Routes = [
+    { path : 'elogin', component: EloginComponent, children : [ 
+        {
+          path: '', component : SignupComponent
+        },
+        {
+          path: 'login', component : SignupComponent
+        },
+        {
+          path : 'signup', component : LoginComponent
+          
+        }
+    ]
+    }
+         ];
   beforeEach(async(() => {
     TestBed.configureTestingModule({
      // imports:[ReactiveFormsModule,FormsModule,RouterTestingModule],
       declarations: [   AppComponent,
         LoginComponent,
         SignupComponent,
-        SubscriptionFeeComponent,EloginComponent ,        BrowserDynamicTestingModule
+        SubscriptionFeeComponent,EloginComponent ,
+        HomeComponent,
+        BlogsComponent,
+        AboutusComponent,
+        ContactusComponent,
+        EmployeerComponent,
+        NewJobComponent,
+        PostedJobsComponent,
+        ShortlistedCandidatesComponent,
+        SeekerComponent,
+        ResumeComponent,
+        JobsComponent,
+        SloginComponent,
+        SignupComponentSeeker,
+        LoginComponentSeeker,
+        CandidateListComponent,
+        ContentComponent1,
+        ContentComponent2,
+        HeaderComponent,
+        FooterComponent
+       
       ],
       imports: [
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        HttpClientTestingModule,,
+        HttpClientTestingModule,
         RouterTestingModule,
+        BrowserAnimationsModule,
+       MatButtonModule,
+       MatCheckboxModule,
+       MatGridListModule,
+       MatCardModule,
+       MatIconModule,
+       MatInputModule,
+       MatDatepickerModule,
+       MatNativeDateModule,
+       MatSelectModule,
+       MatSnackBarModule,
+       MatRadioModule,
+       MatTabsModule,
+       MatTableModule,
+       MatListModule,
+       MatStepperModule,
+       MatPaginatorModule,
+       MatChipsModule,
+       MatAutocompleteModule,
+       RouterModule.forRoot(routes)
+      
+       
       //  Observable
       ],
-      providers: [SubscriptionFeeDetails,{provide:LoginSignupService,useClass:MockUser},LoginComponent,SignupComponent]
+      providers: [SubscriptionFeeDetails,{provide:LoginSignupService,useClass:MockUser},LoginComponent,SignupComponent, {
+        provide: Router,
+        useClass: class { 
+            navigate = jasmine.createSpy("navigate"); 
+        }
+    }]
     })
     .compileComponents();
    component=TestBed.get(LoginComponent);
@@ -68,6 +156,7 @@ describe('LoginComponent', () => {
   fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
     //service=new LoginSignupService(httpMock);
    //component=new component(new FormBuilder(),new Router(),service);
   });
@@ -146,10 +235,6 @@ describe('LoginComponent', () => {
     expect(confirmPassword.valid).toBeFalsy(); 
   });
 
-  it('Confirm Password field validity', () => {
-    let confirmPassword = component.registerForm.controls['confirmPassword']; 
-    expect(confirmPassword.valid).toBeFalsy(); 
-  });
   
   it('OnSubmit function test',() =>{
    let obj=component.registerForm;
@@ -159,25 +244,33 @@ describe('LoginComponent', () => {
    obj.controls['emailId'].setValue("bhanu29k@gmail.com");
    obj.controls['gender'].setValue("male");
    obj.controls['country'].setValue("India"); 
-   // alert("bhanu");
-   component.onSubmit(obj); 
- //  console.log(obj.controls['password']);
-   // console.log(component.registerForm['controls'].firstName);
    const dummyPosts: LoginSignup[]=[{
-      firstName:"Bhanu",
-      lastName:"Khandelwal",
-      gender:"male",
-      country:"India",
-      emailId:"bhanu@9k@gmail.com",
-      password:"Bhanu@123",
-      empId:"bhanu29k"
-    }]; 
-    spy=spyOn(service,'addUser').and.returnValue(dummyPosts);
-    
+    firstName:"Bhanu",
+    lastName:"Khandelwal",
+    gender:"male",
+    country:"India",
+    emailId:"bhanu29k@gmail.com",
+    password:"Bhanu@123",
+    empId:"bhanu29k"
+  }]; 
+  const loginSignupServiceStub={
+    addUser(loginSignup:LoginSignup){
+      return of(dummyPosts[0])
+    }
+  }
+
+  expect(loginSignupServiceStub.addUser(dummyPosts[0])).toBeTruthy();
+  // component.onSubmit(obj);   
+    //spy=spyOn(service,'addUser').and.returnValue(dummyPosts);
+    expect(component.onSubmit(obj)).toBeTruthy();
   });
 
   it('LoginComp function test',()=>{
+    let router = fixture.debugElement.injector.get(Router);
+
     component.logInComp();
+
+    expect(router.navigate).toHaveBeenCalledWith(["/elogin/login"]);
   });
   
 });

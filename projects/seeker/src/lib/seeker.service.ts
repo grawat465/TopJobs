@@ -43,7 +43,7 @@ export class SeekerService {
   }
 
   /** CRUD METHODS
-
+   
   addIssue(data: Issue): void {
     this.dialogData = data;
   }

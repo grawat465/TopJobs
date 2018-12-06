@@ -1,4 +1,5 @@
-/*import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/*
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignupComponent } from './signup.component';
 
@@ -8,7 +9,8 @@ describe('SignupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignupComponent ]
+      declarations: [ SignupComponent],
+      
     })
     .compileComponents();
   }));
@@ -25,6 +27,8 @@ describe('SignupComponent', () => {
 
 });
 */
+
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignupComponent } from './signup.component';
@@ -38,11 +42,31 @@ import { AppComponent } from '../../../../../src/app/app.component';
 import { SubscriptionFeeComponent } from '../subscription-fee/subscription-fee.component';
 import { SubscriptionFeeDetails } from '../services/subscription-fee-details';
 import { LoginSignup } from '../services/login-signup';
-import { DebugElement } from '@angular/core';
+import { DebugElement, ContentChildren } from '@angular/core';
 import { EloginComponent } from '../elogin.component';
 import { HomeComponent } from 'src/app/home/home.component';
-//import { Observable } from 'rxjs-compat/Observable';
-//import 'rxjs-compat/add/observable/from';
+import { MatTabsModule, MatSnackBarModule, MatCardModule, MatError, MatFormField, MatOption, MatHint, MatSelect, MatInputModule, MatFormFieldModule, MatIconModule, MatHeaderRowDef, MatButtonModule, MatCheckboxModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatRadioModule, MatTableModule, MatListModule, MatStepperModule, MatPaginatorModule, MatChipsModule, MatAutocompleteModule } from '@angular/material';
+import { EloginRoutingModule } from '../elogin-routing.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BlogsComponent } from 'src/app/blogs/blogs.component';
+import { AboutusComponent } from 'src/app/aboutus/aboutus.component';
+import { ContactusComponent } from 'src/app/contactus/contactus.component';
+import { EmployeerComponent, EmployeerModule } from 'projects/employeer/src/public_api';
+import { NewJobComponent } from 'projects/employeer/src/lib/new-job/new-job.component';
+import { PostedJobsComponent } from 'projects/employeer/src/lib/posted-jobs/posted-jobs.component';
+import { ShortlistedCandidatesComponent } from 'projects/employeer/src/lib/shortlisted-candidates/shortlisted-candidates.component';
+import { SeekerComponent } from 'projects/seeker/src/public_api';
+import { ResumeComponent } from 'projects/seeker/src/lib/resume/resume.component';
+import { JobsComponent } from 'projects/seeker/src/lib/jobs/jobs.component';
+import { SloginComponent } from 'projects/slogin/src/public_api';
+import { SignupComponentSeeker } from 'projects/slogin/src/lib/signup/signup.component';
+import { LoginComponentSeeker } from 'projects/slogin/src/lib/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CandidateListComponent } from 'projects/employeer/src/lib/candidate-list/candidate-list.component';
+import { ContentComponent } from 'projects/seeker/src/lib/layout/content/content.component';
+import { RouterModule, Routes } from '@angular/router';
+
+
 const dummyPosts: LoginSignup[]=[{
   firstName:"Bhanu",
   lastName:"Khandelwal",
@@ -65,24 +89,82 @@ describe('SignupComponent', () => {
   let service: LoginSignupService;
   let spy;
   let debugElement:DebugElement;
+  const routes: Routes = [
+    { path : 'elogin', component: EloginComponent, children : [ 
+        {
+          path: '', component : SignupComponent
+        },
+        {
+          path: 'login', component : SignupComponent
+        },
+        {
+          path : 'signup', component : LoginComponent
+          
+        }
+    ]
+    }
+         ];
+    
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [  AppComponent,
+      declarations: [ 
         LoginComponent,
         SignupComponent,
         SubscriptionFeeComponent,
         EloginComponent,
-        HomeComponent
+        HomeComponent,
+        BlogsComponent,
+        AboutusComponent,
+        ContactusComponent,
+        EmployeerComponent,
+        NewJobComponent,
+        PostedJobsComponent,
+        ShortlistedCandidatesComponent,
+        SeekerComponent,
+        ResumeComponent,
+        JobsComponent,
+        SloginComponent,
+        SignupComponentSeeker,
+        LoginComponentSeeker,
+        CandidateListComponent,
+        ContentComponent
+        
           ],
       imports:[ BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
+    
+      
+       // MatError,
+       BrowserAnimationsModule,
+       MatButtonModule,
+       MatCheckboxModule,
+       MatGridListModule,
+       MatCardModule,
+       MatIconModule,
+       MatInputModule,
+       MatDatepickerModule,
+       MatNativeDateModule,
+       MatSelectModule,
+       MatSnackBarModule,
+       MatRadioModule,
+       MatTabsModule,
+       MatTableModule,
+       MatListModule,
+       MatStepperModule,
+       MatPaginatorModule,
+       MatChipsModule,
+       MatAutocompleteModule,
+       RouterModule.forRoot(routes)
+      
+       
 
-
+        
     //  Observable
       ],
-        providers: [{provide:LoginSignupService,useClass:MockUser},SignupComponent]
+        providers: [{provide:LoginSignupService,useClass:MockUser},SignupComponent],
+      
     })
     .compileComponents();
     component=TestBed.get(SignupComponent);
@@ -94,12 +176,13 @@ describe('SignupComponent', () => {
     fixture = TestBed.createComponent(SignupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
- /*   debugElement=fixture.debugElement;
-    service=debugElement.injector.get(LoginSignupService);
-    spy=spyOn(service,'requestLogin').and.callFake(()=>{
-      return Observable.from([dummyPosts]);
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+ //  debugElement=fixture.debugElement;
+  //  service=debugElement.injector.get(LoginSignupService);
+    //spy=spyOn(service,'requestLogin').and.callFake(()=>{
+     // return Observable.from([dummyPosts]);
       
-    }); */
+   // }); 
   });
 
   it('should create', () => {

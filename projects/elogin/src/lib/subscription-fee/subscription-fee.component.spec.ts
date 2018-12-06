@@ -20,25 +20,93 @@ import { BlogsComponent } from 'src/app/blogs/blogs.component';
 import { AboutusComponent } from 'src/app/aboutus/aboutus.component';
 import { ContactusComponent } from 'src/app/contactus/contactus.component';
 import { EloginModule } from '../elogin.module';
-import { SloginModule } from 'projects/slogin/src/public_api';
-import { SeekerModule } from 'projects/seeker/src/public_api';
-import { EmployeerModule } from 'projects/employeer/src/public_api';
+import { SloginModule, SloginComponent } from 'projects/slogin/src/public_api';
+import { SeekerModule, SeekerComponent } from 'projects/seeker/src/public_api';
+import { EmployeerModule, EmployeerComponent } from 'projects/employeer/src/public_api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewJobComponent } from 'projects/employeer/src/lib/new-job/new-job.component';
+import { PostedJobsComponent } from 'projects/employeer/src/lib/posted-jobs/posted-jobs.component';
+import { ShortlistedCandidatesComponent } from 'projects/employeer/src/lib/shortlisted-candidates/shortlisted-candidates.component';
+import { ResumeComponent } from 'projects/seeker/src/lib/resume/resume.component';
+import { JobsComponent } from 'projects/seeker/src/lib/jobs/jobs.component';
+import { SignupComponentSeeker } from 'projects/slogin/src/lib/signup/signup.component';
+import { LoginComponentSeeker } from 'projects/slogin/src/lib/login/login.component';
+import { CandidateListComponent } from 'projects/employeer/src/lib/candidate-list/candidate-list.component';
+import { ContentComponent as ContentComponent1 } from 'src/app/layout/content/content.component';
+import { ContentComponent as ContentComponent2} from 'projects/seeker/src/lib/layout/content/content.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatButtonModule, MatCheckboxModule, MatGridListModule, MatCardModule, MatIconModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatSnackBarModule, MatRadioModule, MatTableModule, MatListModule, MatTabsModule, MatStepperModule, MatPaginatorModule, MatChipsModule, MatAutocompleteModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
 
 describe('SubscriptionFeeComponent', () => {
   let component: SubscriptionFeeComponent;
   let fixture: ComponentFixture<SubscriptionFeeComponent>;
   let service:LoginSignupService;
+  const routes: Routes = [
+    { path : 'elogin', component: EloginComponent, children : [ 
+        {
+          path: '', component : SignupComponent
+        },
+        {
+          path: 'login', component : SignupComponent
+        },
+        {
+          path : 'signup', component : LoginComponent
+          
+        }
+    ]
+    }
+         ];
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubscriptionFeeComponent,LoginComponent,SignupComponent,EloginComponent ],
+      declarations: [ SubscriptionFeeComponent,LoginComponent,SignupComponent,EloginComponent,AppComponent,
+        HomeComponent,
+        BlogsComponent,
+        AboutusComponent,
+        ContactusComponent,
+        EmployeerComponent,
+        NewJobComponent,
+        PostedJobsComponent,
+        ShortlistedCandidatesComponent,
+        SeekerComponent,
+        ResumeComponent,
+        JobsComponent,
+        SloginComponent,
+        SignupComponentSeeker,
+        LoginComponentSeeker,
+        CandidateListComponent,
+        ContentComponent1,
+        ContentComponent2,
+        HeaderComponent,
+        FooterComponent
+        ],
       imports:[ BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
-        EloginModule,
-
-        BrowserAnimationsModule],
+  
+        BrowserAnimationsModule,RouterTestingModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatGridListModule,
+        MatCardModule,
+        MatIconModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatRadioModule,
+        MatTabsModule,
+        MatTableModule,
+        MatListModule,
+        MatStepperModule,
+        MatPaginatorModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        RouterModule.forRoot(routes)
+   
+      ],
         providers: [SubscriptionFeeDetails,{provide:LoginSignupService},LoginComponent,SignupComponent,SubscriptionFeeComponent]
     })
     .compileComponents();

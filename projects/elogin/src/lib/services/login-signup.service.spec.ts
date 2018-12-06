@@ -2,9 +2,23 @@
 import { TestBed } from '@angular/core/testing';
 
 import { LoginSignupService } from './login-signup.service';
+import { EloginComponent } from '../elogin.component';
+import { SignupComponent } from '../signup/signup.component';
+import { LoginComponent } from '../login/login.component';
+import { SubscriptionFeeComponent } from '../subscription-fee/subscription-fee.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EloginRoutingModule } from '../elogin-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatTabsModule, MatSnackBarModule } from '@angular/material';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginSignupService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    declarations: [ SignupComponent,EloginComponent,LoginComponent,SubscriptionFeeComponent ],
+    imports:[RouterTestingModule,ReactiveFormsModule,EloginRoutingModule,BrowserModule,MatTabsModule,MatSnackBarModule,HttpClientTestingModule]
+ 
+  }));
 
   it('should be created', () => {
     const service: LoginSignupService = TestBed.get(LoginSignupService);
@@ -12,6 +26,7 @@ describe('LoginSignupService', () => {
   });
 });
 */
+
 
 import { TestBed } from '@angular/core/testing';
 import {HttpClientTestingModule,HttpTestingController} from '@angular/common/http/testing';

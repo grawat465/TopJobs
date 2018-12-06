@@ -7,7 +7,7 @@ import { Seeker } from './models/seeker';
 })
 export class SloginService {
 
-  private userUrl = 'http://localhost:9090';
+   userUrl = 'http://localhost:9090';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class SloginService {
   }
   public signUpUser(seeker) {
 
-    return this.httpClient.post<Seeker>(this.userUrl + '/seeker/signup/emp', seeker);
+    return this.httpClient.post<Seeker[]>(this.userUrl + '/seeker/signup/emp', seeker);
   }
 
 }

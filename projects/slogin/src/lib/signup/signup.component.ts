@@ -139,10 +139,10 @@ export class SignupComponentSeeker implements OnInit {
      this.seek.mobileno = obj.phone;
      this.seek.gender = obj.gender;
      this.seek.bio = obj.bio;
-     this.seek.city = obj.address.city;
-     this.seek.zipcode = obj.address.zipcode;
-     this.seek.country = obj.address.country;
-     this.seek.states = obj.address.state;
+     this.seek.city = obj.city;
+     this.seek.zipcode = obj.zipcode;
+     this.seek.country = obj.country;
+     this.seek.states = obj.state;
      this.seek.username = obj.username;
 
    if (this.userDetailsForm.invalid) {

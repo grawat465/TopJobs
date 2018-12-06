@@ -28,7 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployerRoutingModule } from 'projects/employeer/src/lib/employeer-routing.module';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
+import {ExampleDataSource} from './resume/resume.component';
 @NgModule({
   declarations: [SeekerComponent, ResumeComponent,
     JobsComponent, AddComponent, EditComponent,
@@ -73,13 +75,15 @@ import { EmployerRoutingModule } from 'projects/employeer/src/lib/employeer-rout
     MatExpansionModule,
     MatListModule,
     MatTableModule,
-
+    RouterTestingModule,
+    RouterModule
   ],
   entryComponents: [
     AddComponent,
     EditComponent,
     DeleteComponent
   ],
-  exports: [SeekerComponent]
+  exports: [SeekerComponent],
+ 
 })
 export class SeekerModule { }
