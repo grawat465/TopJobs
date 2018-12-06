@@ -22,7 +22,7 @@ export class ShortlistedCandidatesComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("nGODSDf");
+
     this.getAllApplicants();
   }
   getAllApplicants(){

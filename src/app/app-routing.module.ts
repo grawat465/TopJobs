@@ -18,6 +18,10 @@ import { SloginComponent } from 'projects/slogin/src/public_api';
 import { LoginComponentSeeker } from 'projects/slogin/src/lib/login/login.component';
 import { SignupComponentSeeker } from 'projects/slogin/src/lib/signup/signup.component';
 import { AdminModule } from './admin/admin.module';
+import { AdminComponent } from './admin/admin.component';
+import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import { ViewAllJobsComponent } from './admin/view-all-jobs/view-all-jobs.component';
+import { ViewAllEmployersComponent } from './admin/view-all-employers/view-all-employers.component';
 
 const routes: Routes = [
 
@@ -65,8 +69,16 @@ const routes: Routes = [
       {path:'login',component:LoginComponentSeeker},
       {path:'signup',component:SignupComponentSeeker},
       {path:'**',component:LoginComponentSeeker}
-    ]
+    ],
   },
+{
+  path:'admin',component:AdminComponent,children:[
+    {path:'admindash',component:AdmindashboardComponent},
+    {path:'alljobs',component:ViewAllJobsComponent},
+    {path:'allemployers',component:ViewAllEmployersComponent},
+    {path:'**',component:AdminComponent}
+  ]
+}
   
 
 ];

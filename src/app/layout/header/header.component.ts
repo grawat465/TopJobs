@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
           this.seeker=false;
           this.slogin=false;
           this.elogin=false;
+          this.home=false;
+
         }
         else if(this.route.indexOf('seeker') != -1){
           this.seekId=this.route[3];
@@ -41,17 +43,28 @@ export class HeaderComponent implements OnInit {
           this.seeker=true;
           this.slogin=false;
           this.elogin=false;
+          this.home=false;
         }
         else if(this.route.indexOf('elogin') != -1){
           this.employer=false;
           this.seeker=false;
           this.slogin=false;
           this.elogin=true;
+          this.home=false;
         }
         else if(this.route.indexOf('slogin')!= -1){
           this.employer=false;
           this.seeker=false;
           this.slogin=true;
+          this.elogin=false;
+          this.home=false;
+        }
+        else if(!this.employer && !this.seeker && !this.slogin && !this.elogin){
+          //this.seekId=this.route[3];
+          this.home=true;
+          this.employer=false;
+          this.seeker=false;
+          this.slogin=false;
           this.elogin=false;
         }
       }
@@ -60,6 +73,23 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  navHome(){
+    this.employer=false;
+    this.seeker=false;
+    this.slogin=false;
+    this.elogin=false;
+    this.home=true;
+    this.router.navigate(['/home']);
+  }
+  navAdmin(){
+    this.router.navigate(['/admin']);
+  }
+  navEmployer(){
+    this.router.navigate(['/elogin']);
+  }
+  navSeeker(){
+    this.router.navigate(['/slogin']);
   }
   navigateNewForm(){
     //this.empId=this.routing.snapshot.paramMap.get("empId");
