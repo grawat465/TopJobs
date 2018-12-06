@@ -10,9 +10,10 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 import { AdminComponent } from './admin.component';
 import { ViewAllJobsComponent } from './view-all-jobs/view-all-jobs.component';
 import { ViewAllEmployersComponent } from './view-all-employers/view-all-employers.component';
+import { DashlayoutComponent } from './dashlayout/dashlayout.component';
 
 @NgModule({
-  declarations: [AdminloginComponent, AdmindashboardComponent, AdminComponent, ViewAllJobsComponent, ViewAllEmployersComponent],
+  declarations: [AdminloginComponent, AdmindashboardComponent, AdminComponent, ViewAllJobsComponent, ViewAllEmployersComponent, DashlayoutComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

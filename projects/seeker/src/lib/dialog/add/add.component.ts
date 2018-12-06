@@ -44,8 +44,8 @@ export class AddComponent implements OnInit {
     // this.snackbar.open(this.seekid,'seekid',{
     //   duration: 3000,horizontalPosition:"right",verticalPosition:"top"})
     // this.getResumeID();
-    this.snackbar.open(this.resumeid,'resumeid',{
-      duration: 3000,horizontalPosition:"right",verticalPosition:"top"})
+    // this.snackbar.open(this.resumeid,'resumeid',{
+    //   duration: 3000,horizontalPosition:"right",verticalPosition:"top"})
 
   }
  
@@ -71,7 +71,7 @@ export class AddComponent implements OnInit {
     
     this.data.resumeId=this.resumeid;
     console.log(this.data.resumeId+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
-    alert( this.data.resumeId+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
+    // alert( this.data.resumeId+ " INS"+this.data.institution+"board "+ this.data.degree+" start date"+this.data.startdate+"  end:"+this.data.enddate);
     
     this.dataService.addData(this.data);
   }

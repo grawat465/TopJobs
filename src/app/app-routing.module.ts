@@ -74,10 +74,10 @@ const routes: Routes = [
   },
 {
   path:'admin',component:AdminComponent,children:[
-    {path:'admindash',component:AdmindashboardComponent,children:[
-      {path:'alljobs',component:ViewAllJobsComponent},
-      {path:'allemployers',component:ViewAllEmployersComponent},
-    ]},
+    // {path:'admindash',component:AdmindashboardComponent,children:[
+    //   {path:'alljobs',component:ViewAllJobsComponent},
+    //   {path:'allemployers',component:ViewAllEmployersComponent},
+    // ]},
     {path:'alogin',component:AdminloginComponent},
     {path:'**',component:AdminloginComponent}
   ]
