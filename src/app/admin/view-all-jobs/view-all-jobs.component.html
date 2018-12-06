@@ -19,8 +19,8 @@
 
     <mat-card>
       
-      <mat-card-title>Company : {{x.jobProfile}} <div class="button"> <button mat-raised-button color="warn" (click)="deleteJob(x.jobId)">Apply</button> </div> </mat-card-title>
-      <mat-card-content> <i>Role: {{x.companyName}}</i>
+      <mat-card-title>Company : {{x.companyName}} <div class="button"> <button mat-raised-button color="warn" (click)="deleteJob(x.jobId)">Delete</button> </div> </mat-card-title>
+      <mat-card-content> <i>Role:{{x.jobProfile}} </i>
         
 
         <p>
@@ -33,9 +33,7 @@
                 Role Description -> {{x.jobDescription}}
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Company and description should come here
-
-            </p>
+         
           </mat-expansion-panel>
         </p>
       </mat-card-content>

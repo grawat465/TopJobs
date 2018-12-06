@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
            
             //alert("User created SuccessFully.");
             this.snackBar.open('User created SuccessFully.','Reset',{duration:3000,horizontalPosition:"right",verticalPosition:"top"});
-            this.router.navigate(["/employer/newjob"]);
+            this.router.navigate(["/elogin"]);
         }
         });
 

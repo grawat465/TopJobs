@@ -35,13 +35,14 @@ export class ViewAllJobsComponent implements OnInit {
     
     this.adminService.deleteJob(jobId).subscribe(data=>{
       console.log(data);
-      if(data){
+      if(data===null){
         this.snackBar.open(" Job Successfully Deleted","DONE",{duration:3000,verticalPosition:"top"});
       }
       else{
         this.snackBar.open("Application Failed","Exit",{duration:3000,verticalPosition:"top"});
       }
     });
+    window.location.reload();
   }
   
 }

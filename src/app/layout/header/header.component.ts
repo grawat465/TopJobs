@@ -83,7 +83,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   navAdmin(){
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/alogin']);
   }
   navEmployer(){
     this.router.navigate(['/elogin']);
