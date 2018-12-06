@@ -7,3 +7,6 @@ table {
   .half-width{
     width: 50%;
   }
+  th.mat-header-cell{
+    text-align: center;
+  }
