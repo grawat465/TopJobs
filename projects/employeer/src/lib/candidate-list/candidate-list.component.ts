@@ -28,14 +28,17 @@ export class CandidateListComponent implements OnInit {
   empId: string;
   resumeDisplay: FormGroup;
 
-  constructor(private snackBar:MatSnackBar,private FB: FormBuilder, private resumeService: ResumeService, private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private snackBar:MatSnackBar,private FB: FormBuilder, private resumeService: ResumeService,
+     private route: ActivatedRoute, private dialog: MatDialog) {
 
   }
+
   ngOnInit() {
     this.empId = this.route.snapshot.paramMap.get("empId");
     console.log(this.jobId);
     this.getResumeListForJob(this.jobId);
   }
+
   getResumeListForJob(jobId: string) {
 
     // this.ELEMENT_DATA=this.resumeService.getResumeListForJob(this.empId,jobId);
@@ -63,11 +66,14 @@ export class CandidateListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       //return result;
 
-      if(!result){
-        this.deleteResume(resume);
+      if(result){
+        this.resumeService.sendShortlist(resume,this.jobId,this.empId);
       }
-      else if(result){
-
+      else if(result == null){
+        console.log(result);
+      }
+      else{
+        this.deleteResume(resume);
       }
     });
   }

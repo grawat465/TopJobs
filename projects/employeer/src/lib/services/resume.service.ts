@@ -29,6 +29,6 @@ export class ResumeService {
       return this.http.delete<boolean>(this.userUrl+"/employer/deleteShortlistApplicants/"+resumeId)
     }
     deleteResumeFromJobApplication(jobId:string,resumeId:string){
-      return this.http.delete<boolean>(this.userUrl+"employer/deleteResumeFromJobApplication/"+jobId+"/"+resumeId)
+      return this.http.delete<boolean>(this.userUrl+"/employer/deleteResumeFromJobApplication/"+jobId+"/"+resumeId)
     }
 }
