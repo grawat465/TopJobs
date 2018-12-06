@@ -41,7 +41,7 @@ export class EducationService {
 
   getAllData(resumeid:string) {
     alert(resumeid+ "RESUME ID IN SERVICE");
-    return this.httpClient.get<Education[]>(this.API_URL + 'education/'+resumeid).subscribe(data => {
+    return this.httpClient.get<Education[]>(this.API_URL + 'education/'+'9997').subscribe(data => {
       this.dataChange.next(data);
       console.log(data);
     },

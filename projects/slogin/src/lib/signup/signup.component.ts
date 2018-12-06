@@ -153,7 +153,8 @@ export class SignupComponentSeeker implements OnInit {
       //alert('User created SuccessFully.'+data);
       if(data != null){
         this.snackBar.open(data.username+" successfully created.","DONE",{duration:3000,verticalPosition:"top"});
-        this.router.navigate(['/seeker/jobs',data.username]);  
+        // this.router.navigate(['/seeker/jobs',data.username]);  
+        this.router.navigate(['/slogin/login']);  
       }
     });
   }

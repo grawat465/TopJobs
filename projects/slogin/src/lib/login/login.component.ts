@@ -65,6 +65,11 @@ export class LoginComponentSeeker implements OnInit {
     });
   }
 
+  isLoggedIn():boolean{
+    
+    return this.res;
+  }
+
   keyDownFunction(event){
     if(event.keyCode==13){
       console.log("Enter");
