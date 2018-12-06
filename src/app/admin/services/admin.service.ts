@@ -19,7 +19,7 @@ const httpOptions={
     providedIn: 'root'
   })
   export class AdminService {
-    userUrl = 'http://localhost:8765/employee-registration/';
+    userUrl = 'http://localhost:8765/admin-service/';
   
     constructor(private http : HttpClient) { }
   
@@ -37,16 +37,19 @@ public requestLogin(email,password) {
   }
 
   getAllJobs(){
-    return null;
+    return  this.http.get<JobApplication[]>(this.userUrl+"admin/viewJobs");
   }
 
   deleteJob(id:string){
-    return null;
+    return this.http.delete(this.userUrl+'admin/deleteJob/'+id);
   }
 
   getAllEmployersDetails(){
-    return this.http.get<Employer[]>(this.userUrl+"employer/getAll");
-    //return null;
+    return this.http.get<Employer[]>(this.userUrl+"admin/viewAllEmployers");
+    
+  }
+  deleteEmployersDetails(id:string){
+    return this.http.delete(this.userUrl+'admin/deleteEmployer/'+id);
   }
 }
  

@@ -3,6 +3,7 @@ import { Employer } from 'src/app/models/employer';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { AdminService } from '../services/admin.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-all-employers',
@@ -19,7 +20,7 @@ export class ViewAllEmployersComponent implements OnInit {
   empId: string;
   resumeDisplay: FormGroup;
  
-  constructor(private snackBar:MatSnackBar, private adminService:AdminService) { }
+  constructor(private snackBar:MatSnackBar, private adminService:AdminService,private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.getAllEmployers();
@@ -41,6 +42,21 @@ export class ViewAllEmployersComponent implements OnInit {
       this.snackBar.open("Error "+err,"RETRY",{duration:3000});
     }
   }
+
+   deleteEmployerById(id:string){
+    console.log("DELETE CALLED"+id);
+    try{
+      this.adminService.deleteEmployersDetails(id).subscribe(data => {
+        console.log(data);
+
+
+      });
+      window.location.reload();
+    }catch(err){
+      this.snackBar.open("Error "+err,"RETRY",{duration:3000});
+    }
+
+   }
 
 
 }
