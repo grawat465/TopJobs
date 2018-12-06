@@ -41,12 +41,15 @@ public requestLogin(email,password) {
   }
 
   deleteJob(id:string){
-    return null;
+    return this.http.delete(this.userUrl+'admin/deleteJob/'+id);
   }
 
   getAllEmployersDetails(){
     return this.http.get<Employer[]>(this.userUrl+"admin/viewAllEmployers");
-    //return null;
+    
+  }
+  deleteEmployersDetails(id:string){
+    return this.http.delete(this.userUrl+'admin/deleteEmployer/'+id);
   }
 }
  

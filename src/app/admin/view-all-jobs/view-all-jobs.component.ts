@@ -18,6 +18,8 @@ export class ViewAllJobsComponent implements OnInit {
   constructor(private adminService:AdminService, public snackBar:MatSnackBar) { }
 
   ngOnInit() {
+    this.getJobsForSeekerId();
+
   }
 
 

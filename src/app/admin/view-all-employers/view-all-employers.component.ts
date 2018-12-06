@@ -42,5 +42,20 @@ export class ViewAllEmployersComponent implements OnInit {
     }
   }
 
+   deleteEmployerById(id:string){
+
+    try{
+      this.adminService.deleteEmployersDetails(id).subscribe(data => {
+        console.log(data);
+
+
+      });
+  
+    }catch(err){
+      this.snackBar.open("Error "+err,"RETRY",{duration:3000});
+    }
+
+   }
+
 
 }

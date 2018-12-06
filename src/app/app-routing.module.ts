@@ -73,6 +73,7 @@ const routes: Routes = [
   },
 {
   path:'admin',component:AdminComponent,children:[
+    
     {path:'admindash',component:AdmindashboardComponent},
     {path:'alljobs',component:ViewAllJobsComponent},
     {path:'allemployers',component:ViewAllEmployersComponent},
