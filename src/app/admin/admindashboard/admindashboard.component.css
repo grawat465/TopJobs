@@ -8,10 +8,10 @@
 .app-sidenav{
     background:#ffffff
 }
-mat-sidenav{
+ mat-sidenav{
     color: azure;
 }
-
+/*
 mat-sidenav-container{
     margin-top: 10%;    
-}
+} */

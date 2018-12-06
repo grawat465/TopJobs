@@ -8,6 +8,7 @@ import { EducationService } from '../../service/education.service';
   styleUrls: ['./delete.component.css']
 })
 export class DeleteComponent implements OnInit {
+  resumeid:string;
   constructor(public dialogRef: MatDialogRef<DeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public dataService: EducationService) { }
 
@@ -19,6 +20,7 @@ export class DeleteComponent implements OnInit {
   }
 
   confirmDelete(): void {
+    this.data.resumeId=this.resumeid;
     this.dataService.deleteData(this.data.eduId);
   }
 

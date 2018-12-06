@@ -3,12 +3,12 @@
 
   <form class="mat-dialog-content" (ngSubmit)="submit()" #formControl="ngForm">
 
-    <!-- <div class="form">
+     <!-- <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.eduID" name="id" required >
+        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.eduId" name="id" required >
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
-    </div> -->
+    </div>  -->
 
     <!--Textarea for demo purposes-->
     <div class="form">
@@ -38,7 +38,7 @@
 
     <div class="form">
         <mat-form-field color="accent">
-      <input matInput  #input placeholder="Score" type="number" [(ngModel)]="data.score" name="marks">
+      <input matInput  #input placeholder="Score" type="tel" [(ngModel)]="data.score" name="marks">
       <mat-hint align="start">% or cgpa </mat-hint>
       
       </mat-form-field>
@@ -56,7 +56,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput   #input [min]="minDate" [max]="maxDate" [matDatepicker]="end" placeholder="Ended_at" [(ngModel)]="data.enddate" name="end" required>
+        <input matInput  #input [min]="minDate" [max]="maxDate" [matDatepicker]="end" placeholder="Ended_at" [(ngModel)]="data.enddate" name="end" required>
         <mat-datepicker-toggle matSuffix [for]="end"> <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon></mat-datepicker-toggle>
         <mat-datepicker #end></mat-datepicker>
       </mat-form-field>

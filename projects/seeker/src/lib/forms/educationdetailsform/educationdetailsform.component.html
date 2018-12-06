@@ -34,7 +34,7 @@
                         <!-- ID Column -->
                         <ng-container matColumnDef="id">
                           <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-                          <mat-cell *matCellDef="let row">{{row.eduID}}</mat-cell>
+                          <mat-cell *matCellDef="let row">{{row.eduId}}</mat-cell>
                         </ng-container>
                 
                         <ng-container matColumnDef="level">
@@ -76,7 +76,7 @@
                           </mat-header-cell>
                 
                           <mat-cell *matCellDef="let row; let i=index;">
-                            <button mat-icon-button color="accent" (click)="startEdit( row.degree, row.board, row.institution, row.score, row.startdate, row.enddate)">
+                            <button mat-icon-button color="accent" (click)="startEdit(id,row.degree, row.board, row.institution, row.score, row.startdate, row.enddate)">
                               <mat-icon aria-label="Edit">edit</mat-icon>
                             </button>
                 

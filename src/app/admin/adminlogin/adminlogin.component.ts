@@ -51,7 +51,7 @@ export class AdminloginComponent implements OnInit {
       {
         //alert("User login SuccessFully."); 
         this.snackBar.open(""+this.ad.email+" - Logged in successfully","SUCCESS",{duration:3000,verticalPosition:"top"})
-        this.router.navigate(['/admindash']);
+        this.router.navigate(['/main']);
       }
       else{
         this.snackBar.open(""+this.ad.email+" - Log in failed ","FAILED",{duration:3000,verticalPosition:"top"})

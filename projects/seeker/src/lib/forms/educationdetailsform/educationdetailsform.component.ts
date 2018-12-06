@@ -29,7 +29,7 @@ export class EducationdetailsformComponent implements OnInit {
   displayedColumns = ['id', 'level', 'board', 'instituteName', 'marks', 'started_at', 'ended_at', 'actions'];
   exampleDatabase: EducationService | null;
   dataSource: ExampleDataSource | null;
-  index: number;
+  
   id: number;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -39,18 +39,18 @@ export class EducationdetailsformComponent implements OnInit {
 
   // Chip control
 
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  skillCtrl = new FormControl();
-  filteredSkills: Observable<string[]>;
-  skills: string[] = ['Lemon'];
-  allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
+  // visible = true;
+  // selectable = true;
+  // removable = true;
+  // addOnBlur = true;
+  // separatorKeysCodes: number[] = [ENTER, COMMA];
+  // skillCtrl = new FormControl();
+  // filteredSkills: Observable<string[]>;
+  // skills: string[] = ['Lemon'];
+  // allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  // @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  // @ViewChild('auto') matAutocomplete: MatAutocomplete;
   thirdFormGroup: FormGroup;
 
 
@@ -71,6 +71,7 @@ export class EducationdetailsformComponent implements OnInit {
     this.getResumeID();
     this.dataService.getAllData(this.resumeid);
     this.loadData();
+    
     
   }
 
@@ -107,9 +108,9 @@ export class EducationdetailsformComponent implements OnInit {
     this.id = id;
     
     const dialogRef = this.dialog.open(EditComponent, {
-      data: { eduID: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
+      data: { eduId: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
-
+    dialogRef.componentInstance.resumeid = this.resumeid;
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
@@ -127,9 +128,9 @@ export class EducationdetailsformComponent implements OnInit {
     
     
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: { eduID:id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
+      data: { eduId:id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
-
+    dialogRef.componentInstance.resumeid = this.resumeid;
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduId === this.id);
@@ -150,7 +151,8 @@ export class EducationdetailsformComponent implements OnInit {
     
     this.exampleDatabase = new EducationService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort,this.seekerService,this.route);
-   
+    //alert(this.dataSource.resumeid)
+    console.log(this.dataSource,this.dataSource.resumeid);
    
     //fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
@@ -229,24 +231,33 @@ export class ExampleDataSource extends DataSource<Education> {
   renderedData: Education[] = [];
 
   constructor(public _exampleDatabase: EducationService, public _paginator: MatPaginator,
-    public _sort: MatSort, private seekerService: SeekerService, private route: ActivatedRoute) {
+    public _sort: MatSort, private seekerService: SeekerService, public route: ActivatedRoute) {
     super();
-    this.seekid = this.route.snapshot.paramMap.get('seekid');
+    alert(this.seekid+"SeekID");
+    this.seekid = this.route.snapshot.paramMap.get("seekid");
     this.getResumeID();
   }
+
+
+  
+
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Education[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this._exampleDatabase.dataChange,
-      this._sort.sortChange,
-      this._filterChange,
-      this._paginator.page
+      // this._sort.sortChange,
+      // this._filterChange,
+      // this._paginator.page
     ];
 
-    this._exampleDatabase.getAllData(this.resumeid);
+    
 
+    alert(this.resumeid+ "Before calling getALL");
+    this._exampleDatabase.getAllData(this.resumeid);
+   
+   
 
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
@@ -266,15 +277,18 @@ export class ExampleDataSource extends DataSource<Education> {
     ));
   }
 
-  disconnect() { }
-
-
-  
   getResumeID() {
     this.seekerService.getResumeData(this.seekid).subscribe(data => {
       this.resumeid = data.resumeId;
     });
   }
+
+
+  disconnect() { }
+
+   
+  
+ 
 
 
   /** Returns a sorted copy of the database data. */

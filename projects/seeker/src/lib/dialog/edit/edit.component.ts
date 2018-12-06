@@ -13,7 +13,7 @@ import { EducationService } from '../../service/education.service';
 export class EditComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   maxDate = Date.now();
-
+  resumeid:string;
   Classes = ['Xth', 'XIIth', 'UG', 'PG', 'Diploma'];
 
   constructor(public dialogRef: MatDialogRef<EditComponent>,
@@ -41,6 +41,7 @@ export class EditComponent implements OnInit {
   }
 
   stopEdit(): void {
+    this.data.resumeId=this.resumeid;
     this.dataService.updateData(this.data);
   }
 }

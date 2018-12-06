@@ -1,36 +1,33 @@
-<mat-sidenav-container fullscreen >
-    <mat-toolbar id="appToolbar" color="primary" >
-      <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="sidenav.opened">
-                  <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
-          </button>
-          <span class="toolbar-filler"></span>
-      <!--<button id="button-login" mat-button [routerLink]="['/signupin']" *ngIf="!(user | async)">Log In</button>-->
-      <button id="button-logout" mat-button>Log Out</button>
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav mode="push" class="app-sidenav">
+    <mat-toolbar color="primary">
+      <!--future svg to go here-->
+      <span class="toolbar-filler"></span>
+      <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="!sidenav.opened">
+        <mat-icon aria-label="Menu" class="material-icons">close</mat-icon>
+      </button>
     </mat-toolbar>
-  
-    
-    
-    <mat-sidenav #sidenav mode="push" class="app-sidenav">
-      <mat-toolbar color="primary">
-        <!--future svg to go here-->
-        <span class="toolbar-filler"></span>
-        <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="!sidenav.opened">
-          <mat-icon aria-label="Menu" class="material-icons">close</mat-icon>
+    <mat-nav-list>
+      <a mat-list-item class="sidenav-link" [routerLink]="['alljobs']" (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>account_balance</mat-icon>
+        <span class="title" mat-line>View All Jobs</span>
+        
+      </a>
+      <a mat-list-item class="sidenav-link" [routerLink]="['allemployers']" (click)="sidenav.toggle()">
+        <mat-icon mat-list-icon>android</mat-icon>
+        <span class="title" mat-line>View All Employers</span>
+        
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar id="appToolbar" color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="sidenav.opened">
+                <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
         </button>
-      </mat-toolbar>
-      <mat-nav-list>
-        <a mat-list-item class="sidenav-link" [routerLink]="['/alljobs']" (click)="sidenav.toggle()">
-          <mat-icon mat-list-icon></mat-icon>
-         
-          <span mat-line class="secondary">View All Posted Jobs</span>
-        </a>
-        <a mat-list-item class="sidenav-link" [routerLink]="['/allemployers']" (click)="sidenav.toggle()">
-          <mat-icon mat-list-icon></mat-icon>
-          
-          <span mat-line class="secondary">All Registered Employeer</span>
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-    
-    <router-outlet></router-outlet>
-  </mat-sidenav-container>
+   
+    <span class="toolbar-filler"></span>
+    <!--<button id="button-login" mat-button [routerLink]="['/signupin']" *ngIf="!(user | async)">Log In</button>-->
+    <button id="button-logout" mat-button (click)="exit()">Log Out</button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
