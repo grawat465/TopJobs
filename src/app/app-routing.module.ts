@@ -22,6 +22,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import { ViewAllJobsComponent } from './admin/view-all-jobs/view-all-jobs.component';
 import { ViewAllEmployersComponent } from './admin/view-all-employers/view-all-employers.component';
+import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 
 const routes: Routes = [
 
@@ -73,10 +74,12 @@ const routes: Routes = [
   },
 {
   path:'admin',component:AdminComponent,children:[
-    {path:'admindash',component:AdmindashboardComponent},
-    {path:'alljobs',component:ViewAllJobsComponent},
-    {path:'allemployers',component:ViewAllEmployersComponent},
-    {path:'**',component:AdminComponent}
+    {path:'admindash',component:AdmindashboardComponent,children:[
+      {path:'alljobs',component:ViewAllJobsComponent},
+      {path:'allemployers',component:ViewAllEmployersComponent},
+    ]},
+    {path:'alogin',component:AdminloginComponent},
+    {path:'**',component:AdminloginComponent}
   ]
 }
   

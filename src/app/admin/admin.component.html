@@ -1,10 +1,10 @@
-<mat-sidenav-container fullscreen>
+ <!-- <mat-sidenav-container fullscreen>
     <mat-toolbar id="appToolbar" color="primary" >
       <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="sidenav.opened">
                   <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
           </button>
           <span class="toolbar-filler"></span>
-      <!--<button id="button-login" mat-button [routerLink]="['/signupin']" *ngIf="!(user | async)">Log In</button>-->
+      <button id="button-login" mat-button [routerLink]="['/signupin']" *ngIf="!(user | async)">Log In</button>
       <button id="button-logout" mat-button>Log Out</button>
     </mat-toolbar>
   
@@ -12,7 +12,7 @@
     
     <mat-sidenav #sidenav mode="push" class="app-sidenav">
       <mat-toolbar color="primary">
-        <!--future svg to go here-->
+
         <span class="toolbar-filler"></span>
         <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button" [hidden]="!sidenav.opened">
           <mat-icon aria-label="Menu" class="material-icons">close</mat-icon>
@@ -33,4 +33,13 @@
     </mat-sidenav>
     
     <router-outlet></router-outlet>
-  </mat-sidenav-container>
+  </mat-sidenav-container>  -->
+
+  <mat-grid-list cols="2" >
+    <mat-grid-tile>
+      <app-view-all-jobs></app-view-all-jobs>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-view-all-employers></app-view-all-employers>
+    </mat-grid-tile>
+  </mat-grid-list>
