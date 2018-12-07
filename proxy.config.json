@@ -1,11 +1,11 @@
 {
-    "http://localhost:4200/seeker-registration/*": {
-      "target": "http://192.168.252.38:8765/",
+    "/seeker-registration/*": {
+      "target": "http://192.168.252.43:8765/seeker-registration",
       "secure": false,
 
       "logLevel": "debug"
     },
-    "http://localhost:4200/job-application/*": {
+    "/job-application/*": {
         "target": "http://192.168.252.38:8765/job-application/",
         "secure": false,
   

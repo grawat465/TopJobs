@@ -213,7 +213,7 @@ export class EducationdetailsformComponent implements OnInit {
 
 
 
-export class ExampleDataSource extends DataSource<Education> {
+export class ExampleDataSource extends DataSource<Education> implements OnInit {
   _filterChange = new BehaviorSubject('');
 
   seekid: string;
@@ -240,7 +240,14 @@ export class ExampleDataSource extends DataSource<Education> {
     
   }
 
+ngOnInit(){
 
+  alert(this.seekid+"SeekID");
+  this.seekid = this.route.snapshot.paramMap.get("seekid");
+  this.getResumeID();
+
+
+}
   
   
 
@@ -255,10 +262,7 @@ export class ExampleDataSource extends DataSource<Education> {
        this._paginator.page
     ];
 
-    alert(this.seekid+"SeekID");
-  this.seekid = this.route.snapshot.paramMap.get("seekid");
-  this.getResumeID();
-
+  
 
     alert(this.resumeid+ "Before calling getALL");
     this._exampleDatabase.getAllData(this.resumeid);
