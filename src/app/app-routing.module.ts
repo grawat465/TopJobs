@@ -23,6 +23,7 @@ import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.c
 import { ViewAllJobsComponent } from './admin/view-all-jobs/view-all-jobs.component';
 import { ViewAllEmployersComponent } from './admin/view-all-employers/view-all-employers.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
+import { AuthGuard } from './security/auth.guard';
 
 const routes: Routes = [
 

@@ -25,6 +25,6 @@ export class ExperienceService {
     }
     deleteUser(id: number) {
 
-        return this.http.delete(this.API_URL + 'exp' + id);
+        return this.http.delete(this.API_URL + 'exp/' + id);
     }
 }

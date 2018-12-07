@@ -3,6 +3,7 @@ import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Education } from '../models/education';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({
@@ -27,7 +28,7 @@ export class EducationService {
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private snackBar:MatSnackBar) { }
 
   get data(): Education[] {
     return this.dataChange.value;
@@ -70,26 +71,38 @@ export class EducationService {
   // ADD, POST METHOD
   addData(data): void {
     this.httpClient.post(this.API_URL + 'education', data).subscribe(stream => {
-      this.dialogData = stream;},
+      this.dialogData = stream;
+      this.snackBar.open('Successfully posted','Done',{duration:3000,verticalPosition:'top'});
+    },
       (error: HttpErrorResponse) => {
         console.log(error.name + ' ' + error.message);
+        this.snackBar.open('Error '+error.name + ' ' + error.message,'Done',{duration:3000,verticalPosition:'top'});
       });
     
   }
 
   // UPDATE, PUT METHOD
   updateData(data: Education): void {
-    this.httpClient.put(this.API_URL+'education/' + data.eduId, data).subscribe(shizzz => {
-      this.dialogData = shizzz},
+    this.httpClient.put(this.API_URL+'education',data).subscribe(shizzz => {
+      this.dialogData = data;
+      this.snackBar.open('Successfully updated','Done',{duration:3000,verticalPosition:'top'});
+    },
       (error: HttpErrorResponse) => {
         console.log(error.name + ' ' + error.message);
+        this.snackBar.open('Error '+error.name + ' ' + error.message,'Done',{duration:3000,verticalPosition:'top'});
       });;
   }
 
   // DELETE METHOD
   deleteData(id: number): void {
-    this.httpClient.delete(this.API_URL + id).subscribe(data => {
+    this.httpClient.delete(this.API_URL+'education/' + id).subscribe(data => {
       console.log(data['']);
-    });
-  }
+      this.snackBar.open('Successfully deleted','Done',{duration:3000,verticalPosition:'top'});
+    },
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+        this.snackBar.open('Error '+error.name + ' ' + error.message,'Done',{duration:3000,verticalPosition:'top'});
+
+      });
+}
 }

@@ -9,12 +9,13 @@
   }
   
   .form {
-    display: flex;
+    display: block;
     padding-top: 6px;
   }
   
   .mat-form-field {
-    font-size: 16px;
+    font-size: 14px;
     flex-grow: 1;
+    
   }
   

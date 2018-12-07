@@ -62,6 +62,10 @@ export class AdminloginComponent implements OnInit {
     });
 }
 
+isLoggedIn(){
+  return this.res;
+}
+
 }
 
  
