@@ -42,6 +42,7 @@ export class EditComponent implements OnInit {
 
   stopEdit(): void {
     this.data.resumeId=this.resumeid;
+    // alert(this.resumeid+"testing inside edit")
     this.dataService.updateData(this.data);
   }
 }

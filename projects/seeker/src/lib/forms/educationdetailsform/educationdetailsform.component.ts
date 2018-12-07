@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 
-import { MatPaginator, MatSort, MatDialog, MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent, MatSnackBar } from '@angular/material';
 import { AddComponent } from '../../dialog/add/add.component';
 import { EditComponent } from '../../dialog/edit/edit.component';
 import { DeleteComponent } from '../../dialog/delete/delete.component';
@@ -57,7 +57,7 @@ export class EducationdetailsformComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder, public dialog: MatDialog,
     public dataService: EducationService, private httpClient: HttpClient,
-    private seekerService: SeekerService, private route: ActivatedRoute) {
+    private seekerService: SeekerService, private route: ActivatedRoute, private snackBar :MatSnackBar) {
 
 
     // this.filteredSkills = this.skillCtrl.valueChanges.pipe(
@@ -106,7 +106,7 @@ export class EducationdetailsformComponent implements OnInit {
   startEdit( id: number, level: string, board: string,
     instituteName: string, marks: string, started_at: string, ended_at: string) {
     this.id = id;
-    
+    alert("testing value of EduId"+this.id);
     const dialogRef = this.dialog.open(EditComponent, {
       data: { eduId: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
@@ -149,7 +149,7 @@ export class EducationdetailsformComponent implements OnInit {
 
   public loadData() {
     
-    this.exampleDatabase = new EducationService(this.httpClient);
+    this.exampleDatabase = new EducationService(this.httpClient,this.snackBar);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort,this.seekerService,this.route);
     //alert(this.dataSource.resumeid)
     console.log(this.dataSource,this.dataSource.resumeid);
@@ -222,6 +222,10 @@ export class ExampleDataSource extends DataSource<Education> {
   get filter(): string {
     return this._filterChange.value;
   }
+  
+  get data():string{
+    return this.resumeid;
+  }
 
   set filter(filter: string) {
     this._filterChange.next(filter);
@@ -233,12 +237,11 @@ export class ExampleDataSource extends DataSource<Education> {
   constructor(public _exampleDatabase: EducationService, public _paginator: MatPaginator,
     public _sort: MatSort, private seekerService: SeekerService, public route: ActivatedRoute) {
     super();
-    alert(this.seekid+"SeekID");
-    this.seekid = this.route.snapshot.paramMap.get("seekid");
-    this.getResumeID();
+    
   }
 
 
+  
   
 
 
@@ -247,12 +250,15 @@ export class ExampleDataSource extends DataSource<Education> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this._exampleDatabase.dataChange,
-      // this._sort.sortChange,
-      // this._filterChange,
-      // this._paginator.page
+       this._sort.sortChange,
+       this._filterChange,
+       this._paginator.page
     ];
 
-    
+    alert(this.seekid+"SeekID");
+  this.seekid = this.route.snapshot.paramMap.get("seekid");
+  this.getResumeID();
+
 
     alert(this.resumeid+ "Before calling getALL");
     this._exampleDatabase.getAllData(this.resumeid);

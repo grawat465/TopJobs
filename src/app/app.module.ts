@@ -19,6 +19,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatProgressBarModule } from '@angular/material';
 import { HeaderComponent } from './layout/header/header.component';
 import { AdminModule } from './admin/admin.module';
+import { AuthGuard } from './security/auth.guard';
 
 
 
@@ -54,7 +55,7 @@ import { AdminModule } from './admin/admin.module';
     //LoadingBarRouterModule,
    // LoadingBarModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
