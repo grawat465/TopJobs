@@ -110,7 +110,8 @@ export class EducationdetailsformComponent implements OnInit {
     const dialogRef = this.dialog.open(EditComponent, {
       data: { eduId: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
-    dialogRef.componentInstance.resumeid = this.resumeid;
+    
+    dialogRef.componentInstance. = this.resumeid;
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
@@ -130,7 +131,7 @@ export class EducationdetailsformComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteComponent, {
       data: { eduId:id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
-    dialogRef.componentInstance.resumeid = this.resumeid;
+    ///dialogRef.componentInstance.  = this.resumeid;
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.eduId === this.id);
