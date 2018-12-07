@@ -111,7 +111,7 @@ export class EducationdetailsformComponent implements OnInit {
       data: { eduId: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
     
-    dialogRef.componentInstance. = this.resumeid;
+    dialogRef.componentInstance.resumeid = this.resumeid;
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
