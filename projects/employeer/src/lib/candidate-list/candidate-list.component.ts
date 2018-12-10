@@ -26,6 +26,7 @@ export class CandidateListComponent implements OnInit {
   //dataSource: Resume[];
   selection = new SelectionModel<Resume>(true, []);
   empId: string;
+  serialno:number;
   resumeDisplay: FormGroup;
 
   constructor(private snackBar:MatSnackBar,private FB: FormBuilder, private resumeService: ResumeService,
@@ -67,19 +68,24 @@ export class CandidateListComponent implements OnInit {
       //return result;
 
       if(result){
-        this.resumeService.sendShortlist(resume,this.jobId,this.empId);
+        this.resumeService.sendShortlist(resume,this.jobId,this.empId).subscribe(data=>{
+          console.log(data+"Id"+data.serialno);
+          this.serialno=data.serialno;
+          this.snackBar.open("Added to shortlist","Done",{duration:3000,verticalPosition:'top'})
+        });
       }
       else if(result == null){
         console.log(result);
       }
       else{
-        this.deleteResume(resume);
+        alert(this.serialno);
+        this.deleteResume(this.serialno);
       }
     });
   }
 
-  deleteResume(resumeId:string){
-    this.resumeService.deleteResumeFromJobApplication(this.jobId,resumeId).subscribe(data=>{
+  deleteResume(id:number){
+    this.resumeService.deleteResumeFromJobApplication(this.jobId,id).subscribe(data=>{
       this.snackBar.open("Delete SUCCESS"+data,"",{duration:3000});
     });
   }
@@ -89,6 +95,7 @@ export class CandidateListComponent implements OnInit {
 export interface DialogConfig {
 
   resumeId?: string,
+  serialno?:number;
 
 }
 

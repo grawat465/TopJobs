@@ -1,5 +1,5 @@
 export class ShortlistApplicants{
-    private serialno:number;
+    public serialno:number;
     private resumeId:string;
     private jobId:string;
     constructor(resumeId:string,job:string){

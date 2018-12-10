@@ -13,7 +13,7 @@ export class ShortlistedCandidatesComponent implements OnInit {
   displayedColumns: string[] = ['serialno', 'jobId', 'resumeId','action'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   datas: ShortlistApplicants[] ;
-
+  formdata:ShortlistApplicants;
 
   removeColumn() {
     if (this.columnsToDisplay.length) {
@@ -28,13 +28,16 @@ export class ShortlistedCandidatesComponent implements OnInit {
   getAllApplicants(){
     this.resumeService.getAllShortlsitedApplicants().subscribe(data=>{
       this.datas=data;
-      console.log(data);
+      
+      //console.log(this.formdata[0]);
     });
   }
-  deleteShortlist(resumeId:string){
-    console.log(resumeId);
-    this.resumeService.deleteShortlistedApplicants(resumeId).subscribe(data=>{
+  deleteShortlist(Id:number){
+    console.log(Id);
+    // alert(Id);
+    this.resumeService.deleteShortlistedApplicants(Id).subscribe(data=>{
       console.log(data);
+      window.location.reload();
     });
   }
 }

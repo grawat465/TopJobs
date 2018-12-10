@@ -25,10 +25,10 @@ export class ResumeService {
     getAllShortlsitedApplicants(){
       return this.http.get<ShortlistApplicants[]>(this.userUrl+"/employer/getShortlistApplicants");
     }
-    deleteShortlistedApplicants(resumeId:string){
-      return this.http.delete<boolean>(this.userUrl+"/employer/deleteShortlistApplicants/"+resumeId)
+    deleteShortlistedApplicants(Id:number){
+      return this.http.delete<boolean>(this.userUrl+"/employer/deleteShortlistApplicants/"+Id)
     }
-    deleteResumeFromJobApplication(jobId:string,resumeId:string){
-      return this.http.delete<boolean>(this.userUrl+"/employer/deleteResumeFromJobApplication/"+jobId+"/"+resumeId)
+    deleteResumeFromJobApplication(jobId:string,Id:number){
+      return this.http.delete<boolean>(this.userUrl+"/employer/deleteResumeFromJobApplication/"+jobId+"/"+Id)
     }
 }

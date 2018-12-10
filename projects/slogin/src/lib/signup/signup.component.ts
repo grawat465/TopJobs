@@ -34,11 +34,11 @@ export class SignupComponentSeeker implements OnInit {
 
   validation_messages = {
     'firstname': [
-      { type: 'pattern', message: 'No special characters are allowed' },
+      { type: 'pattern', message: 'minimum 4 characters are required' },
       { type: 'required', message: 'First name is required' }
     ],
     'lastname': [
-      { type: 'pattern', message: 'No special characters are allowed' },
+      { type: 'pattern', message: 'minimum 4 characters are required' },
       { type: 'required', message: 'Last name is required' }
     ],
     'bio': [
@@ -61,7 +61,7 @@ export class SignupComponentSeeker implements OnInit {
 
     'zipcode': [
       { type: 'required', message: 'Zipcode is required' },
-      { type: 'pattern', message: 'Zipcode is incorrect' }
+      { type: 'pattern', message: 'Exactly 6 numbers should be there and not starting with 0' }
     ]
 
   };
@@ -83,8 +83,8 @@ export class SignupComponentSeeker implements OnInit {
     ],
     'password': [
       { type: 'required', message: 'Password is required' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+      { type: 'minlength', message: 'Password must be at least 8 characters long' },
+      { type: 'pattern', message: 'Your password must contain at least one uppercase, and one number,one special character' }
     ],
     'terms': [
       { type: 'pattern', message: 'You must accept terms and conditions' }
@@ -107,7 +107,7 @@ export class SignupComponentSeeker implements OnInit {
     address: this.FB.group({
       state: ['', Validators.required],
       city: ['', [Validators.required, Validators.pattern('^([a-z]|[A-Z]){4,30}$')]],
-      zipcode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+      zipcode: ['', [Validators.required, Validators.pattern('^[1-9]{1}[0-9]{5}$')]],
       country: ['', Validators.required],
     }), username: ['', [
       UsernameValidator.validUsername,
@@ -117,7 +117,7 @@ export class SignupComponentSeeker implements OnInit {
       Validators.required
     ]],
     email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-    password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]],
+    password: ['', [Validators.required, Validators.minLength(8),Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
     confirm_password: ['', this.Validpass],
     terms: new FormControl(false, Validators.pattern('true'))
   });

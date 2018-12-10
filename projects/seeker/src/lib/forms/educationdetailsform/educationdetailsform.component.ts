@@ -56,7 +56,7 @@ export class EducationdetailsformComponent implements OnInit {
     this.getResumeID();
     this.dataService.getAllData(this.resumeid);
     this.loadData();
-    
+    console.log(this.dataSource);
     
   }
 
@@ -180,6 +180,7 @@ export class ExampleDataSource extends DataSource<Education> implements OnInit {
   constructor(public _exampleDatabase: EducationService, public _paginator: MatPaginator,
     public _sort: MatSort, private seekerService: SeekerService, public route: ActivatedRoute, private resumeId: any) {
     super();
+    
 
     //alert(this.seekid+"SeekID");
     this.seekid = this.route.snapshot.paramMap.get('seekid');
