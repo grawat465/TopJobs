@@ -12,7 +12,7 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class ResumeService {
 
-  private userUrl = 'http://localhost:8765/job-application';
+  private userUrl = 'http://192.168.252.33:8765/job-application';
   //private userUrl:string="/seeker-service";
   constructor(private snackBar:MatSnackBar,private http:HttpClient) { }
 
@@ -32,7 +32,7 @@ export class ResumeService {
     deleteShortlistedApplicants(resumeId:string){
       return this.http.delete<boolean>(this.userUrl+"/employer/deleteShortlistApplicants/"+resumeId)
     }
-    
+
     deleteResumeFromJobApplication(jobId:string,resumeId:string){
       return this.http.delete<boolean>(this.userUrl+"/employer/deleteResumeFromJobApplication/"+jobId+"/"+resumeId)
     }

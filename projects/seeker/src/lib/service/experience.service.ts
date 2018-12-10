@@ -7,7 +7,7 @@ import { Experience } from '../models/experience';
 })
 export class ExperienceService {
 
-   private API_URL = 'http://localhost:8765/seeker-service/';
+   private API_URL = 'http://192.168.252.33:8765/seeker-service/';
     constructor(private http: HttpClient){ }
       
     getUsers(resumeid:string) {

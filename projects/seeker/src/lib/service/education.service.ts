@@ -22,7 +22,7 @@ import { MatSnackBar } from '@angular/material';
 export class EducationService {
   //private  API_URL = 'http://192.168.252.33:8765/seeker-service/';
 
-  private API_URL = 'http://localhost:8765/seeker-service/';
+  private API_URL = 'http://192.168.252.33:8765/seeker-service/';
 
   dataChange: BehaviorSubject<Education[]> = new BehaviorSubject<Education[]>([]);
   // Temporarily stores data from dialogs

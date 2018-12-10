@@ -20,7 +20,7 @@ import { SubscriptionFeeDetails } from './subscription-fee-details';
 export class LoginSignupService {
 
   constructor(private http : HttpClient) { } 
-  private userUrl = 'http://localhost:8765/employee-registration';
+  private userUrl = 'http://192.168.252.33:8765/employee-registration';
 
   public requestLogin(email,password) {
     return this.http.get<LoginSignup>(this.userUrl+"/employer/login/"+email+"/"+password);
