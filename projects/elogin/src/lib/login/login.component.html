@@ -87,7 +87,7 @@
                 
 
                   <div class="form-group">
-                      <button class="btn btn-primary" type="submit" (ngSubmit)="onSubmit(registerForm.value)">Register</button>
+                      <button class="btn btn-primary" type="submit" (ngSubmit)="onSubmit(registerForm.value)" [disabled]="!registrationForm.valid">Register</button>
                       <button class="btn btn-warning" (click)="logInComp()" >Log In</button>
                     
                 </div>

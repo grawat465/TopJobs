@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
 import { MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule, MatGridListModule, MatTableDataSource, MatTableModule } from '@angular/material';
-=======
-import { MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule, MatGridListModule, MatTableModule } from '@angular/material';
->>>>>>> 3f8b144709fb1821a844286bacbf01fc7f3c3513
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';

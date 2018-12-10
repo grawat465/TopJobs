@@ -91,7 +91,7 @@ export class EducationdetailsformComponent implements OnInit {
   startEdit( id: number, level: string, board: string,
     instituteName: string, marks: string, started_at: string, ended_at: string) {
     this.id = id;
-    alert("testing value of EduId"+this.id);
+    //alert("testing value of EduId"+this.id);
     const dialogRef = this.dialog.open(EditComponent, {
       data: { eduId: id, degree: level, board: board, institution: instituteName, score: marks, startdate: started_at, enddate: ended_at }
     });
@@ -180,7 +180,7 @@ export class ExampleDataSource extends DataSource<Education> implements OnInit {
     public _sort: MatSort, private seekerService: SeekerService, public route: ActivatedRoute, private resumeId: any) {
     super();
 
-    alert(this.seekid+"SeekID");
+    //alert(this.seekid+"SeekID");
     this.seekid = this.route.snapshot.paramMap.get('seekid');
     this.getResumeID();
     
@@ -208,7 +208,7 @@ ngOnInit(){
 
   
 
-    alert(this.resumeid+ "Before calling getALL");
+   // alert(this.resumeid+ "Before calling getALL");
     this._exampleDatabase.getAllData(this.resumeId);
    
    

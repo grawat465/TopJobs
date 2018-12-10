@@ -171,7 +171,7 @@
           <mat-error  class="error-message" *ngIf="userDetailsForm.get('terms').hasError(validation.type) && (userDetailsForm.get('terms').dirty || userDetailsForm.get('terms').touched)">{{validation.message}}</mat-error>
         </mat-error>
       
-      <button class="submit-btn" color="primary" mat-raised-button type="submit" (click)="onSubmit(userDetailsForm.value)">
+      <button class="submit-btn" color="primary" mat-raised-button type="submit" (click)="onSubmit(userDetailsForm.value)" [disabled]="!userDetailsForm.valid">
           Submit
         </button>
       </form>
