@@ -37,20 +37,7 @@ export class EducationdetailsformComponent implements OnInit {
 
 
 
-  // Chip control
-
-  // visible = true;
-  // selectable = true;
-  // removable = true;
-  // addOnBlur = true;
-  // separatorKeysCodes: number[] = [ENTER, COMMA];
-  // skillCtrl = new FormControl();
-  // filteredSkills: Observable<string[]>;
-  // skills: string[] = ['Lemon'];
-  // allSkills: string[] = ['A', 'B', 'C', 'D', 'E'];
-
-  // @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  // @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  
   thirdFormGroup: FormGroup;
 
 
@@ -60,9 +47,7 @@ export class EducationdetailsformComponent implements OnInit {
     private seekerService: SeekerService, private route: ActivatedRoute, private snackBar :MatSnackBar) {
 
 
-    // this.filteredSkills = this.skillCtrl.valueChanges.pipe(
-    //   startWith(null),
-    //   map((skill: string | null) => skill ? this._filter(skill) : this.allSkills.slice()));
+    
   }
 
   ngOnInit() {
@@ -150,7 +135,7 @@ export class EducationdetailsformComponent implements OnInit {
   public loadData() {
     
     this.exampleDatabase = new EducationService(this.httpClient,this.snackBar);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort,this.seekerService,this.route);
+    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort,this.seekerService,this.route, this.resumeid);
     //alert(this.dataSource.resumeid)
     console.log(this.dataSource,this.dataSource.resumeid);
    
@@ -165,50 +150,7 @@ export class EducationdetailsformComponent implements OnInit {
       //});
   }
 
-  // //////chip control /////////////////
-
-  // add(event: MatChipInputEvent): void {
-  //   // Add fruit only when MatAutocomplete is not open
-  //   // To make sure this does not conflict with OptionSelected Event
-  //   if (!this.matAutocomplete.isOpen) {
-  //     const input = event.input;
-  //     const value = event.value;
-
-  //     // Add our skill
-  //     if ((value || '').trim()) {
-  //       this.skills.push(value.trim());
-  //     }
-
-  //     // Reset the input value
-  //     if (input) {
-  //       input.value = '';
-  //     }
-
-  //     this.skillCtrl.setValue(null);
-  //   }
-  // }
-
-  // remove(skill: string): void {
-  //   const index = this.skills.indexOf(skill);
-
-  //   if (index >= 0) {
-  //     this.skills.splice(index, 1);
-  //   }
-  // }
-
-  // selected(event: MatAutocompleteSelectedEvent): void {
-  //   this.skills.push(event.option.viewValue);
-  //   this.fruitInput.nativeElement.value = '';
-  //   this.skillCtrl.setValue(null);
-  // }
-
-  // private _filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
-
-  //   return this.allSkills.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-  // }s
-
-  //////////////////////////////////////////////////////////
+  
 }
 
 
@@ -235,16 +177,18 @@ export class ExampleDataSource extends DataSource<Education> implements OnInit {
   renderedData: Education[] = [];
 
   constructor(public _exampleDatabase: EducationService, public _paginator: MatPaginator,
-    public _sort: MatSort, private seekerService: SeekerService, public route: ActivatedRoute) {
+    public _sort: MatSort, private seekerService: SeekerService, public route: ActivatedRoute, private resumeId: any) {
     super();
+
+    alert(this.seekid+"SeekID");
+    this.seekid = this.route.snapshot.paramMap.get('seekid');
+    this.getResumeID();
     
   }
 
 ngOnInit(){
 
-  alert(this.seekid+"SeekID");
-  this.seekid = this.route.snapshot.paramMap.get("seekid");
-  this.getResumeID();
+ 
 
 
 }
@@ -265,7 +209,7 @@ ngOnInit(){
   
 
     alert(this.resumeid+ "Before calling getALL");
-    this._exampleDatabase.getAllData(this.resumeid);
+    this._exampleDatabase.getAllData(this.resumeId);
    
    
 

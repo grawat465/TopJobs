@@ -8,7 +8,7 @@ import { Seeker } from './models/seeker';
 export class SloginService {
 
   private userUrl = 'http://localhost:8765/seeker-registration';
-
+ // private userUrl='/seeker-registration';
   constructor(private httpClient: HttpClient) { }
 
 
