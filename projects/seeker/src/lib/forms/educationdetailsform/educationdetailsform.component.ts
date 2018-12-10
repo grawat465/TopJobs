@@ -68,17 +68,21 @@ export class EducationdetailsformComponent implements OnInit {
   ngOnInit() {
     this.seekid = this.route.snapshot.paramMap.get("seekid");
     //this.resumeid=
-    this.getResumeID();
+
     this.dataService.getAllData(this.resumeid);
     this.loadData();
-    
+    this.getResumeID();
+
     
   }
 
   getResumeID() {
     this.seekerService.getResumeData(this.seekid).subscribe(data => {
+      console.log("getting resume id");
       console.log(data);
       this.resumeid = data.resumeId;
+      console.log(data.resumeId);
+      console.log(this.resumeid);
     });
   }
 
@@ -151,19 +155,10 @@ export class EducationdetailsformComponent implements OnInit {
   public loadData() {
     
     this.exampleDatabase = new EducationService(this.httpClient,this.snackBar);
+    console.log("EXAMPLE DATABASE"+this.exampleDatabase);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort,this.seekerService,this.route);
-    //alert(this.dataSource.resumeid)
     console.log(this.dataSource,this.dataSource.resumeid);
-   
-    //fromEvent(this.filter.nativeElement, 'keyup')
-      // .debounceTime(150)
-      // .distinctUntilChanged()
-    //  .subscribe(() => {
-     //   if (!this.dataSource) {
-      //    return;
-      //  }
-      //  this.dataSource.filter = this.filter.nativeElement.value;
-      //});
+
   }
 
   // //////chip control /////////////////
@@ -246,8 +241,6 @@ ngOnInit(){
   alert(this.seekid+"SeekID");
   this.seekid = this.route.snapshot.paramMap.get("seekid");
   this.getResumeID();
-
-
 }
   
   
@@ -290,6 +283,8 @@ ngOnInit(){
 
   getResumeID() {
     this.seekerService.getResumeData(this.seekid).subscribe(data => {
+      console.log("RESUME ID FETCH");
+      console.log(data);
       this.resumeid = data.resumeId;
     });
   }

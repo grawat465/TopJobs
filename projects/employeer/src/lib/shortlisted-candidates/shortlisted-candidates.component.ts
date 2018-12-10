@@ -25,18 +25,22 @@ export class ShortlistedCandidatesComponent implements OnInit {
 
     this.getAllApplicants();
   }
+  
   getAllApplicants(){
     this.resumeService.getAllShortlsitedApplicants().subscribe(data=>{
       this.datas=data;
       console.log(data);
     });
   }
+
   deleteShortlist(resumeId:string){
     console.log(resumeId);
     this.resumeService.deleteShortlistedApplicants(resumeId).subscribe(data=>{
       console.log(data);
     });
   }
+
+
 }
 
 

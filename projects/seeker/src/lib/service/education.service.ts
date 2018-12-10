@@ -38,11 +38,13 @@ export class EducationService {
     return this.dialogData;
   }
 
-
+  // getResumeId(){
+  //   return this.httpClient.get(this.API_URL+"getResumeBySeeker/")
+  // }
 
   getAllData(resumeid:string) {
     alert(resumeid+ "RESUME ID IN SERVICE");
-    return this.httpClient.get<Education[]>(this.API_URL + 'education/'+'9997').subscribe(data => {
+    return this.httpClient.get<Education[]>(this.API_URL + 'education/'+resumeid).subscribe(data => {
       this.dataChange.next(data);
       console.log(data);
     },

@@ -67,7 +67,9 @@ export class CandidateListComponent implements OnInit {
       //return result;
 
       if(result){
-        this.resumeService.sendShortlist(resume,this.jobId,this.empId);
+        this.resumeService.sendShortlist(resume,this.jobId,this.empId).subscribe(data=>{
+          console.log(data);
+        });
       }
       else if(result == null){
         console.log(result);

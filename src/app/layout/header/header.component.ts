@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
       if(location.path()!= ''){
         this.fullRoute=location.path();
         this.route=this.fullRoute.split('/');
-        console.log(this.route);
+        //console.log(this.route);
         if(this.route.indexOf('employer') != -1){
           //this.empId=this.routing.snapshot.paramMap.get('empId');
           this.empId=this.route[3];
@@ -92,9 +92,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/slogin']);
   }
   navigateNewForm(){
-    //this.empId=this.routing.snapshot.paramMap.get("empId");
-    //this.empId=this.location[2];
-    console.log(this.empId);
     this.router.navigate(['/employer/newjob',this.empId]);
   }
   navigateJobs(){
@@ -119,7 +116,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logoutSeeker() {
-    this.router.navigate(['/home',this.seekId])
+    this.router.navigate(['/slogin/login'])
   }
 
   sloginLogin(){
