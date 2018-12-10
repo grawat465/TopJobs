@@ -13,13 +13,10 @@ import { MatSnackBar } from '@angular/material';
 })
 export class SignupComponentSeeker implements OnInit {
   countries = [
-    'Uruguay',
-    'United States',
-    'Argentina',
-    'India',
-    'Bhutan',
-    'Sri Lanka',
-    'England'
+    
+    'India'
+   
+    
   ];
 
   states = [

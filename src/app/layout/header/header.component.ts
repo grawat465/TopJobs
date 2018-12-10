@@ -38,7 +38,11 @@ export class HeaderComponent implements OnInit {
 
         }
         else if(this.route.indexOf('seeker') != -1){
+<<<<<<< HEAD
           this.seekId=this.route[3];
+=======
+          
+>>>>>>> 3f8b144709fb1821a844286bacbf01fc7f3c3513
           this.employer=false;
           this.seeker=true;
           this.slogin=false;

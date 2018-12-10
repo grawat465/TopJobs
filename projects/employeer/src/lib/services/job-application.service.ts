@@ -10,7 +10,11 @@ export class JobApplicationService {
   constructor(private http : HttpClient) { }
 
   //private userUrl = '/job-application';
+<<<<<<< HEAD
   private userUrl:string="http://localhost:8765/job-application";
+=======
+  private userUrl:string="http://localhost:8765/seeker-service";
+>>>>>>> 3f8b144709fb1821a844286bacbf01fc7f3c3513
 
   public postJobApplication(JobApplication){
     return this.http.post<JobApplication>(this.userUrl+"/employer/postjobs/job", JobApplication)
