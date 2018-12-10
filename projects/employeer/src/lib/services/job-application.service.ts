@@ -19,8 +19,12 @@ export class JobApplicationService {
   public postJobApplication(JobApplication){
     return this.http.post<JobApplication>(this.userUrl+"/employer/postjobs/job", JobApplication)
   }
-  public getJobApplication(id:string){
-    return this.http.get<JobApplication[]>(this.userUrl+"/employer/seejobs/"+id)
+  public getJob(jobId:string){
+    return this.http.get<JobApplication>(this.userUrl+"/employer/getjob/"+jobId);
+
+  }
+  public getJobApplications(id:string){
+    return this.http.get<JobApplication[]>(this.userUrl+"/employer/seejobs/"+id);
   }
   public deleteJobApplication(jobId:string){
     return this.http.delete(this.userUrl+"/employer/deleteJobApplication/"+jobId);

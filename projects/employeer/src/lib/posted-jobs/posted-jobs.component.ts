@@ -29,7 +29,8 @@ export class PostedJobsComponent implements OnInit {
   expandedElement: JobApplication;
   job: JobApplication = new JobApplication();
   id: String;
-  constructor(private snackBar: MatSnackBar, private FB: FormBuilder, private router: Router, private service: JobApplicationService, private route: ActivatedRoute) { }
+  constructor(private snackBar: MatSnackBar, private FB: FormBuilder, private router: Router,
+     private service: JobApplicationService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -41,8 +42,8 @@ export class PostedJobsComponent implements OnInit {
 
   getJobApplications(){
     try {
-      this.service.getJobApplication(this.empId).subscribe(data => {
-
+      this.service.getJobApplications(this.empId).subscribe(data => {
+        
         this.jobApplications = data;
         this.dataSource = data;
         console.log(this.dataSource);

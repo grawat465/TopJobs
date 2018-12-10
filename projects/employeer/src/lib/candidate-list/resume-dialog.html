@@ -6,23 +6,23 @@
       <mat-card-title>Personal Information</mat-card-title>
       <mat-form-field class="half-width">
         <label for="name">Name</label>
-        <input matInput  formControlName="name"/>
+        <input matInput readonly formControlName="name"/>
       </mat-form-field>       
       <mat-form-field class="half-width">
         <label for="mobileno">Mobile Number</label>
-        <input matInput  formControlname="mobileno" />
+        <input matInput  readonly formControlname="mobileno" />
       </mat-form-field>
       <mat-form-field class="half-width">
         <label for="dob">Date of Birth</label>
-        <input matInput  formControlName="dob" />
+        <input matInput readonly formControlName="dob" />
       </mat-form-field>
       <mat-form-field class="half-width">
         <label for="resumeId">Resume ID</label>
-        <input matInput  formControlName="resumeId" />
+        <input matInput readonly formControlName="resumeId" />
       </mat-form-field>
       <mat-form-field class="half-width">
         <label for="email">Email ID</label>
-        <input matInput  formControlName="email" />
+        <input matInput readonly formControlName="email" />
       </mat-form-field>
     </form>
   </mat-card>
@@ -51,35 +51,35 @@
         <mat-card-content>
             <mat-form-field>
                 <label for="serial">Serial no</label>
-                <input matInput >{{i}}
+                <input matInput readonly >{{i}}
               </mat-form-field>
           <mat-form-field>
             <label for="degree">Degree</label>
-            <input matInput >{{edu.degree}}
+            <input matInput readonly>{{edu.degree}}
           </mat-form-field>
        
         <mat-form-field>
             <label for="institution">Institution</label>
-            <input matInput >{{edu.institution}}
+            <input matInput readonly>{{edu.institution}}
           </mat-form-field>
      
         <mat-form-field>
             <label for="board">Board</label>
-            <input matInput >{{edu.board}}
+            <input matInput readonly>{{edu.board}}
           </mat-form-field>
       
         <mat-form-field>
             <label for="score">Score</label>
-            <input matInput >{{edu.score}}
+            <input matInput readonly >{{edu.score}}
           </mat-form-field>
           <mat-form-field>
               <label for="startdate">Start Date</label>
-              <input matInput >{{edu.startdate}}
+              <input matInput readonly>{{edu.startdate}}
             </mat-form-field>
      
           <mat-form-field>
               <label for="enddate">End Date</label>
-              <input matInput >{{edu.enddate}}
+              <input matInput readonly>{{edu.enddate}}
             </mat-form-field>
        
         </mat-card-content>
@@ -95,26 +95,26 @@
         <mat-card-content>
             <mat-form-field>
                 <label for="serial">Serial no</label>
-                <input matInput >{{i}}
+                <input matInput readonly>{{i}}
               </mat-form-field>
           <mat-form-field>
             <label for="companyName">Company</label>
-            <input matInput >{{exp.companyName}}
+            <input matInput readonly>{{exp.companyName}}
           </mat-form-field>
        
         <mat-form-field>
             <label for="noOfYears">No of Years</label>
-            <input matInput >{{exp.noOfYears}}
+            <input matInput readonly>{{exp.noOfYears}}
           </mat-form-field>
      
         <mat-form-field>
             <label for="position">Role</label>
-            <input matInput >{{exp.position}}
+            <input matInput readonly>{{exp.position}}
           </mat-form-field>
       
         <mat-form-field>
             <label for="description">Description</label>
-            <input matInput >{{exp.description}}
+            <input matInput readonly>{{exp.description}}
           </mat-form-field>
  
        
